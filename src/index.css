@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-blue: #6b77e0;
+  --color-brand-dark: #4a54c5;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-[#010101] bg-white;
+  }
+}
+
+@layer utilities {
+  .gradient-blue {
+    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-brand-dark) 100%);
+  }
+  .card-shadow {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
