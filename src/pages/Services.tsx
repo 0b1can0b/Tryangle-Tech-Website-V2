@@ -19,7 +19,7 @@ const Services = () => {
   const services = [
     {
       title: "Web Design & Development",
-      desc: "Tryangletech is a highly specialized team for website development and services. You will get high-performing, secure, and SEO-friendly websites tailored to your business goals.",
+      desc: "Tryangle Tech is a highly specialized team for website development and services. You will get high-performing, secure, and SEO-friendly websites tailored to your business goals.",
       icon: <Globe className="h-10 w-10" />,
       features: ["Custom UI/UX Design", "Responsive Layouts", "E-commerce Solutions", "CMS Integration"],
       color: "bg-blue-50",
@@ -27,7 +27,7 @@ const Services = () => {
     },
     {
       title: "Digital Marketing",
-      desc: "Tryangletech provides you with complete digital marketing services. It includes email & Content marketing to boost your brand visibility and reach your target audience effectively.",
+      desc: "Tryangle Tech provides you with complete digital marketing services. It includes email & Content marketing to boost your brand visibility and reach your target audience effectively.",
       icon: <Megaphone className="h-10 w-10" />,
       features: ["Social Media Marketing", "Content Strategy", "Email Campaigns", "PPC Management"],
       color: "bg-purple-50",
@@ -59,7 +59,7 @@ const Services = () => {
     },
     {
       title: "Custom Development",
-      desc: "Invent, integrate, build and upgrade your ideas with our services at Tryangletech. We help you to create high-quality custom software solutions that solve unique business challenges.",
+      desc: "Invent, integrate, build and upgrade your ideas with our services at Tryangle Tech. We help you to create high-quality custom software solutions that solve unique business challenges.",
       icon: <Code className="h-10 w-10" />,
       features: ["Enterprise Software", "API Integrations", "Legacy System Migration", "Cloud Solutions"],
       color: "bg-indigo-50",
@@ -68,67 +68,78 @@ const Services = () => {
   ];
 
   return (
-    <div className="pt-12 pb-24">
+    <div className="pb-32">
       {/* Header Section */}
-      <section className="bg-gray-50 py-20 mb-20">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="relative py-32 overflow-hidden bg-gray-50/50">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/5 -skew-x-12 translate-x-1/4 pointer-events-none" />
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            <p className="text-brand-blue font-semibold text-sm tracking-widest mb-4 uppercase">■ Our Expertise ■</p>
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+            <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-8 uppercase border-b-2 border-brand-blue/20 pb-2">
+              Our Expertise
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] text-balance">
               Comprehensive <span className="text-brand-blue">IT Solutions</span> <br />
               for Your Business
             </h1>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-              We offer a wide range of services to help you stay ahead in the digital world. From development to marketing, we've got you covered.
+            <p className="text-gray-500 max-w-3xl mx-auto text-xl leading-relaxed">
+              We offer a wide range of services to help you stay ahead in the digital world. From development to marketing, we've got you covered with precision and innovation.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="max-w-7xl mx-auto px-6 mb-32">
-        <div className="grid lg:grid-cols-2 gap-16">
+      <section className="py-32">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
           {services.map((service, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: (idx % 2) * 0.2 }}
-              className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 group"
+              transition={{ delay: (idx % 2) * 0.1 }}
+              className="bg-white rounded-[2.5rem] p-10 lg:p-12 border border-gray-100 card-shadow-hover transition-all duration-500 group relative overflow-hidden"
             >
-              <div className="flex flex-col md:flex-row gap-10">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-bl-[5rem] -mr-10 -mt-10 group-hover:bg-brand-blue/10 transition-colors duration-500" />
+              
+              <div className="flex flex-col md:flex-row gap-12 relative z-10">
                 <div className="flex-grow">
-                  <div className={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center text-brand-blue mb-8 group-hover:bg-brand-blue group-hover:text-white transition-colors duration-500`}>
+                  <div className={`w-20 h-20 ${service.color} rounded-3xl flex items-center justify-center text-brand-blue mb-10 group-hover:bg-brand-blue group-hover:text-white transition-all duration-500 shadow-sm`}>
                     {service.icon}
                   </div>
-                  <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                  <p className="text-gray-500 mb-8 leading-relaxed">
+                  <h3 className="text-3xl font-bold mb-6 group-hover:text-brand-blue transition-colors">{service.title}</h3>
+                  <p className="text-gray-500 mb-10 text-lg leading-relaxed">
                     {service.desc}
                   </p>
-                  <ul className="grid grid-cols-2 gap-3 mb-8">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                     {service.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-700">
-                        <CheckCircle2 className="h-4 w-4 text-brand-blue shrink-0" />
+                      <li key={fIdx} className="flex items-center gap-3 text-base text-gray-700 font-medium">
+                        <div className="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue" />
+                        </div>
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <Link to="/contact" className="text-brand-blue font-bold flex items-center gap-2 hover:gap-3 transition-all">
-                    Get Started <ArrowRight className="h-4 w-4" />
+                  <Link to="/contact" className="inline-flex items-center gap-3 text-brand-blue font-bold text-lg group-hover:gap-5 transition-all">
+                    Get Started <ArrowRight className="h-5 w-5" />
                   </Link>
                 </div>
-                <div className="md:w-48 shrink-0">
-                  <img 
-                    alt={service.title} 
-                    className="w-full h-auto rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500" 
-                    src={service.img}
-                    referrerPolicy="no-referrer"
-                  />
+                <div className="md:w-56 shrink-0 flex items-center">
+                  <div className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-xl">
+                    <img 
+                      alt={service.title} 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
+                      src={service.img}
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -137,25 +148,41 @@ const Services = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-brand-blue py-24 text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Why Choose Tryangle Tech?</h2>
-            <p className="text-blue-100">We deliver results that matter for your business.</p>
+      <section className="bg-gray-900 py-32 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-blue/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-1/4 h-full bg-brand-blue/5 blur-[100px] rounded-full pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-24">
+            <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
+              Why Choose Us
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
+              We Deliver Results That <br /> <span className="text-brand-blue">Matter</span> for Your Business
+            </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-16">
             {[
-              { title: "Expert Team", desc: "Our professionals are experts in their respective fields with years of experience.", icon: <Users className="h-8 w-8" /> },
-              { title: "Quality Work", desc: "We maintain high standards of quality in every project we deliver.", icon: <ShieldCheck className="h-8 w-8" /> },
-              { title: "Fast Delivery", desc: "We value your time and ensure timely delivery of all projects.", icon: <Zap className="h-8 w-8" /> }
+              { title: "Expert Team", desc: "Our professionals are experts in their respective fields with years of experience and a passion for innovation.", icon: <Users className="h-10 w-10" /> },
+              { title: "Quality Work", desc: "We maintain high standards of quality in every project we deliver, ensuring robust and scalable solutions.", icon: <ShieldCheck className="h-10 w-10" /> },
+              { title: "Fast Delivery", desc: "We value your time and ensure timely delivery of all projects without compromising on quality or detail.", icon: <Zap className="h-10 w-10" /> }
             ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  {item.icon}
+              <motion.div 
+                key={idx} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="text-center group"
+              >
+                <div className="w-24 h-24 bg-white/5 rounded-3xl flex items-center justify-center mx-auto mb-10 border border-white/10 group-hover:bg-brand-blue group-hover:border-brand-blue transition-all duration-500 shadow-lg">
+                  <div className="text-brand-blue group-hover:text-white transition-colors duration-500">
+                    {item.icon}
+                  </div>
                 </div>
-                <h4 className="text-xl font-bold mb-3">{item.title}</h4>
-                <p className="text-blue-100 text-sm leading-relaxed">{item.desc}</p>
-              </div>
+                <h4 className="text-2xl font-bold text-white mb-6 group-hover:text-brand-blue transition-colors">{item.title}</h4>
+                <p className="text-gray-400 text-lg leading-relaxed">{item.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>

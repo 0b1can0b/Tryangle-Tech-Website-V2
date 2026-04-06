@@ -13,46 +13,81 @@ import {
   Megaphone,
   FileText,
   Eye,
-  Calendar
+  Calendar,
+  ChevronDown,
+  Award,
+  Users
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { blogPosts } from '../data/blogs';
 
 const Hero = () => {
   return (
     <section className="relative pt-20 pb-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      {/* Background elements */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/5 -skew-x-12 translate-x-1/4 pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative">
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-            Tryangle Tech : <span className="text-brand-blue">The Best IT Company in Ahmedabad for Innovative IT Solutions</span>
+          <div className="inline-flex items-center gap-2 bg-brand-blue/10 text-brand-blue px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
+            </span>
+            Best IT Solutions in Ahmedabad
+          </div>
+          <h1 className="text-5xl lg:text-7xl font-bold leading-[1.1] mb-8 text-balance">
+            Tryangle Tech: <span className="text-brand-blue">Innovating</span> Your Digital Future
           </h1>
-          <p className="text-gray-600 text-lg mb-10 max-w-lg">
-            Trynagletech is Best IT Company in Ahmedabad. Join us on this journey as we lead a new age of digital innovation, breaking limits to set unmatched standards for creativity in the digital world.
+          <p className="text-gray-600 text-xl mb-10 max-w-lg leading-relaxed">
+            We lead a new age of digital innovation, breaking limits to set unmatched standards for creativity and technical excellence.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link to="/contact" className="bg-black text-white px-8 py-3.5 rounded-md font-medium hover:bg-gray-800 transition">Contact Us Today!</Link>
-            <Link to="/portfolio" className="border border-gray-200 text-gray-800 px-8 py-3.5 rounded-md font-medium hover:bg-gray-50 transition flex items-center gap-2">
-              View Case Study <ArrowRight className="h-4 w-4" />
+          <div className="flex flex-wrap gap-6">
+            <Link to="/contact" className="bg-black text-white px-10 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
+              Start Your Project
+            </Link>
+            <Link to="/portfolio" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
+              <span className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-brand-blue transition-colors">
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              View Case Studies
             </Link>
           </div>
         </motion.div>
         <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
           className="relative"
         >
+          <div className="absolute inset-0 bg-brand-blue/20 rounded-3xl blur-2xl -rotate-3 scale-95" />
           <img 
             alt="IT Solutions Illustration" 
-            className="w-full h-auto" 
+            className="w-full h-auto relative z-10 rounded-3xl shadow-2xl" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvkYhcrKw84fOkbz1aHZER3kgNyq0g8axM-I6O723PVpc97e0NtzG5BsEi_1BLd_sctJ0ClG8xwVPhBe2Jq3Wr00ydLWjcEqonSLJnnIqYzMiuymdO_u7YGGl33mvzBixBZK4sqQzOhCABeQFtBEoTDdL_v9aUP7X53NOPio4Y49Fl1dM0aJMSKPVsMRGH5CbkX7zgk9mLzmhWoG3TGJdu9HyUAWxaTlySWb4NUXVBNLkqpM8wWay86O_vMgQs2XDeRi6voUoPAq4"
             referrerPolicy="no-referrer"
           />
+          {/* Floating elements */}
+          <motion.div 
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-10 -right-10 bg-white p-6 rounded-2xl shadow-xl z-20 hidden md:block"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-green-50 text-green-500 rounded-full flex items-center justify-center">
+                <Check className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-xs text-gray-400 font-bold uppercase">Projects Done</p>
+                <p className="text-xl font-bold">350+</p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
@@ -91,76 +126,83 @@ const Services = () => {
   const services = [
     {
       title: "Web Design & Development",
-      desc: "Tryangletech is a highly specialized team for website development and services. You will get high-performing...",
+      desc: "High-performing, secure, and SEO-friendly websites tailored to your business goals.",
       icon: <Globe className="h-8 w-8" />,
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDGfYJlnGKuWELiIXwKRszIsdt9qixan4sgwlP8Q_JiFoFKCriKvMz2dJ_aYr8tjHIjav_2bZzQxU2XlCgOvcS5Jcnx8GrImpRZNjIfBgnUlsodrRiLHI21cIO8v186miQ2hrmvPZxlx26p_a4QTodyyKv91RNOjBFcV2lZ-mdR8TrQJ71M6sP7bhA42rchZFmUPlu5N1Q0GNremRVYdQjP5JOe8UYF9jFuy4-6NQ9ntR1Hj2OqH_pQqTbq3oh5j8k0lz2reYF5jns"
     },
     {
       title: "Digital Marketing",
-      desc: "Tryangletech provides you with complete digital marketing services. It includes email & Content marketing...",
+      desc: "Complete digital marketing services including email & content marketing to boost visibility.",
       icon: <Megaphone className="h-8 w-8" />,
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYTDV809-IuxOJAXWV6P0JfSdLb2CpYzAotr-1oyb4WrfWbR0svJdGXJ0PjZAtq7XaMyFwY60J89YYVYX0tnBQwIabxXqr8Egvm4IsaQQE415rB72lJAUjqMaNxqsnRVIbapyKCE-d42bdw0vfAuFx5Y0y3f1v7BdsZkMn-eycupwyOTjuSXPcjJigZVymhRZyXUrLABy8ompxKytX4bkDSIxqba0D3sP22z64G8KbrPRWTyUZtOKDNTt0Ai3wFMncsVp8Y1E6Q0U"
     },
     {
       title: "Search Engine Optimization",
-      desc: "SEO is important for online businesses as it provides companies with the visibility they require to attract customers...",
+      desc: "Strategic SEO to provide companies with the visibility they require to attract customers.",
       icon: <Search className="h-8 w-8" />,
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDfHR9fIBPUg5aXQJ7Gkk_aliSdeexwtAdOtfdLgY2srotRaN8j8Jv-NQUeScpCc7LlIr9YoXSE6nc18OwKqARefEMM0Ba6hQDRybFFcm2CoTZbShbwyuMRVHW8ifY7nNDUwaYGB1yYOjbHIrXgkDz0OLYU14fTgizc4JYr1pBZbRpXRo3yuBtVAhYDi4WrDIRtu-dFimQkUmGeGUsdVUVNn2Uyxd5miGZE9PgC2U8nBE1N_jAx7TlHI786vGa8I8PWo8ET3UVJTmY"
     },
     {
       title: "Graphics Designing",
-      desc: "A graphic designer is a professional within the graphic design and graphic arts industry who assembles together images...",
+      desc: "Professional graphic design assembling images, typography, and motion graphics.",
       icon: <LayoutIcon className="h-8 w-8" />,
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpm0-v_mrWKYWIF6B5kqWMl9e19w4oeHT-l9dAXBn4tJQdWd0_5F7kX1qswhKVSMe-1hLQbq6uScRVUoO3GaNoeRaCmsQd_bVefshv0K_x8HZAUFMCOwV3sEIjwFhhOk4CvsZ1U9zv3UcwyjPfdmksahYDhJK4gC-fnWm39CdLNtV2iVIQ56lT2V454bfK5JZb28Vei0bxf_6U3zDMMfVadjLjxsT9hv_AsnApSHZQVJFEP3kyqEfPRYkqh08DUTIsbbCkuwAdZ3s"
     },
     {
       title: "Mobile App Development",
-      desc: "We are a Mobile App Design and Development Company in India working for brands across the globe. Tell us ...",
+      desc: "Intuitive and high-performance mobile apps for iOS and Android platforms.",
       icon: <Smartphone className="h-8 w-8" />,
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQnFZ4Gs0Y0vqO2XjJfeMJPzZAe0bpyZkMDEYdw3yU5A-bEIHWpcJ0Vxq9e_g_TcXD83K3KOmzb6h9mxhiONGflSNyE1EIf31i5FmJcVvtFhVIUtERFH9JXoOvLlhVRxY9apUTEPJZ3smiTYW571N7sgkk4D5wmkoja6y_tG2DOwewxT2xIBKmtTdIaCMAzHLwj9RGVb3TCAIKbTmJ8x-bPM-t-GgviKMlG7rt6YchHYcaUKOA_sZJ15yi6N_-vSTwcNP2Idcm3nw"
     },
     {
       title: "Custom Development",
-      desc: "Invent, integrate, build and upgrade your ideas with our services at Tryangletech We help you to create high-quality ...",
+      desc: "Bespoke software solutions integrated and upgraded to fit your unique ideas.",
       icon: <Code className="h-8 w-8" />,
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCgN8s5KBEzYkrfqlm3VJYjoxC8Znq23eAXUaai3txr9DdnABp7JyrgUFSJuPB-1KXNATjPiib4Uv0pmBp_s6d7zoEqQCnHjq4ZzFaRNpoM1Ps5mp-sSHi-qMeLMd5zmu2SjxqWa2oVsvxf4Bd3QaTc-0VKxicKNtOKoFDm5unndN26NYzJWHAtyUDCHuVR6jViIDAiiV2p7siskpI6Ow51hcddiNFkwJvtB1xlXcuY4cQJDYaT8NQ9OPq4PZgFDj7Zrg_8rR9RmVg"
     },
   ];
 
   return (
-    <section id="services" className="py-24 bg-gray-50/50">
+    <section id="services" className="py-32 bg-gray-50/50 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-blue/20 to-transparent" />
+      
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <p className="text-brand-blue font-semibold text-sm tracking-widest mb-4 uppercase">■ Our Popular Service ■</p>
-        <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-          Tryangle Tech: <span className="text-brand-blue">Best Web development Services</span> for Limitless Growth
+        <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
+          Our Popular Services
+        </div>
+        <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+          Tryangle Tech: <span className="text-brand-blue">Best Web Development</span> for Limitless Growth
         </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto mb-16">
-          Unlock your business's potential with Tryangle Tech's top-tier web development services. Our innovative solutions for limitless growth and success in the digital landscape.
+        <p className="text-gray-500 max-w-2xl mx-auto mb-20 text-lg">
+          Unlock your business's potential with Tryangle Tech's top-tier web development services. Our innovative solutions for limitless growth and success.
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((service, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white p-8 rounded-2xl card-shadow text-left group hover:-translate-y-2 transition-all duration-300"
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              className="bg-white p-10 rounded-3xl card-shadow text-left group hover:-translate-y-3 transition-all duration-500 relative overflow-hidden"
             >
-              <div className="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-bl-full -translate-y-full translate-x-full group-hover:translate-y-0 group-hover:translate-x-0 transition-transform duration-500" />
+              
+              <div className="w-20 h-20 bg-brand-blue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-blue transition-colors duration-500">
                 <img 
                   alt={service.title} 
-                  className="group-hover:invert group-hover:brightness-0 h-10 w-10 object-contain" 
+                  className="group-hover:invert group-hover:brightness-0 h-12 w-12 object-contain transition-all duration-500" 
                   src={service.img}
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6">
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-blue transition-colors">{service.title}</h3>
+              <p className="text-gray-500 text-base leading-relaxed mb-8">
                 {service.desc}
               </p>
-              <Link className="text-brand-blue font-semibold flex items-center gap-2 group-hover:gap-3 transition-all" to="/services">
-                Read More <span className="bg-brand-blue text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">→</span>
+              <Link className="inline-flex items-center gap-3 text-brand-blue font-bold group-hover:gap-4 transition-all" to="/services">
+                Read More <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
           ))}
@@ -172,48 +214,67 @@ const Services = () => {
 
 const About = () => {
   return (
-    <section id="about" className="py-24">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+    <section id="about" className="py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="relative"
         >
-          <img 
-            alt="Developer Illustration" 
-            className="w-full" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMCLryjUyh4rBIPD-Jgbo3XADNEfOUQOkLkeNheY5v_GlIcrJIkIvlo7aEh1fmsIfPSZBBht6-H7PpOXSDUZSS4zixfL8UGT8d7GtIpjH2uXDUsX2vztu4tyTsXUcPKjowAjrOLZyGlKq2brOmxcqLsagSVkOKumaSGuCBGkhPByO5DKgDxHF1-yr52n2-AfLLGE1lPCJSN5uBRJKCBo2mqXqBuAGQb51zNcEVNIFP2-kTjefeVoDz0ScDxJSaQwmF9M5W3GfsW6Y"
-            referrerPolicy="no-referrer"
-          />
+          <div className="absolute -top-10 -left-10 w-40 h-40 bg-brand-blue/10 rounded-full blur-3xl" />
+          <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
+            <img 
+              alt="Developer Illustration" 
+              className="w-full hover:scale-105 transition-transform duration-700" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMCLryjUyh4rBIPD-Jgbo3XADNEfOUQOkLkeNheY5v_GlIcrJIkIvlo7aEh1fmsIfPSZBBht6-H7PpOXSDUZSS4zixfL8UGT8d7GtIpjH2uXDUsX2vztu4tyTsXUcPKjowAjrOLZyGlKq2brOmxcqLsagSVkOKumaSGuCBGkhPByO5DKgDxHF1-yr52n2-AfLLGE1lPCJSN5uBRJKCBo2mqXqBuAGQb51zNcEVNIFP2-kTjefeVoDz0ScDxJSaQwmF9M5W3GfsW6Y"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="absolute -bottom-12 -right-12 bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 z-20 hidden md:block">
+            <div className="flex items-center gap-6">
+              <div className="text-5xl font-bold text-brand-blue">7+</div>
+              <div className="text-sm font-bold text-gray-400 uppercase tracking-widest leading-tight">
+                Years of <br /> Excellence
+              </div>
+            </div>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-          <p className="text-brand-blue font-semibold text-sm tracking-widest mb-4 uppercase">■ About TryangleTech ■</p>
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+          <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
+            About TryangleTech
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
             Discover the <span className="text-brand-blue">Story and Vision</span> of Trynagletech
           </h2>
-          <div className="space-y-4 text-gray-600 text-sm leading-relaxed mb-8">
+          <div className="space-y-6 text-gray-600 text-lg leading-relaxed mb-10">
             <p>Welcome to Trynagletech, your one-stop solution for IT services. From attractive website design and development to powerful marketing strategies, flawless app and software development, to profitable digital marketing and SEO solutions, we help businesses succeed in the digital world.</p>
-            <p>Use our expertise to improve your online presence and unlock your full potential. At Tryangletech, we turn ideas into digital success stories.</p>
-            <p className="italic text-gray-500">TryangleTech, recognized as the best IT company in Ahmedabad. We specialize in delivering cutting-edge IT solutions that elevate businesses, setting new benchmarks in innovation and reliability.</p>
+            <p className="italic text-gray-500 border-l-4 border-brand-blue/30 pl-6">TryangleTech, recognized as the best IT company in Ahmedabad. We specialize in delivering cutting-edge IT solutions that elevate businesses, setting new benchmarks in innovation and reliability.</p>
           </div>
-          <ul className="space-y-4 mb-10">
+          <ul className="grid sm:grid-cols-2 gap-6 mb-12">
             {[
-              "Elevate Your Business With Digital Innovation.",
-              "Crafting Digital Experiences With Expert Website Development",
-              "Transforming Ideas into Seamless Software Solutions."
+              "Digital Innovation",
+              "Expert Web Dev",
+              "Seamless Software",
+              "Strategic Marketing"
             ].map((item, idx) => (
-              <li key={idx} className="flex items-center gap-3">
-                <span className="bg-blue-50 text-brand-blue p-1 rounded-full"><Check className="h-4 w-4" strokeWidth={3} /></span>
-                <span className="font-medium text-gray-800">{item}</span>
+              <li key={idx} className="flex items-center gap-4 group">
+                <span className="w-8 h-8 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                  <Check className="h-4 w-4" strokeWidth={3} />
+                </span>
+                <span className="font-bold text-gray-800">{item}</span>
               </li>
             ))}
           </ul>
-          <Link to="/about" className="border border-gray-200 text-gray-800 px-8 py-3 rounded text-sm font-medium hover:bg-gray-50 transition inline-block">View more about us →</Link>
+          <Link to="/about" className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
+            Learn More About Us <ArrowRight className="h-4 w-4" />
+          </Link>
         </motion.div>
       </div>
     </section>
@@ -224,32 +285,66 @@ const FAQ = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   const faqs = [
-    "What industries does your IT company specialize in serving?",
-    "Does your company offer ongoing support and maintenance after project completion?",
-    "How does your IT consulting process work?",
-    "What is the typical timeline for a software development project?",
-    "What technologies does your development team specialize in?",
-    "Does Your company provide free Domain & Hosting with website development?"
+    {
+      q: "What industries does your IT company specialize in serving?",
+      a: "Tryangle Tech serves a diverse range of industries, including e-commerce, healthcare, finance, education, and manufacturing, providing tailored IT solutions for each sector."
+    },
+    {
+      q: "Does your company offer ongoing support and maintenance?",
+      a: "Yes, we provide comprehensive post-launch support and maintenance services to ensure your digital solutions remain secure, updated, and perform at their best."
+    },
+    {
+      q: "How does your IT consulting process work?",
+      a: "Our consulting process begins with a deep dive into your business goals, followed by a strategic roadmap, technology selection, and a clear execution plan."
+    },
+    {
+      q: "What is the typical timeline for a software project?",
+      a: "Project timelines vary based on complexity. A standard website might take 4-6 weeks, while complex custom software can range from 3 to 6 months."
+    },
+    {
+      q: "What technologies does your development team specialize in?",
+      a: "We specialize in modern stacks including React, Node.js, Python, Flutter, and cloud platforms like AWS and Azure to build robust and scalable applications."
+    },
+    {
+      q: "Do you provide free Domain & Hosting with development?",
+      a: "We offer various packages that include complimentary domain registration and high-speed hosting for the first year to help you get started quickly."
+    }
   ];
 
   return (
-    <section className="py-24 bg-gray-50/30">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <p className="text-brand-blue font-semibold text-sm tracking-widest mb-4 uppercase">■ Frequently Asked Questions ■</p>
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Trynagletech's <span className="text-brand-blue font-normal italic">Informative</span> FAQ Section
+    <section className="py-32 bg-gray-50/50 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
+            Common Questions
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+            Tryangle Tech's <span className="text-brand-blue">Informative</span> FAQ Section
           </h2>
-          <p className="text-gray-500 mb-10">"Explore answers to common queries about Trynagletech's innovative services, guiding you toward informed decisions for your business's technological advancements."</p>
-          <div className="space-y-2">
+          <p className="text-gray-500 mb-12 text-lg leading-relaxed">
+            "Explore answers to common queries about Tryangle Tech's innovative services, guiding you toward informed decisions for your business's technological advancements."
+          </p>
+          <div className="space-y-4">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white border border-gray-100 rounded-lg overflow-hidden">
+              <motion.div 
+                key={idx} 
+                className="bg-white rounded-2xl overflow-hidden card-shadow border border-gray-100"
+              >
                 <button 
                   onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                  className="w-full px-6 py-4 text-left flex justify-between items-center font-semibold text-gray-800 hover:bg-gray-50 transition"
+                  className="w-full px-8 py-6 text-left flex justify-between items-center group transition-colors"
                 >
-                  {faq}
-                  {openIdx === idx ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                  <span className={`text-lg font-bold transition-colors ${openIdx === idx ? 'text-brand-blue' : 'text-gray-800 group-hover:text-brand-blue'}`}>
+                    {faq.q}
+                  </span>
+                  <span className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${openIdx === idx ? 'bg-brand-blue text-white rotate-180' : 'bg-gray-100 text-gray-400'}`}>
+                    <ChevronDown className="h-4 w-4" />
+                  </span>
                 </button>
                 <AnimatePresence>
                   {openIdx === idx && (
@@ -257,24 +352,33 @@ const FAQ = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      className="px-6 pb-4 text-sm text-gray-500"
+                      transition={{ duration: 0.3 }}
                     >
-                      Our team provides comprehensive solutions tailored to your specific business needs, ensuring high performance and scalability.
+                      <div className="px-8 pb-8 text-gray-500 text-base leading-relaxed border-t border-gray-50 pt-6">
+                        {faq.a}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
-        <div className="relative">
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="relative"
+        >
+          <div className="absolute inset-0 bg-brand-blue/10 rounded-3xl blur-3xl -rotate-6 scale-95" />
           <img 
             alt="Support Illustration" 
-            className="w-full" 
+            className="w-full relative z-10 rounded-3xl shadow-2xl" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEYEzEdEZJiK6GWDgCMmb5ZxFDXjNg5ls-0pZFJs9x_W-KXNIXhvV9vAQlcgGb6Q9aWuF9uMoA8eYp6kZCOjszt5bAyJ-ssLWQ9mijuxswy2HZIBD6NQazv7G3w4PbP6gppZvhxoDtPpSjQcbhS8UAgptIJOyl5zF2JYs4qvkYcfwTue4mtwUd21G1daUYVeD0lF3Gbrpln8pmr6gFNu6vt4jZxniyzEW6FERfhkg7B6_ua_fbYkxkOc8ZXsJdKC5reXcmYuDLePU"
             referrerPolicy="no-referrer"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -288,45 +392,57 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="py-32">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <p className="text-brand-blue font-semibold text-sm tracking-widest mb-4 uppercase">■ Our Case Study ■</p>
-        <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+        <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
+          Our Case Studies
+        </div>
+        <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
           Trynagletech's Showcase of <span className="text-brand-blue">Success Stories</span>
         </h2>
-        <p className="text-gray-400 max-w-lg mx-auto mb-12 italic text-sm">
+        <p className="text-gray-500 max-w-2xl mx-auto mb-20 text-lg italic">
           "Navigating Success: Illuminating Trynagletech's Achievements Through Compelling Case Studies"
         </p>
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          {["Websites Development", "App Development", "Software Development", "Graphic Design"].map((cat, idx) => (
-            <button key={idx} className={`${idx === 0 ? 'bg-brand-blue text-white' : 'border border-gray-200 text-gray-600 hover:bg-gray-50'} px-6 py-2.5 rounded-md text-sm font-medium transition`}>
-              {cat}
-            </button>
-          ))}
-        </div>
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        
+        <div className="grid md:grid-cols-3 gap-12 mb-20">
           {projects.map((project, idx) => (
             <motion.div 
               key={idx}
-              whileHover={{ y: -10 }}
-              className="rounded-xl overflow-hidden shadow-lg border border-gray-100 group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.2 }}
+              className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 group bg-white hover:shadow-2xl transition-all duration-500"
             >
-              <div className={`${project.color} p-6 flex flex-col items-center`}>
-                <h4 className="font-bold text-lg mb-4">{project.title}</h4>
-                <Link className="bg-brand-blue text-white text-[10px] px-4 py-1 rounded-full mb-4 hover:bg-brand-dark transition" to="/contact">CONTACT NOW</Link>
+              <div className={`${project.color} p-10 flex flex-col items-center relative overflow-hidden`}>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4 z-10">
+                  <Link to="/portfolio" className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-brand-blue hover:scale-110 transition-transform">
+                    <Eye className="h-6 w-6" />
+                  </Link>
+                </div>
+                <h4 className="font-bold text-xl mb-6">{project.title}</h4>
                 <img 
                   alt={project.title} 
-                  className="rounded shadow-sm group-hover:scale-105 transition-transform duration-500" 
+                  className="rounded-2xl shadow-lg group-hover:scale-105 transition-transform duration-700 w-full aspect-[4/3] object-cover" 
                   src={project.img}
                   referrerPolicy="no-referrer"
                 />
               </div>
+              <div className="p-8 flex justify-between items-center">
+                <div className="text-left">
+                  <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-1">Web Development</p>
+                  <h5 className="font-bold text-gray-900">{project.title}</h5>
+                </div>
+                <Link to="/contact" className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-colors">
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>
-        <Link to="/portfolio" className="bg-black text-white px-8 py-3.5 rounded-md font-medium flex items-center gap-2 mx-auto hover:bg-gray-800 transition w-fit">
-          <Eye className="h-4 w-4" />
-          View more case study
+        
+        <Link to="/portfolio" className="inline-flex items-center gap-3 bg-gray-900 text-white px-10 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
+          View All Case Studies <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </section>
@@ -334,46 +450,60 @@ const Portfolio = () => {
 };
 
 const Blog = () => {
-  const blogs = [
-    { title: "What is Digital Marketing? ...", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQRgdFElGqEqIJ9aOvPktYHjyHNf9i5rLomWbgDgWEaYdqVqRxc5Gt7IIMcs7IPjXpS9IqWN9Srt1nejx8tOF1er3a9CTXCR08chO4gZBlE8pvXBzZ6U1b96UfVsDpKcfM8OzEMSOdhmRnp9hamZ2M0uXVjfQAskwwgxOsHcGfiQ5aCzh3_pHiHCdgVVfUxVNn67x1XiJl2por4hzxpneZTl_B5YxT0YlQyUhYmSRo7fycRDKANvrY6VjdwGdUVJbNh2MLZ_DKNQ4" },
-    { title: "How to Make Your Business ...", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCXwCWoz6we1PlgKGh66nWOkLHRBxaH70Pslg6WxQDXQ7iqXQTVPTxnK9c0SIs0A9gUKGe8FLvjuCjiTZ7Ss7jynuDZOnhZiv9x66F_LJnMaal69YSBmat6PRNyNDitrDxZllakfO3LwW_AwSl-VW1JaK3O9m1H9UhmLrGr5a9RUiTvIUTMAQMol_1pvMAzsaPNk5KFL8D4leXsEOlGdJRLQ-Gbso3kJ1XbN5Fkwz_n69gjTkoGr27rAoCM8LCsRh1S-H0snkMYCG0" },
-    { title: "5 Free Ways to Promote Yo...", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDLpH25ivZ8JlO2DO3BKDB72a5-UPYjORhR2bBBsZ5V9TjjNXM24mPKcVEWCR3rM8v8tt6UEIBUg_5GcrxLiI_Wk0q_JuDWdZJ1ID0g_naurJdEwn_JpHSkJgpQCEXczIw5ugBscc4DVHMdWpMJTpuGYevubGsy-F4MOi9ms0kWBo7-ZRQ87xqIXw8Jb_l2xEKT5lCBtkBuq-e-j51Di74aDDJFZxycOV49Ok425gvVZ1PhFRQRzCb_HtwXCwx1OqmDFEQVgorDy4Y" },
-    { title: "What is a Website Domain ...", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTp_LFzgWvxdClSq-7gbX05YtM0G4wyKoHhun027TUxmAQhCJUBN-i8G__iIkp5FGulSiYh3xA7qbl4-gFaD4cuxMWHiauuSQGEmDqv6pstDLp-etfer6XFf89uJJpi6FPAnITlKa35YJSRoMjoWI_8LZqAhv0FuSEZlqu_QwziOBSBe8Gfd-yvpOaHedOV-tPqfNay0Z6z1PCV767-JGLTlkf_nI6A9Q59IGrnwbYHlPog1TcupHlbZNWDND5-OxQpCQQHuRiqYY" }
-  ];
-
   return (
-    <section id="blog" className="py-24 bg-gray-50/50">
+    <section id="blog" className="py-32 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between mb-12">
-          <div className="flex items-center gap-4">
-            <div className="bg-brand-blue/10 p-2 rounded">
-              <FileText className="h-6 w-6 text-brand-blue" />
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
+              Our Latest News
             </div>
-            <h2 className="text-3xl font-bold">Latest Blog & Updates</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+              Insights and <span className="text-brand-blue">Innovation</span> from Our Blog
+            </h2>
           </div>
-          <Link to="/blog" className="text-brand-blue font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-            View All Posts <ArrowRight className="h-4 w-4" />
+          <Link to="/blog" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
+            View All Posts
+            <span className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-brand-blue transition-colors">
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </span>
           </Link>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {blogs.map((blog, idx) => (
-            <Link to="/blog" key={idx} className="bg-white rounded-xl overflow-hidden shadow-sm group">
-              <div className="relative overflow-hidden h-48">
-                <img 
-                  alt={blog.title} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                  src={blog.img}
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="font-bold mb-4 line-clamp-2 group-hover:text-brand-blue transition">{blog.title}</h3>
-                <div className="flex items-center gap-2 text-xs text-gray-400">
-                  <span className="bg-brand-blue text-white p-1 rounded-sm"><Calendar className="h-3 w-3" /></span>
-                  August 14, 2023 · Uncategorized
+        <div className="grid md:grid-cols-3 gap-8">
+          {blogPosts.slice(0, 3).map((post, idx) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <Link to={`/blog/${post.id}`} className="bg-white rounded-3xl overflow-hidden card-shadow group block h-full">
+                <div className="relative overflow-hidden h-56">
+                  <img 
+                    alt={post.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    src={post.image}
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-brand-blue uppercase tracking-widest">
+                    {post.category}
+                  </div>
                 </div>
-              </div>
-            </Link>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-4">
+                    <Calendar className="h-3 w-3 text-brand-blue" />
+                    {post.date}
+                  </div>
+                  <h3 className="font-bold text-lg mb-4 line-clamp-2 group-hover:text-brand-blue transition-colors leading-snug">
+                    {post.title}
+                  </h3>
+                  <div className="inline-flex items-center gap-2 text-brand-blue text-xs font-bold group-hover:gap-3 transition-all">
+                    Read More <ArrowRight className="h-3 w-3" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -383,27 +513,41 @@ const Blog = () => {
 
 const Stats = () => {
   const stats = [
-    { label: "Years of Experience", value: "7+" },
-    { label: "Happy Clients", value: "750+" },
-    { label: "Countries We Serve In", value: "5+" },
-    { label: "Website Developed", value: "350+" }
+    { label: "Years of Experience", value: "7+", icon: <Award className="h-8 w-8" /> },
+    { label: "Happy Clients", value: "750+", icon: <Users className="h-8 w-8" /> },
+    { label: "Countries Served", value: "5+", icon: <Globe className="h-8 w-8" /> },
+    { label: "Websites Developed", value: "350+", icon: <Code className="h-8 w-8" /> }
   ];
 
   return (
-    <section className="py-20 gradient-blue text-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+    <section className="py-32 bg-brand-blue relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-black/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0">
           {stats.map((stat, idx) => (
-            <div key={idx} className={idx !== 0 ? "lg:border-l border-white/20" : ""}>
-              <motion.div 
-                initial={{ scale: 0.5, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
+            <div key={idx} className={`flex flex-col items-center text-center ${idx !== 0 ? "lg:border-l lg:border-white/20" : ""}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-5xl font-bold mb-2"
+                transition={{ delay: idx * 0.1 }}
+                className="flex flex-col items-center"
               >
-                {stat.value}
+                <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md border border-white/10 text-white">
+                  {stat.icon}
+                </div>
+                <div className="text-5xl lg:text-6xl font-bold text-white mb-3 tracking-tight">
+                  {stat.value}
+                </div>
+                <div className="text-white/70 font-bold uppercase tracking-[0.2em] text-[10px]">
+                  {stat.label}
+                </div>
               </motion.div>
-              <div className="text-blue-100 uppercase tracking-widest text-xs">{stat.label}</div>
             </div>
           ))}
         </div>

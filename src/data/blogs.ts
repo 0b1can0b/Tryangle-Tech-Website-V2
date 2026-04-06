@@ -3,144 +3,102 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
+  author: string;
   date: string;
   category: string;
   image: string;
-  author: string;
+  readTime: string;
 }
 
 export const blogPosts: BlogPost[] = [
   {
-    id: 'digital-marketing-guide',
-    title: "What is Digital Marketing? A Comprehensive Guide for 2024",
-    excerpt: "Digital marketing is the component of marketing that uses the internet and online based digital technologies such as desktop computers, mobile phones and other digital media and platforms to promote products and services.",
+    id: '1',
+    title: 'The Future of Web Development in 2026',
+    excerpt: 'Explore the latest trends and technologies shaping the web development landscape this year.',
     content: `
-# What is Digital Marketing?
+# The Future of Web Development in 2026
 
-Digital marketing is the component of marketing that uses the internet and online based digital technologies such as desktop computers, mobile phones and other digital media and platforms to promote products and services.
+The web development landscape is evolving faster than ever. As we move through 2026, several key technologies and methodologies are taking center stage, redefining how we build and interact with digital experiences.
 
-## Why is Digital Marketing Important?
+## 1. AI-Driven Development
+Artificial Intelligence is no longer just a buzzword; it's a core part of the developer's toolkit. From AI-assisted coding to automated testing and performance optimization, AI is significantly boosting productivity and code quality.
 
-In today's digital age, your customers are online. If you're not reaching them where they spend their time, you're missing out on a massive opportunity.
+## 2. Serverless and Edge Computing
+The shift towards serverless architectures and edge computing continues to gain momentum. By moving logic closer to the user, developers can achieve unprecedented performance and scalability.
 
-### Key Benefits:
-- **Global Reach:** Reach anyone in the world with an internet connection.
-- **Lower Cost:** Digital marketing is often more cost-effective than traditional methods.
-- **Measurable Results:** Track everything from clicks to conversions in real-time.
-- **Personalization:** Tailor your message to specific audience segments.
+## 3. Advanced Web APIs
+New browser APIs are enabling more powerful and native-like experiences on the web. From WebGPU for high-performance graphics to advanced WebAssembly capabilities, the boundaries of what's possible in a browser are expanding.
 
-## Core Components of Digital Marketing
+## 4. Sustainability in Tech
+Green software engineering is becoming a priority. Developers are increasingly focused on building energy-efficient applications that minimize their carbon footprint.
 
-1. **Search Engine Optimization (SEO):** Ranking higher on Google.
-2. **Content Marketing:** Creating valuable content to attract customers.
-3. **Social Media Marketing:** Engaging with your audience on platforms like Instagram and Facebook.
-4. **Pay-Per-Click (PPC):** Paid advertising on search engines and social media.
-5. **Email Marketing:** Direct communication with your leads and customers.
-
-## How to Get Started?
-
-Start by defining your goals and understanding your target audience. Choose the platforms where your audience is most active and start creating valuable content that solves their problems.
-
-At **Tryangle Tech**, we help businesses navigate this complex landscape with ease. Contact us today to learn more!
+### Conclusion
+Staying ahead in web development requires a commitment to continuous learning and adaptation. By embracing these trends, we can build a more powerful, efficient, and sustainable web for everyone.
     `,
-    date: "August 14, 2023",
-    category: "Marketing",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQRgdFElGqEqIJ9aOvPktYHjyHNf9i5rLomWbgDgWEaYdqVqRxc5Gt7IIMcs7IPjXpS9IqWN9Srt1nejx8tOF1er3a9CTXCR08chO4gZBlE8pvXBzZ6U1b96UfVsDpKcfM8OzEMSOdhmRnp9hamZ2M0uXVjfQAskwwgxOsHcGfiQ5aCzh3_pHiHCdgVVfUxVNn67x1XiJl2por4hzxpneZTl_B5YxT0YlQyUhYmSRo7fycRDKANvrY6VjdwGdUVJbNh2MLZ_DKNQ4",
-    author: "Tryangle Tech Team"
+    author: 'Hetul Darji',
+    date: 'March 15, 2026',
+    category: 'Technology',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800',
+    readTime: '5 min read'
   },
   {
-    id: 'business-growth-strategies',
-    title: "How to Make Your Business Grow with Modern IT Solutions",
-    excerpt: "In the rapidly evolving business landscape, staying ahead means embracing technology. Learn how modern IT solutions can scale your business.",
+    id: '2',
+    title: 'Mastering React 19: Best Practices',
+    excerpt: 'Learn the most effective ways to build scalable and performant applications with React 19.',
     content: `
-# Scaling Your Business with IT
+# Mastering React 19: Best Practices
 
-Modern businesses are no longer just about products and services; they are about technology. From cloud computing to AI, the right IT infrastructure can be the difference between stagnation and exponential growth.
+React 19 has introduced several groundbreaking features that simplify state management and improve performance. Here are some best practices to help you make the most of this latest release.
 
-## The Role of IT in Business Growth
+## 1. Embrace Server Components
+React Server Components (RSC) are now the standard for building high-performance applications. They allow you to fetch data on the server, reducing the amount of JavaScript sent to the client.
 
-1. **Efficiency and Automation:** Automate repetitive tasks to free up your team for creative work.
-2. **Data-Driven Decisions:** Use analytics to understand your customers better.
-3. **Scalability:** Cloud solutions allow you to scale your resources as your business grows.
-4. **Security:** Protect your valuable data from cyber threats.
+## 2. Use the 'use' Hook
+The new \`use\` hook simplifies handling promises and context. It's a powerful tool for cleaner and more readable code.
 
-## Key Technologies to Consider
+## 3. Optimized State Management
+With the improvements in React's internal reconciliation, many external state management libraries are becoming less necessary. Leverage built-in hooks like \`useReducer\` and \`useContext\` for most use cases.
 
-- **Cloud Computing:** Access your data and applications from anywhere.
-- **Artificial Intelligence:** Enhance customer experience with chatbots and personalized recommendations.
-- **Cybersecurity:** Implement robust security measures to protect your business.
-- **Custom Software:** Build tools that are specifically designed for your business processes.
+## 4. Performance Monitoring
+Use the React Profiler and other performance tools to identify and fix bottlenecks in your application.
 
-## Conclusion
-
-Investing in IT is not an expense; it's an investment in your business's future. At Tryangle Tech, we specialize in building the digital foundation your business needs to thrive.
+### Summary
+React 19 is a significant step forward for the ecosystem. By following these best practices, you can build applications that are not only faster but also easier to maintain.
     `,
-    date: "September 05, 2023",
-    category: "Business",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCXwCWoz6we1PlgKGh66nWOkLHRBxaH70Pslg6WxQDXQ7iqXQTVPTxnK9c0SIs0A9gUKGe8FLvjuCjiTZ7Ss7jynuDZOnhZiv9x66F_LJnMaal69YSBmat6PRNyNDitrDxZllakfO3LwW_AwSl-VW1JaK3O9m1H9UhmLrGr5a9RUiTvIUTMAQMol_1pvMAzsaPNk5KFL8D4leXsEOlGdJRLQ-Gbso3kJ1XbN5Fkwz_n69gjTkoGr27rAoCM8LCsRh1S-H0snkMYCG0",
-    author: "Tryangle Tech Team"
+    author: 'Hetul Darji',
+    date: 'March 10, 2026',
+    category: 'Development',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800',
+    readTime: '8 min read'
   },
   {
-    id: 'free-promotion-ways',
-    title: "5 Free Ways to Promote Your Business Online",
-    excerpt: "You don't always need a massive budget to get noticed. Here are five effective and free ways to promote your business online.",
+    id: '3',
+    title: 'Designing for the Modern Web',
+    excerpt: 'A deep dive into modern UI/UX principles that prioritize user experience and accessibility.',
     content: `
-# Promote Your Business for Free
+# Designing for the Modern Web
 
-Marketing doesn't always have to be expensive. Here are five ways you can boost your online presence without spending a dime.
+In today's digital world, design is about more than just aesthetics. It's about creating intuitive, accessible, and engaging experiences for all users.
 
-## 1. Google Business Profile
-Claim your business on Google to appear in local search results and Google Maps.
+## 1. Accessibility First
+Accessibility should never be an afterthought. Designing with accessibility in mind from the start ensures that your application is usable by everyone, regardless of their abilities.
 
-## 2. Social Media Engagement
-Don't just post; engage. Respond to comments, join groups, and participate in conversations related to your industry.
+## 2. Minimalist and Clean UI
+The trend towards minimalism continues. Clean layouts, ample white space, and clear typography help users focus on what's important.
 
-## 3. Content Marketing
-Start a blog or create videos that provide value to your audience. This builds authority and trust.
+## 3. Micro-interactions
+Subtle animations and feedback loops can significantly enhance the user experience, making interactions feel more natural and rewarding.
 
-## 4. Email Newsletters
-Build an email list and send regular updates to your subscribers. This is one of the most effective ways to nurture leads.
+## 4. Mobile-First Design
+With the majority of web traffic coming from mobile devices, a mobile-first approach is essential for any modern web project.
 
-## 5. Networking and Partnerships
-Collaborate with other businesses in your niche for cross-promotion.
-
-## Final Thoughts
-Consistency is key. Even free methods require time and effort to see results.
+### Final Thoughts
+Great design is invisible. It guides the user seamlessly through their journey, providing value and delight at every step.
     `,
-    date: "October 12, 2023",
-    category: "Marketing",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDLpH25ivZ8JlO2DO3BKDB72a5-UPYjORhR2bBBsZ5V9TjjNXM24mPKcVEWCR3rM8v8tt6UEIBUg_5GcrxLiI_Wk0q_JuDWdZJ1ID0g_naurJdEwn_JpHSkJgpQCEXczIw5ugBscc4DVHMdWpMJTpuGYevubGsy-F4MOi9ms0kWBo7-ZRQ87xqIXw8Jb_l2xEKT5lCBtkBuq-e-j51Di74aDDJFZxycOV49Ok425gvVZ1PhFRQRzCb_HtwXCwx1OqmDFEQVgorDy4Y",
-    author: "Tryangle Tech Team"
-  },
-  {
-    id: 'website-domain-explained',
-    title: "What is a Website Domain and Why Do You Need One?",
-    excerpt: "Your domain name is your digital address. Learn what it is, how it works, and why it's crucial for your brand identity.",
-    content: `
-# Understanding Website Domains
-
-A domain name is the address of your website that people type in the browser URL bar to visit your website. In simple terms, if your website was a house, then your domain name would be its address.
-
-## How Domains Work
-
-The internet is a giant network of computers connected to each other through a global network of cables. Each computer is assigned an IP address, which is a series of numbers. Domain names were created to make it easy for people to visit websites without having to remember these numbers.
-
-## Why You Need a Professional Domain
-
-- **Brand Identity:** A custom domain makes your business look professional.
-- **SEO Benefits:** A relevant domain name can help you rank better in search results.
-- **Email Professionalism:** You can have custom email addresses like info@yourbusiness.com.
-- **Ownership:** You own your brand's digital space.
-
-## Choosing the Right Domain
-
-Keep it short, easy to spell, and relevant to your business. Avoid using hyphens or numbers if possible.
-
-Need help setting up your website? **Tryangle Tech** offers complete website development services including domain and hosting setup.
-    `,
-    date: "November 20, 2023",
-    category: "Technology",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTp_LFzgWvxdClSq-7gbX05YtM0G4wyKoHhun027TUxmAQhCJUBN-i8G__iIkp5FGulSiYh3xA7qbl4-gFaD4cuxMWHiauuSQGEmDqv6pstDLp-etfer6XFf89uJJpi6FPAnITlKa35YJSRoMjoWI_8LZqAhv0FuSEZlqu_QwziOBSBe8Gfd-yvpOaHedOV-tPqfNay0Z6z1PCV767-JGLTlkf_nI6A9Q59IGrnwbYHlPog1TcupHlbZNWDND5-OxQpCQQHuRiqYY",
-    author: "Tryangle Tech Team"
+    author: 'Hetul Darji',
+    date: 'March 05, 2026',
+    category: 'Design',
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800',
+    readTime: '6 min read'
   }
 ];
