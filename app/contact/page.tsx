@@ -1,8 +1,10 @@
+'use client';
+
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, MessageSquare, User, Globe, CheckCircle2, ChevronDown } from 'lucide-react';
 
-const Contact = () => {
+export default function Contact() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -243,6 +245,4 @@ const Contact = () => {
       </section>
     </div>
   );
-};
-
-export default Contact;
+}

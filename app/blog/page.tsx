@@ -1,9 +1,11 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowRight, Search, Tag, Clock } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { blogPosts } from '../data/blogs';
+import Link from 'next/link';
+import { blogPosts } from '@/src/data/blogs';
 
-const BlogList = () => {
+export default function BlogList() {
   return (
     <div className="pb-32">
       {/* Header Section */}
@@ -43,7 +45,7 @@ const BlogList = () => {
                 transition={{ duration: 0.8, delay: idx * 0.1 }}
                 className="group relative"
               >
-                <Link to={`/blog/${post.id}`} className="block overflow-hidden rounded-[3rem] mb-10 shadow-2xl relative">
+                <Link href={`/blog/${post.id}`} className="block overflow-hidden rounded-[3rem] mb-10 shadow-2xl relative">
                   <div className="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/10 transition-colors duration-700 z-10" />
                   <img 
                     src={post.image} 
@@ -72,13 +74,13 @@ const BlogList = () => {
                 </div>
 
                 <h2 className="text-4xl lg:text-5xl font-bold mb-6 group-hover:text-brand-blue transition-all duration-300 leading-tight">
-                  <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                  <Link href={`/blog/${post.id}`}>{post.title}</Link>
                 </h2>
                 <p className="text-gray-500 text-lg leading-relaxed mb-10 line-clamp-3">
                   {post.excerpt}
                 </p>
                 <Link 
-                  to={`/blog/${post.id}`} 
+                  href={`/blog/${post.id}`} 
                   className="inline-flex items-center gap-3 text-brand-blue font-bold text-lg group/link"
                 >
                   Read Full Article 
@@ -130,7 +132,7 @@ const BlogList = () => {
               <h3 className="font-bold text-2xl mb-8 relative z-10">Recent Posts</h3>
               <div className="space-y-8 relative z-10">
                 {blogPosts.slice(0, 3).map((post) => (
-                  <Link key={post.id} to={`/blog/${post.id}`} className="flex gap-6 group items-center">
+                  <Link key={post.id} href={`/blog/${post.id}`} className="flex gap-6 group items-center">
                     <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-500">
                       <img 
                         src={post.image} 
@@ -169,6 +171,4 @@ const BlogList = () => {
       </section>
     </div>
   );
-};
-
-export default BlogList;
+}

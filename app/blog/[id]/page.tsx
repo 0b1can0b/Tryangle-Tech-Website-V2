@@ -1,11 +1,15 @@
-import { useParams, Link } from 'react-router-dom';
+'use client';
+
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { Calendar, User, Clock, ArrowLeft, Share2, Bookmark, Globe, Facebook, Instagram, Linkedin } from 'lucide-react';
-import { blogPosts } from '../data/blogs';
+import { blogPosts } from '@/src/data/blogs';
 
-const BlogPost = () => {
-  const { id } = useParams<{ id: string }>();
+export default function BlogPost() {
+  const params = useParams();
+  const id = params?.id as string;
   const post = blogPosts.find((p) => p.id === id);
 
   if (!post) {
@@ -13,7 +17,7 @@ const BlogPost = () => {
       <div className="min-h-[70vh] flex flex-col items-center justify-center px-6">
         <h2 className="text-3xl font-bold mb-4">Post Not Found</h2>
         <p className="text-gray-500 mb-8">The blog post you're looking for doesn't exist or has been moved.</p>
-        <Link to="/blog" className="bg-brand-blue text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-blue/90 transition-all">
+        <Link href="/blog" className="bg-brand-blue text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-blue/90 transition-all">
           Back to Blog
         </Link>
       </div>
@@ -39,7 +43,7 @@ const BlogPost = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Link to="/blog" className="inline-flex items-center gap-2 text-white/80 font-bold text-sm mb-8 hover:text-white hover:gap-3 transition-all">
+              <Link href="/blog" className="inline-flex items-center gap-2 text-white/80 font-bold text-sm mb-8 hover:text-white hover:gap-3 transition-all">
                 <ArrowLeft className="h-4 w-4" /> Back to Blog
               </Link>
               <div className="inline-block bg-brand-blue text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 shadow-lg shadow-brand-blue/20">
@@ -130,7 +134,7 @@ const BlogPost = () => {
                 <h4 className="text-2xl font-bold mb-4 relative z-10">Have a Project?</h4>
                 <p className="text-gray-400 text-sm mb-8 relative z-10 leading-relaxed">Let's discuss how our expertise can help you achieve your goals.</p>
                 <Link 
-                  to="/contact" 
+                  href="/contact" 
                   className="block w-full bg-brand-blue text-white py-4 rounded-2xl font-bold text-center hover:bg-brand-blue/90 hover:scale-[1.02] transition-all relative z-10 shadow-lg shadow-brand-blue/20"
                 >
                   Get Started
@@ -151,7 +155,7 @@ const BlogPost = () => {
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold">Related <span className="text-brand-blue">Articles</span></h2>
             </div>
-            <Link to="/blog" className="text-brand-blue font-bold text-lg hover:underline underline-offset-8 hidden md:block">
+            <Link href="/blog" className="text-brand-blue font-bold text-lg hover:underline underline-offset-8 hidden md:block">
               View All Posts
             </Link>
           </div>
@@ -166,7 +170,7 @@ const BlogPost = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700"
               >
-                <Link to={`/blog/${relatedPost.id}`} className="block relative h-64 overflow-hidden">
+                <Link href={`/blog/${relatedPost.id}`} className="block relative h-64 overflow-hidden">
                   <img 
                     src={relatedPost.image} 
                     alt={relatedPost.title}
@@ -179,11 +183,11 @@ const BlogPost = () => {
                 </Link>
                 <div className="p-8">
                   <h4 className="text-2xl font-bold mb-4 group-hover:text-brand-blue transition-colors line-clamp-2 leading-tight">
-                    <Link to={`/blog/${relatedPost.id}`}>{relatedPost.title}</Link>
+                    <Link href={`/blog/${relatedPost.id}`}>{relatedPost.title}</Link>
                   </h4>
                   <p className="text-gray-500 mb-8 line-clamp-2 leading-relaxed">{relatedPost.excerpt}</p>
                   <Link 
-                    to={`/blog/${relatedPost.id}`}
+                    href={`/blog/${relatedPost.id}`}
                     className="text-brand-blue font-bold flex items-center gap-2 group/link"
                   >
                     Read More <span className="group-hover/link:translate-x-2 transition-transform duration-300">→</span>
@@ -196,6 +200,4 @@ const BlogPost = () => {
       </section>
     </div>
   );
-};
-
-export default BlogPost;
+}

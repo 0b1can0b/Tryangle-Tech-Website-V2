@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -18,8 +20,8 @@ import {
   Award,
   Users
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { blogPosts } from '../data/blogs';
+import Link from 'next/link';
+import { blogPosts } from '@/src/data/blogs';
 
 const Hero = () => {
   return (
@@ -48,10 +50,10 @@ const Hero = () => {
             We lead a new age of digital innovation, breaking limits to set unmatched standards for creativity and technical excellence.
           </p>
           <div className="flex flex-wrap gap-6">
-            <Link to="/contact" className="bg-black text-white px-10 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
+            <Link href="/contact" className="bg-black text-white px-10 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
               Start Your Project
             </Link>
-            <Link to="/portfolio" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
+            <Link href="/portfolio" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
               <span className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-brand-blue transition-colors">
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </span>
@@ -201,7 +203,7 @@ const Services = () => {
               <p className="text-gray-500 text-base leading-relaxed mb-8">
                 {service.desc}
               </p>
-              <Link className="inline-flex items-center gap-3 text-brand-blue font-bold group-hover:gap-4 transition-all" to="/services">
+              <Link className="inline-flex items-center gap-3 text-brand-blue font-bold group-hover:gap-4 transition-all" href="/services">
                 Read More <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
@@ -272,7 +274,7 @@ const About = () => {
               </li>
             ))}
           </ul>
-          <Link to="/about" className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
+          <Link href="/about" className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
             Learn More About Us <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
@@ -416,7 +418,7 @@ const Portfolio = () => {
             >
               <div className={`${project.color} p-10 flex flex-col items-center relative overflow-hidden`}>
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4 z-10">
-                  <Link to="/portfolio" className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-brand-blue hover:scale-110 transition-transform">
+                  <Link href="/portfolio" className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-brand-blue hover:scale-110 transition-transform">
                     <Eye className="h-6 w-6" />
                   </Link>
                 </div>
@@ -433,7 +435,7 @@ const Portfolio = () => {
                   <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-1">Web Development</p>
                   <h5 className="font-bold text-gray-900">{project.title}</h5>
                 </div>
-                <Link to="/contact" className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-colors">
+                <Link href="/contact" className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-colors">
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </div>
@@ -441,7 +443,7 @@ const Portfolio = () => {
           ))}
         </div>
         
-        <Link to="/portfolio" className="inline-flex items-center gap-3 bg-gray-900 text-white px-10 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
+        <Link href="/portfolio" className="inline-flex items-center gap-3 bg-gray-900 text-white px-10 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg hover:shadow-brand-blue/20">
           View All Case Studies <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -462,7 +464,7 @@ const Blog = () => {
               Insights and <span className="text-brand-blue">Innovation</span> from Our Blog
             </h2>
           </div>
-          <Link to="/blog" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
+          <Link href="/blog" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
             View All Posts
             <span className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-brand-blue transition-colors">
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -478,7 +480,7 @@ const Blog = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <Link to={`/blog/${post.id}`} className="bg-white rounded-3xl overflow-hidden card-shadow group block h-full">
+              <Link href={`/blog/${post.id}`} className="bg-white rounded-3xl overflow-hidden card-shadow group block h-full">
                 <div className="relative overflow-hidden h-56">
                   <img 
                     alt={post.title} 
@@ -556,7 +558,7 @@ const Stats = () => {
   );
 };
 
-const Home = () => {
+export default function Home() {
   return (
     <>
       <Hero />
@@ -569,6 +571,4 @@ const Home = () => {
       <Stats />
     </>
   );
-};
-
-export default Home;
+}

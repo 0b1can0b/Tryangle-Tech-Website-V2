@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, ChevronRight, Instagram, Facebook, Linkedin } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -63,7 +63,7 @@ const Footer = () => {
                 { name: "Blog", path: "/blog" },
                 { name: "Contact", path: "/contact" }
               ].map((link, idx) => (
-                <li key={idx}><Link className="hover:text-brand-blue transition" to={link.path}>{link.name}</Link></li>
+                <li key={idx}><Link className="hover:text-brand-blue transition" href={link.path}>{link.name}</Link></li>
               ))}
             </ul>
           </div>

@@ -1,9 +1,11 @@
+'use client';
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ExternalLink, Eye, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-const Portfolio = () => {
+export default function Portfolio() {
   const [filter, setFilter] = useState('All');
 
   const categories = ['All', 'Websites Development', 'App Development', 'Software Development', 'Graphic Design'];
@@ -140,7 +142,7 @@ const Portfolio = () => {
                             {project.title}
                           </h3>
                         </div>
-                        <Link to="/contact" className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-all duration-500 group-hover:rotate-45">
+                        <Link href="/contact" className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-all duration-500 group-hover:rotate-45">
                           <ArrowRight className="h-6 w-6" />
                         </Link>
                       </div>
@@ -185,7 +187,7 @@ const Portfolio = () => {
             <p className="text-gray-400 max-w-2xl mx-auto mb-12 text-xl leading-relaxed">
               Let's work together to build something amazing. Our team is ready to turn your vision into reality with cutting-edge technology.
             </p>
-            <Link to="/contact" className="bg-brand-blue text-white px-12 py-5 rounded-2xl font-bold hover:bg-brand-blue/90 hover:scale-105 transition-all duration-300 shadow-xl shadow-brand-blue/20 inline-block text-lg">
+            <Link href="/contact" className="bg-brand-blue text-white px-12 py-5 rounded-2xl font-bold hover:bg-brand-blue/90 hover:scale-105 transition-all duration-300 shadow-xl shadow-brand-blue/20 inline-block text-lg">
               Start Your Project Now
             </Link>
           </motion.div>
@@ -193,6 +195,4 @@ const Portfolio = () => {
       </section>
     </div>
   );
-};
-
-export default Portfolio;
+}

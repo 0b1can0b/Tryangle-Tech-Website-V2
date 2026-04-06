@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { 
   Globe, 
@@ -13,9 +15,9 @@ import {
   Zap,
   Users
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-const Services = () => {
+export default function Services() {
   const services = [
     {
       title: "Web Design & Development",
@@ -127,7 +129,7 @@ const Services = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link to="/contact" className="inline-flex items-center gap-3 text-brand-blue font-bold text-lg group-hover:gap-5 transition-all">
+                  <Link href="/contact" className="inline-flex items-center gap-3 text-brand-blue font-bold text-lg group-hover:gap-5 transition-all">
                     Get Started <ArrowRight className="h-5 w-5" />
                   </Link>
                 </div>
@@ -189,6 +191,4 @@ const Services = () => {
       </section>
     </div>
   );
-};
-
-export default Services;
+}

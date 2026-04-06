@@ -1,7 +1,9 @@
+'use client';
+
 import { motion } from 'motion/react';
 import { Check, Target, Eye, Award, Users, Heart, Code } from 'lucide-react';
 
-const About = () => {
+export default function About() {
   return (
     <div className="pb-32">
       {/* Header Section */}
@@ -169,6 +171,4 @@ const About = () => {
       </section>
     </div>
   );
-};
-
-export default About;
+}

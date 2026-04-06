@@ -1,12 +1,15 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { Mail, Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +21,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [location]);
+  }, [pathname]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -34,7 +37,7 @@ const Navbar = () => {
       scrolled ? 'bg-white/90 backdrop-blur-md py-3 shadow-sm' : 'bg-white py-5'
     } px-6`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <img 
             alt="Tryangle Tech Logo" 
             className="h-10 transition-transform group-hover:scale-105" 
@@ -48,13 +51,13 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link 
-                to={link.path} 
+                href={link.path} 
                 className={`relative py-2 transition-colors ${
-                  location.pathname === link.path ? 'text-brand-blue' : 'text-gray-600 hover:text-brand-blue'
+                  pathname === link.path ? 'text-brand-blue' : 'text-gray-600 hover:text-brand-blue'
                 }`}
               >
                 {link.name}
-                {location.pathname === link.path && (
+                {pathname === link.path && (
                   <motion.div 
                     layoutId="nav-underline"
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-blue rounded-full"
@@ -66,7 +69,7 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center gap-4">
-          <Link to="/contact" className="hidden sm:flex bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium items-center gap-2 hover:bg-brand-blue transition-all duration-300 shadow-sm hover:shadow-md">
+          <Link href="/contact" className="hidden sm:flex bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium items-center gap-2 hover:bg-brand-blue transition-all duration-300 shadow-sm hover:shadow-md">
             <Mail className="h-4 w-4" />
             Get in Touch
           </Link>
@@ -94,9 +97,9 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <li key={link.path}>
                   <Link 
-                    to={link.path} 
+                    href={link.path} 
                     className={`block text-lg font-semibold transition-colors ${
-                      location.pathname === link.path ? 'text-brand-blue' : 'text-gray-600 hover:text-brand-blue'
+                      pathname === link.path ? 'text-brand-blue' : 'text-gray-600 hover:text-brand-blue'
                     }`}
                   >
                     {link.name}
@@ -104,7 +107,7 @@ const Navbar = () => {
                 </li>
               ))}
               <li className="pt-4">
-                <Link to="/contact" className="w-full bg-brand-blue text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                <Link href="/contact" className="w-full bg-brand-blue text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2">
                   <Mail className="h-5 w-5" />
                   Get in Touch
                 </Link>
