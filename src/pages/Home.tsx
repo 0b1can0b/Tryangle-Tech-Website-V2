@@ -35,7 +35,7 @@ const Hero = () => {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/contact" className="bg-black text-white px-8 py-3.5 rounded-md font-medium hover:bg-gray-800 transition">Contact Us Today!</Link>
-            <Link to="/projects" className="border border-gray-200 text-gray-800 px-8 py-3.5 rounded-md font-medium hover:bg-gray-50 transition flex items-center gap-2">
+            <Link to="/portfolio" className="border border-gray-200 text-gray-800 px-8 py-3.5 rounded-md font-medium hover:bg-gray-50 transition flex items-center gap-2">
               View Case Study <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -324,7 +324,7 @@ const Portfolio = () => {
             </motion.div>
           ))}
         </div>
-        <Link to="/projects" className="bg-black text-white px-8 py-3.5 rounded-md font-medium flex items-center gap-2 mx-auto hover:bg-gray-800 transition w-fit">
+        <Link to="/portfolio" className="bg-black text-white px-8 py-3.5 rounded-md font-medium flex items-center gap-2 mx-auto hover:bg-gray-800 transition w-fit">
           <Eye className="h-4 w-4" />
           View more case study
         </Link>
