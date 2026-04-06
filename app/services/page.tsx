@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { 
   Globe, 
   Megaphone, 
@@ -102,9 +102,9 @@ export default function Services() {
           {services.map((service, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: (idx % 2) * 0.1 }}
               className="bg-white rounded-[2.5rem] p-10 lg:p-12 border border-gray-100 card-shadow-hover transition-all duration-500 group relative overflow-hidden"
             >
@@ -171,9 +171,9 @@ export default function Services() {
             ].map((item, idx) => (
               <motion.div 
                 key={idx} 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.1 }}
                 className="text-center group"
               >

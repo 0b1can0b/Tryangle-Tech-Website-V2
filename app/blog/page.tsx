@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight, Search, Tag, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { blogPosts } from '@/src/data/blogs';
@@ -39,9 +39,9 @@ export default function BlogList() {
             {blogPosts.map((post, idx) => (
               <motion.article 
                 key={post.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: idx * 0.1 }}
                 className="group relative"
               >

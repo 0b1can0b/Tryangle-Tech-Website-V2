@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Eye, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -178,9 +178,9 @@ export default function Portfolio() {
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-blue rounded-full blur-[120px]"></div>
           </div>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             className="relative z-10"
           >
             <h2 className="text-4xl lg:text-6xl font-bold mb-8 leading-tight">Have a Project in Mind?</h2>

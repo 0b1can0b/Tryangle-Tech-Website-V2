@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Check, Target, Eye, Award, Users, Heart, Code } from 'lucide-react';
 
 export default function About() {
@@ -35,9 +35,9 @@ export default function About() {
       <section className="py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
             className="relative"
           >
@@ -58,9 +58,9 @@ export default function About() {
             </div>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
@@ -103,9 +103,9 @@ export default function About() {
         
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             className="bg-white/5 p-12 rounded-3xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors duration-500"
           >
             <div className="w-16 h-16 bg-brand-blue rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-brand-blue/20">
@@ -117,9 +117,9 @@ export default function About() {
             </p>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.2 }}
             className="bg-white/5 p-12 rounded-3xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors duration-500"
           >
@@ -153,9 +153,9 @@ export default function About() {
             ].map((value, idx) => (
               <motion.div 
                 key={idx} 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.1 }}
                 className="p-10 rounded-3xl border border-gray-100 hover:border-brand-blue/30 transition-all duration-500 group card-shadow-hover"
               >

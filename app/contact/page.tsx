@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageSquare, User, Globe, CheckCircle2, ChevronDown } from 'lucide-react';
 
 export default function Contact() {
@@ -47,9 +47,9 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-start">
           {/* Info Side */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
@@ -118,9 +118,9 @@ export default function Contact() {
 
           {/* Form Side */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
             className="bg-white rounded-[3rem] p-10 lg:p-16 shadow-2xl border border-gray-100 relative"
           >

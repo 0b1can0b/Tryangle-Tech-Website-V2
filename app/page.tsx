@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, 
   Minus, 
@@ -32,7 +32,7 @@ const Hero = () => {
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
@@ -62,7 +62,7 @@ const Hero = () => {
           </div>
         </motion.div>
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+          initial={{ scale: 0.9, rotate: 2 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="relative"
@@ -183,9 +183,9 @@ const Services = () => {
           {services.map((service, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
               className="bg-white p-10 rounded-3xl card-shadow text-left group hover:-translate-y-3 transition-all duration-500 relative overflow-hidden"
             >
@@ -219,9 +219,9 @@ const About = () => {
     <section id="about" className="py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
           className="relative"
         >
@@ -244,9 +244,9 @@ const About = () => {
           </div>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
@@ -317,9 +317,9 @@ const FAQ = () => {
     <section className="py-32 bg-gray-50/50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
         >
           <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
@@ -367,9 +367,9 @@ const FAQ = () => {
           </div>
         </motion.div>
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 1 }}
           className="relative"
         >
@@ -410,9 +410,9 @@ const Portfolio = () => {
           {projects.map((project, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: idx * 0.2 }}
               className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 group bg-white hover:shadow-2xl transition-all duration-500"
             >
@@ -475,9 +475,9 @@ const Blog = () => {
           {blogPosts.slice(0, 3).map((post, idx) => (
             <motion.div
               key={post.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: idx * 0.1 }}
             >
               <Link href={`/blog/${post.id}`} className="bg-white rounded-3xl overflow-hidden card-shadow group block h-full">
@@ -534,9 +534,9 @@ const Stats = () => {
           {stats.map((stat, idx) => (
             <div key={idx} className={`flex flex-col items-center text-center ${idx !== 0 ? "lg:border-l lg:border-white/20" : ""}`}>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.1 }}
                 className="flex flex-col items-center"
               >
@@ -559,6 +559,7 @@ const Stats = () => {
 };
 
 export default function Home() {
+  console.log('Home page rendering');
   return (
     <>
       <Hero />

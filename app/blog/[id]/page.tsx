@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { Calendar, User, Clock, ArrowLeft, Share2, Bookmark, Globe, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { blogPosts } from '@/src/data/blogs';
@@ -164,9 +164,9 @@ export default function BlogPost() {
             {blogPosts.filter(p => p.id !== post.id).slice(0, 3).map((relatedPost, index) => (
               <motion.div
                 key={relatedPost.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700"
               >

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Mail, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,7 @@ const Navbar = () => {
   const pathname = usePathname();
   
   useEffect(() => {
+    console.log('Navbar mounted');
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
