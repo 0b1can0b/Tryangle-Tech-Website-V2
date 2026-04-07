@@ -115,11 +115,13 @@ export default function BlogList() {
               <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
               <h3 className="font-bold text-2xl mb-8 relative z-10">Categories</h3>
               <ul className="space-y-4 relative z-10">
-                {['Marketing', 'Business', 'Technology', 'Design', 'Development'].map((cat) => (
+                {['Philosophy', 'Ethics', 'Future', 'Technology', 'AI'].map((cat) => (
                   <li key={cat}>
                     <button className="flex items-center justify-between w-full text-gray-500 hover:text-brand-blue transition-all duration-300 group text-lg font-medium">
                       <span className="group-hover:translate-x-2 transition-transform">{cat}</span>
-                      <span className="bg-gray-50 px-3 py-1 rounded-lg text-xs font-bold border border-gray-100 group-hover:bg-brand-blue group-hover:text-white group-hover:border-brand-blue transition-all">12</span>
+                      <span className="bg-gray-50 px-3 py-1 rounded-lg text-xs font-bold border border-gray-100 group-hover:bg-brand-blue group-hover:text-white group-hover:border-brand-blue transition-all">
+                        {cat === 'Philosophy' || cat === 'Ethics' || cat === 'Future' ? '1' : '0'}
+                      </span>
                     </button>
                   </li>
                 ))}

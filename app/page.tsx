@@ -461,7 +461,7 @@ const Blog = () => {
               Our Latest News
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-              Insights and <span className="text-brand-blue">Innovation</span> from Our Blog
+              AI Philosophy and <span className="text-brand-blue">Future Insights</span> from Our Blog
             </h2>
           </div>
           <Link href="/blog" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
