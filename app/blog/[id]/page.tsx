@@ -1,16 +1,90 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import { PortableText } from '@portabletext/react';
 import { Calendar, User, Clock, ArrowLeft, Share2, Bookmark, Globe, Facebook, Instagram, Linkedin } from 'lucide-react';
-import { blogPosts } from '@/src/data/blogs';
+import { blogPosts as staticPosts, BlogPost as BlogPostType } from '@/src/data/blogs';
+import { client } from '@/src/sanity/lib/client';
+import { postQuery, postsQuery } from '@/src/sanity/lib/queries';
+import { urlForImage } from '@/src/sanity/lib/image';
 
 export default function BlogPost() {
   const params = useParams();
   const id = params?.id as string;
-  const post = blogPosts.find((p) => p.id === id);
+  const [post, setPost] = useState<any>(null);
+  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPost() {
+      try {
+        // 1. Try Sanity
+        const sanityPost = await client.fetch(postQuery, { slug: id });
+        
+        if (sanityPost) {
+          setPost(sanityPost);
+          const allPosts = await client.fetch(postsQuery);
+          setRelatedPosts(allPosts.filter((p: any) => p.slug !== id).slice(0, 3));
+          setLoading(false);
+          return;
+        }
+
+        // 2. Try Local API (Dynamic MDX)
+        const localResponse = await fetch('/api/local-blogs');
+        if (localResponse.ok) {
+          const localPosts = await localResponse.json();
+          const localPost = localPosts.find((p: any) => p.id === id);
+          if (localPost) {
+            setPost({
+              ...localPost,
+              isStatic: true // Using markdown rendering
+            });
+            setRelatedPosts(localPosts.filter((p: any) => p.id !== id).slice(0, 3));
+            setLoading(false);
+            return;
+          }
+        }
+
+        // 3. Fallback to Static Data
+        const staticPost = staticPosts.find((p) => p.id === id);
+        if (staticPost) {
+          setPost({
+            ...staticPost,
+            isStatic: true
+          });
+          setRelatedPosts(staticPosts.filter((p) => p.id !== id).slice(0, 3));
+        }
+      } catch (error) {
+        console.error('Error fetching post:', error);
+        const staticPost = staticPosts.find((p) => p.id === id);
+        if (staticPost) {
+          setPost({
+            ...staticPost,
+            isStatic: true
+          });
+          setRelatedPosts(staticPosts.filter((p) => p.id !== id).slice(0, 3));
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (id) {
+      fetchPost();
+    }
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -23,6 +97,27 @@ export default function BlogPost() {
       </div>
     );
   }
+
+  const components = {
+    types: {
+      image: ({ value }: any) => (
+        <img
+          src={urlForImage(value).url()}
+          alt={value.alt || ' '}
+          loading="lazy"
+          className="rounded-[2.5rem] shadow-2xl my-12"
+        />
+      ),
+    },
+  };
+
+  const displayDate = post.isStatic 
+    ? post.date 
+    : new Date(post.publishedAt).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
 
   return (
     <div className="pb-32">
@@ -60,7 +155,7 @@ export default function BlogPost() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-brand-blue" />
-                  {post.date}
+                  {displayDate}
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-brand-blue" />
@@ -84,7 +179,11 @@ export default function BlogPost() {
             >
               <div className="prose prose-xl max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-strong:text-gray-900 prose-img:rounded-[2.5rem] prose-img:shadow-2xl prose-blockquote:border-brand-blue prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-8 prose-blockquote:rounded-2xl prose-blockquote:italic">
                 <div className="markdown-body">
-                  <ReactMarkdown>{post.content}</ReactMarkdown>
+                  {post.isStatic ? (
+                    <ReactMarkdown>{post.content}</ReactMarkdown>
+                  ) : (
+                    <PortableText value={post.body} components={components} />
+                  )}
                 </div>
               </div>
               
@@ -161,16 +260,16 @@ export default function BlogPost() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-10">
-            {blogPosts.filter(p => p.id !== post.id).slice(0, 3).map((relatedPost, index) => (
+            {relatedPosts.map((relatedPost, index) => (
               <motion.div
-                key={relatedPost.id}
+                key={relatedPost.id || relatedPost.slug}
                 initial={{ y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700"
               >
-                <Link href={`/blog/${relatedPost.id}`} className="block relative h-64 overflow-hidden">
+                <Link href={`/blog/${relatedPost.id || relatedPost.slug}`} className="block relative h-64 overflow-hidden">
                   <img 
                     src={relatedPost.image} 
                     alt={relatedPost.title}
@@ -183,11 +282,11 @@ export default function BlogPost() {
                 </Link>
                 <div className="p-8">
                   <h4 className="text-2xl font-bold mb-4 group-hover:text-brand-blue transition-colors line-clamp-2 leading-tight">
-                    <Link href={`/blog/${relatedPost.id}`}>{relatedPost.title}</Link>
+                    <Link href={`/blog/${relatedPost.id || relatedPost.slug}`}>{relatedPost.title}</Link>
                   </h4>
                   <p className="text-gray-500 mb-8 line-clamp-2 leading-relaxed">{relatedPost.excerpt}</p>
                   <Link 
-                    href={`/blog/${relatedPost.id}`}
+                    href={`/blog/${relatedPost.id || relatedPost.slug}`}
                     className="text-brand-blue font-bold flex items-center gap-2 group/link"
                   >
                     Read More <span className="group-hover/link:translate-x-2 transition-transform duration-300">→</span>

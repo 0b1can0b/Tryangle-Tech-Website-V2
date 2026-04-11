@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, 
@@ -21,7 +21,9 @@ import {
   Users
 } from 'lucide-react';
 import Link from 'next/link';
-import { blogPosts } from '@/src/data/blogs';
+import { blogPosts as staticPosts } from '@/src/data/blogs';
+import { client } from '@/src/sanity/lib/client';
+import { postsQuery } from '@/src/sanity/lib/queries';
 
 const Hero = () => {
   return (
@@ -452,6 +454,54 @@ const Portfolio = () => {
 };
 
 const Blog = () => {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        // 1. Try Sanity
+        const sanityPosts = await client.fetch(postsQuery);
+        if (sanityPosts && sanityPosts.length > 0) {
+          const mappedPosts = sanityPosts.map((post: any) => ({
+            id: post.slug,
+            title: post.title,
+            category: post.category,
+            image: post.image,
+            date: new Date(post.publishedAt).toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            })
+          }));
+          setPosts(mappedPosts);
+          setLoading(false);
+          return;
+        }
+
+        // 2. Try Local API (Dynamic MDX)
+        const localResponse = await fetch('/api/local-blogs');
+        if (localResponse.ok) {
+          const localPosts = await localResponse.json();
+          if (localPosts && localPosts.length > 0) {
+            setPosts(localPosts);
+            setLoading(false);
+            return;
+          }
+        }
+
+        // 3. Fallback to Static Data
+        setPosts(staticPosts);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        setPosts(staticPosts);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
+
   return (
     <section id="blog" className="py-32 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-6">
@@ -472,41 +522,47 @@ const Blog = () => {
           </Link>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {blogPosts.slice(0, 3).map((post, idx) => (
-            <motion.div
-              key={post.id}
-              initial={{ y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: idx * 0.1 }}
-            >
-              <Link href={`/blog/${post.id}`} className="bg-white rounded-3xl overflow-hidden card-shadow group block h-full">
-                <div className="relative overflow-hidden h-56">
-                  <img 
-                    alt={post.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                    src={post.image}
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-brand-blue uppercase tracking-widest">
-                    {post.category}
+          {loading ? (
+            <div className="col-span-full flex justify-center py-10">
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-brand-blue"></div>
+            </div>
+          ) : (
+            posts.slice(0, 3).map((post, idx) => (
+              <motion.div
+                key={post.id}
+                initial={{ y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <Link href={`/blog/${post.id}`} className="bg-white rounded-3xl overflow-hidden card-shadow group block h-full">
+                  <div className="relative overflow-hidden h-56">
+                    <img 
+                      alt={post.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                      src={post.image}
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-brand-blue uppercase tracking-widest">
+                      {post.category}
+                    </div>
                   </div>
-                </div>
-                <div className="p-8">
-                  <div className="flex items-center gap-3 text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-4">
-                    <Calendar className="h-3 w-3 text-brand-blue" />
-                    {post.date}
+                  <div className="p-8">
+                    <div className="flex items-center gap-3 text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-4">
+                      <Calendar className="h-3 w-3 text-brand-blue" />
+                      {post.date}
+                    </div>
+                    <h3 className="font-bold text-lg mb-4 line-clamp-2 group-hover:text-brand-blue transition-colors leading-snug">
+                      {post.title}
+                    </h3>
+                    <div className="inline-flex items-center gap-2 text-brand-blue text-xs font-bold group-hover:gap-3 transition-all">
+                      Read More <ArrowRight className="h-3 w-3" />
+                    </div>
                   </div>
-                  <h3 className="font-bold text-lg mb-4 line-clamp-2 group-hover:text-brand-blue transition-colors leading-snug">
-                    {post.title}
-                  </h3>
-                  <div className="inline-flex items-center gap-2 text-brand-blue text-xs font-bold group-hover:gap-3 transition-all">
-                    Read More <ArrowRight className="h-3 w-3" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            ))
+          )}
         </div>
       </div>
     </section>
