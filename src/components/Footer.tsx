@@ -45,16 +45,20 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white border-t border-gray-100 pt-20 pb-10">
-      <div className="container-custom">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 mb-20">
+    <footer className="bg-zoho-dark text-white pt-32 pb-16 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-zoho-blue rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2" />
+      </div>
+      
+      <div className="container-custom relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-16 mb-32">
           {footerSections.map((section) => (
             <div key={section.title} className="col-span-1">
-              <h4 className="text-xs font-black text-zoho-muted tracking-widest mb-6">{section.title}</h4>
-              <ul className="space-y-4">
+              <h4 className="text-[10px] font-black text-zoho-blue tracking-[0.2em] mb-10 uppercase">{section.title}</h4>
+              <ul className="space-y-6">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-[14px] text-zoho-dark hover:text-zoho-blue transition-colors">
+                    <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">
                       {link.name}
                     </Link>
                   </li>
@@ -64,32 +68,32 @@ const Footer = () => {
           ))}
 
           <div className="col-span-2">
-            <h4 className="text-xs font-black text-zoho-muted tracking-widest mb-6">CONTACT US ON</h4>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center text-zoho-muted">
-                  <Phone className="h-5 w-5" />
+            <h4 className="text-[10px] font-black text-zoho-blue tracking-[0.2em] mb-10 uppercase">CONTACT US</h4>
+            <div className="space-y-10">
+              <div className="flex items-start gap-6 group">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-zoho-blue border border-white/10 group-hover:bg-zoho-blue group-hover:text-white transition-all duration-500">
+                  <Phone className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-zoho-muted mb-1">Mon-Fri (9:00AM to 7:00PM)</div>
-                  <div className="text-sm font-bold text-zoho-dark">Toll Free: 18005692979</div>
+                  <div className="text-[10px] font-black text-gray-500 mb-2 uppercase tracking-widest">Mon-Fri (9AM to 7PM IST)</div>
+                  <div className="text-xl font-black text-white tracking-tight">1800 569 2979</div>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center text-zoho-muted">
-                  <Mail className="h-5 w-5" />
+              <div className="flex items-start gap-6 group">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-zoho-blue border border-white/10 group-hover:bg-zoho-blue group-hover:text-white transition-all duration-500">
+                  <Mail className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-zoho-muted mb-1">Email us</div>
-                  <div className="text-sm font-bold text-zoho-dark">info.tryangletech@gmail.com</div>
+                  <div className="text-[10px] font-black text-gray-500 mb-2 uppercase tracking-widest">Email us</div>
+                  <div className="text-xl font-black text-white tracking-tight">info.tryangletech@gmail.com</div>
                 </div>
               </div>
             </div>
 
-            <h4 className="text-xs font-black text-zoho-muted tracking-widest mt-10 mb-6">FOLLOW US ON</h4>
+            <h4 className="text-[10px] font-black text-zoho-blue tracking-[0.2em] mt-16 mb-10 uppercase">FOLLOW US</h4>
             <div className="flex items-center gap-4">
               {[Twitter, Linkedin, Instagram, Youtube].map((Icon, i) => (
-                <Link key={i} href="#" className="w-10 h-10 rounded-lg border border-gray-100 flex items-center justify-center text-zoho-muted hover:text-zoho-blue hover:border-zoho-blue transition-all">
+                <Link key={i} href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-zoho-blue hover:border-zoho-blue transition-all duration-500">
                   <Icon className="h-5 w-5" />
                 </Link>
               ))}
@@ -97,21 +101,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-10 border-t border-gray-100 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="flex flex-wrap justify-center gap-6 text-[12px] text-zoho-muted">
-            <Link href="#" className="hover:text-zoho-blue">Contact</Link>
-            <Link href="#" className="hover:text-zoho-blue">Security</Link>
-            <Link href="#" className="hover:text-zoho-blue">Compliance</Link>
-            <Link href="#" className="hover:text-zoho-blue">IPR Complaints</Link>
-            <Link href="#" className="hover:text-zoho-blue">Anti-spam Policy</Link>
-            <Link href="#" className="hover:text-zoho-blue">Terms of Service</Link>
-            <Link href="#" className="hover:text-zoho-blue">Privacy Policy</Link>
-            <Link href="#" className="hover:text-zoho-blue">Trademark Policy</Link>
-            <Link href="#" className="hover:text-zoho-blue">Cookie Policy</Link>
-            <Link href="#" className="hover:text-zoho-blue">GDPR Compliance</Link>
-            <Link href="#" className="hover:text-zoho-blue">Abuse Policy</Link>
+        <div className="pt-16 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between gap-10">
+          <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black text-gray-500 uppercase tracking-widest">
+            <Link href="#" className="hover:text-zoho-blue transition-colors">Security</Link>
+            <Link href="#" className="hover:text-zoho-blue transition-colors">Compliance</Link>
+            <Link href="#" className="hover:text-zoho-blue transition-colors">Terms</Link>
+            <Link href="#" className="hover:text-zoho-blue transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-zoho-blue transition-colors">Cookies</Link>
+            <Link href="#" className="hover:text-zoho-blue transition-colors">GDPR</Link>
           </div>
-          <div className="text-[12px] text-zoho-muted">
+          <div className="text-[10px] font-black text-gray-600 uppercase tracking-[0.2em]">
             © 2026, Tryangle Tech Pvt. Ltd. All Rights Reserved.
           </div>
         </div>

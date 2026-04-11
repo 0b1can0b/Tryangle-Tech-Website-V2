@@ -40,26 +40,35 @@
 
 @layer utilities {
   .zoho-card {
-    @apply bg-white border border-gray-100 rounded-xl transition-all duration-300;
+    @apply bg-white border border-gray-100 rounded-2xl transition-all duration-500;
     box-shadow: var(--shadow-zoho-md);
   }
   .zoho-card:hover {
-    @apply border-zoho-blue/20;
+    @apply border-zoho-blue/30 -translate-y-1;
     box-shadow: var(--shadow-zoho-lg);
   }
   .section-padding {
-    @apply py-24 lg:py-32;
+    @apply py-24 lg:py-40;
   }
   .container-custom {
     @apply max-w-7xl mx-auto px-6;
   }
   .btn-primary {
-    @apply bg-zoho-blue text-white px-8 py-3.5 rounded-lg font-bold hover:bg-zoho-blue/90 transition-all shadow-button inline-flex items-center justify-center;
+    @apply bg-zoho-blue text-white px-8 py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-zoho-blue/90 transition-all shadow-button inline-flex items-center justify-center active:scale-95;
   }
   .btn-secondary {
-    @apply bg-white text-zoho-dark border border-gray-200 px-8 py-3.5 rounded-lg font-bold hover:bg-gray-50 transition-all inline-flex items-center justify-center;
+    @apply bg-white text-zoho-dark border border-gray-200 px-8 py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-gray-50 transition-all inline-flex items-center justify-center active:scale-95;
   }
   .btn-dark {
-    @apply bg-zoho-dark text-white px-8 py-3.5 rounded-lg font-bold hover:bg-zoho-dark/90 transition-all inline-flex items-center justify-center;
+    @apply bg-zoho-dark text-white px-8 py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-zoho-dark/90 transition-all inline-flex items-center justify-center active:scale-95;
+  }
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-zoho-lg;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-zoho-blue to-zoho-green;
+  }
+  .skew-bg {
+    @apply absolute inset-0 bg-zoho-bg-light -skew-y-6 origin-top-right -z-10;
   }
 }

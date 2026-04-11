@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Search } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, ArrowRight } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,76 +30,98 @@ const Navbar = () => {
     { name: 'Infrastructure', href: '/about', dropdown: true },
     { name: 'Resources', href: '/blog', dropdown: true },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Contact us', href: '/contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-zoho-sm py-3' : 'bg-zoho-bg-light py-5'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-xl shadow-zoho-sm py-4' : 'bg-transparent py-8'}`}>
       <div className="container-custom flex items-center justify-between">
-        <div className="flex items-center gap-12">
+        <div className="flex items-center gap-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-zoho-blue rounded-lg flex items-center justify-center text-white font-black text-xl italic">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-12 h-12 bg-zoho-blue rounded-2xl flex items-center justify-center text-white font-black text-2xl italic group-hover:rotate-12 transition-transform duration-500 shadow-zoho-sm">
               T
             </div>
-            <span className="text-2xl font-black tracking-tighter text-zoho-dark">
-              Tryangle <span className="text-zoho-blue">Tech</span>
+            <span className="text-3xl font-black tracking-tighter text-zoho-dark">
+              Tryangle<span className="text-zoho-blue">.</span>
             </span>
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <div 
                 key={link.name} 
-                className="relative group"
+                className="relative"
                 onMouseEnter={() => link.dropdown && setActiveDropdown(link.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link 
                   href={link.href}
-                  className={`flex items-center gap-1 text-[15px] font-medium transition-colors ${pathname === link.href ? 'text-zoho-blue' : 'text-zoho-dark hover:text-zoho-blue'}`}
+                  className={`flex items-center gap-1.5 text-[13px] font-black uppercase tracking-widest transition-all ${pathname === link.href ? 'text-zoho-blue' : 'text-zoho-dark hover:text-zoho-blue'}`}
                 >
                   {link.name}
-                  {link.dropdown && <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
+                  {link.dropdown && <ChevronDown className={`h-3 w-3 transition-transform duration-500 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
                 </Link>
                 
-                {link.dropdown && activeDropdown === link.name && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-full left-0 mt-2 w-64 bg-white shadow-zoho-lg rounded-xl border border-gray-100 p-4"
-                  >
-                    <div className="space-y-3">
-                      {[1, 2, 3].map((i) => (
-                        <Link key={i} href={link.href} className="block p-2 hover:bg-zoho-bg-light rounded-lg transition-colors">
-                          <div className="font-bold text-sm">Feature Option {i}</div>
-                          <div className="text-xs text-zoho-muted">Brief description of this feature.</div>
+                <AnimatePresence>
+                  {link.dropdown && activeDropdown === link.name && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[600px] bg-white shadow-zoho-lg rounded-[2.5rem] border border-gray-100 p-10 grid grid-cols-2 gap-8"
+                    >
+                      <div className="space-y-6">
+                        <h4 className="text-[10px] font-black text-zoho-muted uppercase tracking-[0.2em] mb-4">Popular Modules</h4>
+                        {[
+                          { title: 'Finance', desc: 'Accounting & Invoicing', color: 'bg-zoho-blue' },
+                          { title: 'Inventory', desc: 'Stock & Warehouse', color: 'bg-zoho-green' },
+                          { title: 'HR & People', desc: 'Employee Management', color: 'bg-zoho-red' }
+                        ].map((item, i) => (
+                          <Link key={i} href={link.href} className="flex items-center gap-5 p-4 hover:bg-zoho-bg-light rounded-2xl transition-all group/item">
+                            <div className={`w-12 h-12 ${item.color} rounded-xl shrink-0 group-hover/item:scale-110 transition-transform`} />
+                            <div>
+                              <div className="font-black text-sm text-zoho-dark">{item.title}</div>
+                              <div className="text-xs text-zoho-muted font-medium">{item.desc}</div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="bg-zoho-bg-light rounded-[2rem] p-8 flex flex-col justify-between">
+                        <div>
+                          <h4 className="text-[10px] font-black text-zoho-muted uppercase tracking-[0.2em] mb-4">Featured</h4>
+                          <div className="font-black text-xl text-zoho-dark mb-3 leading-tight">New Enterprise <br /> Dashboard 2.0</div>
+                          <p className="text-xs text-zoho-muted font-medium leading-relaxed">Experience the next generation of business intelligence with our updated analytics engine.</p>
+                        </div>
+                        <Link href="/services" className="text-zoho-blue font-black text-[10px] uppercase tracking-widest flex items-center gap-2 group/link">
+                          Learn More <ArrowRight className="h-3 w-3 group-hover/link:translate-x-1 transition-transform" />
                         </Link>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
         </div>
 
         {/* Right Actions */}
-        <div className="hidden lg:flex items-center gap-6">
-          <button className="text-zoho-dark hover:text-zoho-blue transition-colors">
+        <div className="hidden lg:flex items-center gap-8">
+          <button className="text-zoho-dark hover:text-zoho-blue transition-all hover:scale-110">
             <Search className="h-5 w-5" />
           </button>
-          <Link href="/login" className="text-[15px] font-bold text-zoho-dark hover:text-zoho-blue transition-colors">
+          <Link href="/contact" className="text-[13px] font-black uppercase tracking-widest text-zoho-dark hover:text-zoho-blue transition-colors">
             Sign in
           </Link>
-          <Link href="/contact" className="bg-zoho-blue text-white px-6 py-2.5 rounded-md font-bold hover:bg-zoho-blue/90 transition-all shadow-button">
-            Sign up now
+          <Link href="/contact" className="bg-zoho-blue text-white px-8 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest hover:bg-zoho-dark transition-all shadow-zoho-sm hover:-translate-y-1 active:scale-95">
+            Get Started
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="lg:hidden text-zoho-dark" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-zoho-dark w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow-zoho-sm" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
@@ -108,26 +130,36 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 lg:hidden bg-white z-[60] p-10 flex flex-col"
           >
-            <div className="container-custom py-8 space-y-6">
+            <div className="flex items-center justify-between mb-20">
+              <Link href="/" className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-zoho-blue rounded-xl flex items-center justify-center text-white font-black text-xl italic">T</div>
+                <span className="text-2xl font-black tracking-tighter text-zoho-dark">Tryangle.</span>
+              </Link>
+              <button onClick={() => setIsOpen(false)} className="w-12 h-12 flex items-center justify-center bg-zoho-bg-light rounded-xl">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="flex-grow space-y-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="block text-lg font-bold text-zoho-dark"
+                  className="block text-4xl font-black text-zoho-dark hover:text-zoho-blue transition-colors tracking-tighter"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="pt-6 border-t border-gray-100 flex flex-col gap-4">
-                <Link href="/login" className="text-center font-bold text-zoho-dark">Sign in</Link>
-                <Link href="/contact" className="btn-primary w-full">Sign up now</Link>
-              </div>
+            </div>
+            <div className="pt-10 border-t border-gray-100 flex flex-col gap-6">
+              <Link href="/contact" className="text-center font-black uppercase text-xs tracking-widest text-zoho-dark">Sign in</Link>
+              <Link href="/contact" className="bg-zoho-blue text-white py-6 rounded-2xl text-center font-black uppercase text-xs tracking-widest shadow-zoho-lg">Get Started</Link>
             </div>
           </motion.div>
         )}
