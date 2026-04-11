@@ -79,72 +79,73 @@ export default function Services() {
   return (
     <div className="bg-white min-h-screen pt-20">
       {/* Header Section */}
-      <section className="bg-white py-32 relative overflow-hidden">
+      <section className="bg-white py-40 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-zoho-bg-light -skew-x-12 translate-x-1/4 pointer-events-none" />
+        <div className="absolute top-1/2 left-0 w-[1000px] h-[1000px] bg-zoho-blue/5 rounded-full blur-[180px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
         <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl"
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-5xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zoho-blue/10 border border-zoho-blue/10 text-zoho-blue text-[10px] font-black uppercase tracking-widest mb-10">
+            <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-zoho-blue/10 border border-zoho-blue/20 text-zoho-blue text-[11px] font-black uppercase tracking-[0.3em] mb-12">
               The Ecosystem
             </div>
-            <h1 className="text-6xl lg:text-8xl font-black text-zoho-dark mb-10 leading-[0.9] tracking-tighter">
+            <h1 className="text-7xl lg:text-[110px] font-black text-zoho-dark mb-12 leading-[0.85] tracking-[-0.05em]">
               One Operating System <br />
               <span className="text-zoho-blue">For Everything.</span>
             </h1>
-            <p className="text-zoho-muted text-2xl leading-relaxed max-w-2xl font-medium">
-              Explore our comprehensive suite of modules designed to unify your departments and streamline your operations.
+            <p className="text-zoho-muted text-3xl leading-relaxed max-w-3xl font-medium">
+              Explore our comprehensive suite of modules designed to unify your departments and streamline your operations with intelligent automation.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Modules Grid */}
-      <section className="section-padding relative overflow-hidden">
+      <section className="pb-40 relative overflow-hidden">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             {modules.map((module, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: (idx % 2) * 0.1 }}
-                className="zoho-card p-12 group hover:border-zoho-blue/20 transition-all duration-500 relative overflow-hidden"
+                transition={{ delay: (idx % 2) * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="zoho-card p-16 group hover:border-zoho-blue/30 transition-all duration-700 relative overflow-hidden"
               >
-                <div className={`absolute top-0 right-0 w-32 h-32 ${module.bgColor} opacity-5 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:scale-150 transition-transform duration-700`} />
+                <div className={`absolute top-0 right-0 w-64 h-64 ${module.bgColor} opacity-5 -translate-y-1/2 translate-x-1/2 rounded-full group-hover:scale-150 transition-transform duration-1000`} />
                 
-                <div className="flex flex-col md:flex-row gap-12 relative z-10">
+                <div className="flex flex-col md:flex-row gap-16 relative z-10">
                   <div className="flex-grow">
-                    <div className={`w-20 h-20 ${module.bgColor} ${module.color} rounded-[2rem] flex items-center justify-center mb-10 group-hover:scale-110 transition-transform duration-500 shadow-zoho-sm`}>
+                    <div className={`w-24 h-24 ${module.bgColor} ${module.color} rounded-[2.5rem] flex items-center justify-center mb-12 group-hover:scale-110 transition-transform duration-700 shadow-zoho-md group-hover:bg-zoho-blue group-hover:text-white`}>
                       {module.icon}
                     </div>
-                    <h3 className="text-3xl font-black text-zoho-dark mb-6 group-hover:text-zoho-blue transition-colors">
+                    <h3 className="text-4xl font-black text-zoho-dark mb-8 group-hover:text-zoho-blue transition-colors tracking-tight">
                       {module.title}
                     </h3>
-                    <p className="text-zoho-muted text-lg mb-10 leading-relaxed font-medium">
+                    <p className="text-zoho-muted text-xl mb-12 leading-relaxed font-medium">
                       {module.desc}
                     </p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
                       {module.features.map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-center gap-3 text-sm text-zoho-muted font-bold">
-                          <CheckCircle2 className="h-4 w-4 text-zoho-green shrink-0" />
+                        <li key={fIdx} className="flex items-center gap-4 text-base text-zoho-muted font-bold">
+                          <CheckCircle2 className="h-5 w-5 text-zoho-green shrink-0" />
                           {feature}
                         </li>
                       ))}
                     </ul>
-                    <Link href="/contact" className="inline-flex items-center gap-3 text-zoho-blue font-black uppercase text-xs tracking-widest group-hover:gap-5 transition-all">
+                    <Link href="/contact" className="inline-flex items-center gap-4 text-zoho-blue font-black uppercase text-[10px] tracking-[0.3em] group-hover:gap-6 transition-all">
                       Explore Module <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
-                  <div className="md:w-48 shrink-0 flex items-center">
-                    <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-zoho-lg border-4 border-white">
+                  <div className="md:w-56 shrink-0 flex items-center">
+                    <div className="relative w-full aspect-square rounded-[2.5rem] overflow-hidden shadow-zoho-xl border-8 border-white group-hover:rotate-6 transition-transform duration-700">
                       <img 
                         alt={module.title} 
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-125 transition-all duration-1000" 
                         src={module.img}
                         referrerPolicy="no-referrer"
                       />
@@ -160,33 +161,33 @@ export default function Services() {
       {/* Why Choose Us */}
       <section className="section-padding bg-zoho-dark text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-zoho-blue rounded-full blur-[150px] translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-zoho-blue rounded-full blur-[200px] translate-x-1/2 -translate-y-1/2" />
         </div>
         <div className="container-custom relative z-10">
-          <div className="text-center mb-24">
-            <div className="text-zoho-blue font-black uppercase text-xs tracking-widest mb-4">The Advantage</div>
-            <h2 className="text-5xl lg:text-7xl font-black mb-8 tracking-tighter leading-[0.9]">Built for <br /> <span className="text-zoho-blue">Scale.</span></h2>
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed font-medium">Our platform is designed to grow with you, from your first employee to your ten-thousandth.</p>
+          <div className="text-center mb-32">
+            <div className="text-zoho-blue font-black uppercase text-xs tracking-[0.3em] mb-6">The Advantage</div>
+            <h2 className="text-6xl lg:text-[100px] font-black mb-10 tracking-tighter leading-[0.85]">Built for <br /> <span className="text-zoho-blue">Scale.</span></h2>
+            <p className="text-gray-400 text-2xl max-w-3xl mx-auto leading-relaxed font-medium">Our platform is designed to grow with you, from your first employee to your ten-thousandth, with zero performance compromise.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-16">
+          <div className="grid md:grid-cols-3 gap-20">
             {[
-              { title: "Unified Data", desc: "No more data silos. Every module shares the same core database for real-time accuracy.", icon: <Cpu className="h-10 w-10" /> },
-              { title: "Enterprise Security", desc: "Bank-grade encryption and multi-factor authentication protect your sensitive data.", icon: <ShieldCheck className="h-10 w-10" /> },
-              { title: "Global Support", desc: "Our team of experts is available 24/7 to help you get the most out of our platform.", icon: <Users className="h-10 w-10" /> }
+              { title: "Unified Data", desc: "No more data silos. Every module shares the same core database for real-time accuracy and reporting.", icon: <Cpu className="h-12 w-12" /> },
+              { title: "Enterprise Security", desc: "Bank-grade encryption and multi-factor authentication protect your sensitive data at every layer.", icon: <ShieldCheck className="h-12 w-12" /> },
+              { title: "Global Support", desc: "Our team of experts is available 24/7 to help you get the most out of our platform, anywhere in the world.", icon: <Users className="h-12 w-12" /> }
             ].map((item, idx) => (
               <motion.div 
                 key={idx} 
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                transition={{ delay: idx * 0.1, duration: 0.8 }}
                 className="text-center group"
               >
-                <div className="w-24 h-24 bg-white/5 rounded-[2rem] flex items-center justify-center mx-auto mb-10 border border-white/10 text-zoho-blue group-hover:bg-zoho-blue group-hover:text-white transition-all duration-500">
+                <div className="w-28 h-28 bg-white/5 rounded-[2.5rem] flex items-center justify-center mx-auto mb-12 border border-white/10 text-zoho-blue group-hover:bg-zoho-blue group-hover:text-white transition-all duration-700 group-hover:scale-110 shadow-zoho-lg">
                   {item.icon}
                 </div>
-                <h4 className="text-2xl font-black mb-6 tracking-tight">{item.title}</h4>
-                <p className="text-gray-400 text-lg leading-relaxed font-medium">{item.desc}</p>
+                <h4 className="text-3xl font-black mb-8 tracking-tight">{item.title}</h4>
+                <p className="text-gray-400 text-xl leading-relaxed font-medium">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -194,18 +195,18 @@ export default function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-zoho-blue relative overflow-hidden">
+      <section className="py-48 bg-zoho-blue relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-white rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-white rounded-full blur-[200px] -translate-x-1/2 -translate-y-1/2" />
         </div>
         <div className="container-custom relative z-10 text-center">
-          <h2 className="text-5xl lg:text-7xl font-black text-white mb-10 leading-[0.9] tracking-tighter">Ready to transform <br /> your business?</h2>
-          <p className="text-white/80 text-2xl mb-16 max-w-2xl mx-auto leading-relaxed font-medium">Join over 50,000 companies that trust Tryangle ERP to run their operations.</p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/contact" className="bg-zoho-dark text-white px-14 py-6 rounded-2xl font-black text-xl hover:bg-zoho-dark/90 transition-all shadow-2xl hover:-translate-y-1 active:scale-95">
+          <h2 className="text-6xl lg:text-[110px] font-black text-white mb-12 leading-[0.85] tracking-tighter">Ready to transform <br /> your business?</h2>
+          <p className="text-white/80 text-3xl mb-20 max-w-3xl mx-auto leading-relaxed font-medium">Join over 50,000 companies that trust Tryangle ERP to run their operations with precision.</p>
+          <div className="flex flex-col sm:flex-row gap-8 justify-center">
+            <Link href="/contact" className="bg-zoho-dark text-white px-20 py-7 rounded-[2rem] font-black text-2xl hover:bg-white hover:text-zoho-blue transition-all shadow-2xl hover:-translate-y-2 active:scale-95">
               Start Free Trial
             </Link>
-            <Link href="/contact" className="bg-white text-zoho-blue px-14 py-6 rounded-2xl font-black text-xl hover:bg-gray-50 transition-all shadow-2xl hover:-translate-y-1 active:scale-95">
+            <Link href="/contact" className="bg-white text-zoho-blue px-20 py-7 rounded-[2rem] font-black text-2xl hover:bg-zoho-dark hover:text-white transition-all shadow-2xl hover:-translate-y-2 active:scale-95">
               Schedule Demo
             </Link>
           </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
@@ -13,6 +13,11 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,7 +27,7 @@ export default function RootLayout({
   const isCMS = pathname?.startsWith('/cms');
 
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="min-h-screen flex flex-col antialiased overflow-x-hidden">
         <MetadataLayout>
           {!isCMS && <Navbar />}

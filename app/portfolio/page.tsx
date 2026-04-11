@@ -52,34 +52,40 @@ export default function Portfolio() {
   const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen pt-20">
       {/* Header Section */}
-      <section className="bg-brand-gray/30 py-24">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="bg-white py-40 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-zoho-bg-light -skew-x-12 translate-x-1/4 pointer-events-none" />
+        <div className="absolute top-1/2 left-0 w-[1000px] h-[1000px] bg-zoho-blue/5 rounded-full blur-[180px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+        <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: -80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-5xl"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Our <span className="text-brand-blue">Portfolio</span>
+            <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-zoho-blue/10 border border-zoho-blue/20 text-zoho-blue text-[11px] font-black uppercase tracking-[0.3em] mb-12">
+              Our Work
+            </div>
+            <h1 className="text-7xl lg:text-[110px] font-black text-zoho-dark mb-12 leading-[0.85] tracking-[-0.05em]">
+              Our <span className="text-zoho-blue">Portfolio.</span>
             </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              A showcase of our best work, delivering innovative solutions across various industries.
+            <p className="text-zoho-muted text-3xl leading-relaxed max-w-3xl font-medium">
+              A showcase of our best work, delivering innovative solutions across various industries with precision and craft.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+      <section className="pb-40 relative overflow-hidden">
+        <div className="container-custom">
+          <div className="flex flex-wrap justify-center gap-6 mb-24">
             {categories.map((cat, idx) => (
               <button 
                 key={idx} 
                 onClick={() => setFilter(cat)}
-                className={`${filter === cat ? 'bg-brand-blue text-white' : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-100'} px-8 py-3 rounded-lg text-sm font-bold transition-all`}
+                className={`${filter === cat ? 'bg-zoho-blue text-white shadow-zoho-md' : 'bg-white text-zoho-muted hover:bg-zoho-bg-light border border-gray-100'} px-10 py-4 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500`}
               >
                 {cat}
               </button>
@@ -89,7 +95,7 @@ export default function Portfolio() {
           {/* Projects Grid */}
           <motion.div 
             layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
           >
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, idx) => (
@@ -99,20 +105,20 @@ export default function Portfolio() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-zoho group-hover:shadow-zoho-hover transition-all duration-500">
+                  <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-8 shadow-zoho-lg group-hover:shadow-zoho-xl transition-all duration-700 border-8 border-white group-hover:rotate-2">
                     <img 
                       src={project.img} 
                       alt={project.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125 grayscale group-hover:grayscale-0"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/10 transition-colors duration-500" />
+                    <div className="absolute inset-0 bg-zoho-blue/0 group-hover:bg-zoho-blue/10 transition-colors duration-700" />
                   </div>
-                  <div className="text-xs font-bold text-brand-blue uppercase tracking-wider mb-2">{project.category}</div>
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors">{project.title}</h3>
+                  <div className="text-[10px] font-black text-zoho-blue uppercase tracking-[0.3em] mb-4">{project.category}</div>
+                  <h3 className="text-3xl font-black text-zoho-dark group-hover:text-zoho-blue transition-colors tracking-tight">{project.title}</h3>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -121,13 +127,16 @@ export default function Portfolio() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-brand-gray/30">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-8">Ready to start your project?</h2>
-          <p className="text-gray-600 text-lg mb-12">
+      <section className="py-48 bg-zoho-dark text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-zoho-blue rounded-full blur-[200px] -translate-x-1/2 -translate-y-1/2" />
+        </div>
+        <div className="container-custom relative z-10 text-center">
+          <h2 className="text-6xl lg:text-[110px] font-black text-white mb-12 leading-[0.85] tracking-tighter">Ready to start <br /> your project?</h2>
+          <p className="text-gray-400 text-3xl mb-20 max-w-3xl mx-auto leading-relaxed font-medium">
             Let's work together to build something amazing. Our team is ready to turn your vision into reality.
           </p>
-          <Link href="/contact" className="bg-brand-blue text-white px-12 py-4 rounded-lg font-bold hover:bg-brand-blue/90 transition-all shadow-button inline-block text-lg">
+          <Link href="/contact" className="bg-zoho-blue text-white px-20 py-7 rounded-[2rem] font-black text-2xl hover:bg-white hover:text-zoho-blue transition-all shadow-2xl hover:-translate-y-2 active:scale-95 inline-block">
             Get Started Now
           </Link>
         </div>
