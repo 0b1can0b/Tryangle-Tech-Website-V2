@@ -1,31 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --color-zoho-blue: #0067FF;
-  --color-zoho-dark: #001A33;
-  --color-zoho-text: #1A1A1A;
-  --color-zoho-muted: #4D4D4D;
-  --color-zoho-bg-light: #F5F9FF;
-  --color-zoho-green: #00B359;
-  --color-zoho-red: #FF4D4D;
-  --color-zoho-yellow: #FFB800;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-headline: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-jetbrains-mono), monospace;
+  
+  --color-primary: #7C3AED;
+  --color-primary-dim: #6D28D9;
+  --color-secondary: #2563EB;
+  --color-tertiary: #0D9488;
+  --color-background: #F9FAFB;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #111827;
+  --color-on-surface-variant: #4B5563;
+  --color-outline-variant: #E5E7EB;
+  --color-surface-container: #F3F4F6;
+  --color-surface-container-high: #E5E7EB;
+  --color-surface-container-lowest: #FFFFFF;
   
   --shadow-zoho-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-zoho-md: 0 4px 20px rgba(0, 0, 0, 0.06);
   --shadow-zoho-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
   --shadow-zoho-xl: 0 24px 60px rgba(0, 0, 0, 0.12);
-  --shadow-button: 0 4px 14px 0 rgba(0, 103, 255, 0.3);
+  --shadow-button: 0 4px 14px 0 rgba(124, 58, 237, 0.3);
+  --shadow-architectural: 0px 24px 48px -12px rgba(44, 47, 49, 0.08);
 }
 
 @layer base {
   body {
-    @apply font-sans text-zoho-text bg-white antialiased selection:bg-zoho-blue/20 selection:text-zoho-blue;
+    @apply font-sans text-on-surface bg-background antialiased selection:bg-primary/20 selection:text-primary;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight font-bold text-zoho-dark;
+    @apply font-headline tracking-tight font-bold text-on-surface;
   }
 
   /* Custom Scrollbar */
@@ -40,20 +47,36 @@
   }
 }
 
-@utility zoho-card {
-  background-color: white;
-  border-width: 1px;
-  border-color: var(--color-gray-100);
-  border-radius: 2.5rem;
-  transition-property: all;
-  transition-duration: 700ms;
-  box-shadow: var(--shadow-zoho-md);
+@utility architectural-grid {
+  background-image: linear-gradient(var(--color-outline-variant) 1px, transparent 1px), linear-gradient(90deg, var(--color-outline-variant) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
 
-  &:hover {
-    border-color: color-mix(in srgb, var(--color-zoho-blue) 30%, transparent);
-    transform: translateY(-0.5rem);
-    box-shadow: var(--shadow-zoho-xl);
-  }
+@utility section-divider {
+  border-top: 1px solid var(--color-outline-variant);
+}
+
+@utility glass-effect {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+}
+
+@utility architectural-shadow {
+  box-shadow: var(--shadow-architectural);
+}
+
+@utility premium-stat-block {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 20px 40px -10px rgba(0,0,0,0.1);
+}
+
+@utility ghost-border {
+  outline: 1px solid rgba(171, 173, 175, 0.15);
+}
+
+@utility modular-grid {
+  background-image: radial-gradient(circle, var(--color-on-surface-variant) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.05;
 }
 
 @utility section-padding {
@@ -66,7 +89,7 @@
 }
 
 @utility container-custom {
-  max-width: 80rem;
+  max-width: 90rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -74,17 +97,17 @@
 }
 
 @utility btn-primary {
-  background-color: var(--color-zoho-blue);
+  background-color: var(--color-primary);
   color: white;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-radius: 1rem;
-  font-weight: 900;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
   transition-property: all;
   box-shadow: var(--shadow-button);
   display: inline-flex;
@@ -92,8 +115,9 @@
   justify-content: center;
 
   &:hover {
-    background-color: var(--color-zoho-dark);
-    transform: translateY(-0.25rem);
+    background-color: var(--color-primary-dim);
+    transform: translateY(-0.125rem);
+    box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.4);
   }
 
   &:active {
@@ -103,26 +127,26 @@
 
 @utility btn-secondary {
   background-color: white;
-  color: var(--color-zoho-dark);
-  border-width: 2px;
-  border-color: var(--color-gray-100);
+  color: var(--color-on-surface);
+  border-width: 1px;
+  border-color: var(--color-outline-variant);
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-radius: 1rem;
-  font-weight: 900;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
   transition-property: all;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    background-color: var(--color-gray-50);
-    transform: translateY(-0.25rem);
+    background-color: var(--color-surface-container);
+    transform: translateY(-0.125rem);
   }
 
   &:active {
@@ -131,25 +155,25 @@
 }
 
 @utility btn-dark {
-  background-color: var(--color-zoho-dark);
+  background-color: var(--color-on-surface);
   color: white;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-radius: 1rem;
-  font-weight: 900;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
   transition-property: all;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    background-color: var(--color-zoho-blue);
-    transform: translateY(-0.25rem);
+    background-color: var(--color-primary);
+    transform: translateY(-0.125rem);
   }
 
   &:active {
@@ -157,24 +181,16 @@
   }
 }
 
-@utility glass-panel {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(40px);
-  border-width: 1px;
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: var(--shadow-zoho-xl);
-}
-
 @utility text-gradient {
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, var(--color-zoho-blue), var(--color-zoho-green));
+  background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary));
 }
 
 @utility bento-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -184,11 +200,13 @@
 }
 
 @utility bento-item {
-  @apply zoho-card;
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @apply bg-white border border-outline-variant rounded-2xl p-10 flex flex-col justify-between transition-all duration-500;
+  box-shadow: var(--shadow-zoho-md);
+
+  &:hover {
+    @apply border-primary/30 -translate-y-2;
+    box-shadow: var(--shadow-zoho-xl);
+  }
 }
 
 @utility bento-item-large {
