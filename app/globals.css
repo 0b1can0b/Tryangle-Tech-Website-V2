@@ -1,48 +1,53 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --color-brand-blue: #007bff;
-  --color-brand-dark: #0056b3;
-  --color-brand-light: #f8f9fa;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-brand-blue: #2C82C9;
+  --color-brand-red: #E84C3D;
+  --color-brand-green: #2ECC71;
+  --color-brand-yellow: #F1C40F;
+  --color-brand-dark: #1A1A1A;
+  --color-brand-gray: #F4F7F9;
   
-  --shadow-card: 0 0 20px rgba(0, 0, 0, 0.08);
-  --shadow-card-hover: 0 10px 40px rgba(0, 0, 0, 0.12);
-  --shadow-button: 0 4px 14px 0 rgba(0, 123, 255, 0.39);
+  --shadow-zoho: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-zoho-hover: 0 10px 40px rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 4px 14px 0 rgba(44, 130, 201, 0.3);
 }
 
 @layer base {
   body {
-    @apply font-sans text-[#010101] bg-white antialiased selection:bg-brand-blue/20 selection:text-brand-blue;
+    @apply font-sans text-[#1A1A1A] bg-white antialiased selection:bg-brand-blue/20 selection:text-brand-blue;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight;
+    @apply tracking-tight font-semibold;
   }
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
   ::-webkit-scrollbar-track {
     @apply bg-gray-50;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-200 rounded-full border-4 border-gray-50 hover:bg-gray-300 transition-colors;
+    @apply bg-gray-300 rounded-full border-2 border-gray-50 hover:bg-gray-400 transition-colors;
   }
 }
 
 @layer utilities {
-  .gradient-blue {
-    background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-brand-dark) 100%);
+  .zoho-card {
+    @apply bg-white border border-gray-100 rounded-xl transition-all duration-300;
+    box-shadow: var(--shadow-zoho);
   }
-  .card-shadow {
-    box-shadow: var(--shadow-card);
-  }
-  .card-shadow-hover {
-    box-shadow: var(--shadow-card-hover);
+  .zoho-card:hover {
+    @apply border-brand-blue/20;
+    box-shadow: var(--shadow-zoho-hover);
   }
   .text-balance {
     text-wrap: balance;
+  }
+  .section-padding {
+    @apply py-24 lg:py-32;
   }
 }

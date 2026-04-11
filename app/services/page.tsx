@@ -10,7 +10,6 @@ import {
   Code, 
   CheckCircle2, 
   ArrowRight,
-  Monitor,
   ShieldCheck,
   Zap,
   Users
@@ -21,7 +20,7 @@ export default function Services() {
   const services = [
     {
       title: "Web Design & Development",
-      desc: "Tryangle Tech is a highly specialized team for website development and services. You will get high-performing, secure, and SEO-friendly websites tailored to your business goals.",
+      desc: "High-performing, secure, and SEO-friendly websites tailored to your business goals.",
       icon: <Globe className="h-10 w-10" />,
       features: ["Custom UI/UX Design", "Responsive Layouts", "E-commerce Solutions", "CMS Integration"],
       color: "bg-blue-50",
@@ -29,7 +28,7 @@ export default function Services() {
     },
     {
       title: "Digital Marketing",
-      desc: "Tryangle Tech provides you with complete digital marketing services. It includes email & Content marketing to boost your brand visibility and reach your target audience effectively.",
+      desc: "Complete digital marketing services to boost your brand visibility and reach.",
       icon: <Megaphone className="h-10 w-10" />,
       features: ["Social Media Marketing", "Content Strategy", "Email Campaigns", "PPC Management"],
       color: "bg-purple-50",
@@ -37,7 +36,7 @@ export default function Services() {
     },
     {
       title: "Search Engine Optimization",
-      desc: "SEO is important for online businesses as it provides companies with the visibility they require to attract customers and rank higher on search engine result pages.",
+      desc: "Improve your online visibility and rank higher on search engine result pages.",
       icon: <Search className="h-10 w-10" />,
       features: ["Keyword Research", "On-Page SEO", "Technical SEO Audits", "Link Building"],
       color: "bg-green-50",
@@ -45,7 +44,7 @@ export default function Services() {
     },
     {
       title: "Graphics Designing",
-      desc: "A graphic designer is a professional within the graphic design and graphic arts industry who assembles together images, typography, or motion graphics to create a piece of design.",
+      desc: "Creative visual solutions including images, typography, and motion graphics.",
       icon: <LayoutIcon className="h-10 w-10" />,
       features: ["Logo & Branding", "Marketing Collateral", "Social Media Graphics", "Print Design"],
       color: "bg-orange-50",
@@ -53,7 +52,7 @@ export default function Services() {
     },
     {
       title: "Mobile App Development",
-      desc: "We are a Mobile App Design and Development Company in India working for brands across the globe. We create intuitive and high-performance apps for iOS and Android.",
+      desc: "Intuitive and high-performance apps for iOS and Android platforms.",
       icon: <Smartphone className="h-10 w-10" />,
       features: ["Native iOS & Android", "Cross-Platform Apps", "App UI/UX Design", "App Store Optimization"],
       color: "bg-red-50",
@@ -61,7 +60,7 @@ export default function Services() {
     },
     {
       title: "Custom Development",
-      desc: "Invent, integrate, build and upgrade your ideas with our services at Tryangle Tech. We help you to create high-quality custom software solutions that solve unique business challenges.",
+      desc: "High-quality custom software solutions that solve unique business challenges.",
       icon: <Code className="h-10 w-10" />,
       features: ["Enterprise Software", "API Integrations", "Legacy System Migration", "Cloud Solutions"],
       color: "bg-indigo-50",
@@ -70,71 +69,60 @@ export default function Services() {
   ];
 
   return (
-    <div className="pb-32">
+    <div className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className="relative py-32 overflow-hidden bg-gray-50/50">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/5 -skew-x-12 translate-x-1/4 pointer-events-none" />
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+      <section className="bg-brand-gray/30 py-24">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-8 uppercase border-b-2 border-brand-blue/20 pb-2">
-              Our Expertise
-            </div>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] text-balance">
-              Comprehensive <span className="text-brand-blue">IT Solutions</span> <br />
-              for Your Business
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Our <span className="text-brand-blue">Services</span>
             </h1>
-            <p className="text-gray-500 max-w-3xl mx-auto text-xl leading-relaxed">
-              We offer a wide range of services to help you stay ahead in the digital world. From development to marketing, we've got you covered with precision and innovation.
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Comprehensive IT solutions designed to help your business grow and succeed in the digital landscape.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
           {services.map((service, idx) => (
             <motion.div
               key={idx}
-              initial={{ y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true }}
               transition={{ delay: (idx % 2) * 0.1 }}
-              className="bg-white rounded-[2.5rem] p-10 lg:p-12 border border-gray-100 card-shadow-hover transition-all duration-500 group relative overflow-hidden"
+              className="zoho-card p-10 group"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-bl-[5rem] -mr-10 -mt-10 group-hover:bg-brand-blue/10 transition-colors duration-500" />
-              
-              <div className="flex flex-col md:flex-row gap-12 relative z-10">
+              <div className="flex flex-col md:flex-row gap-10">
                 <div className="flex-grow">
-                  <div className={`w-20 h-20 ${service.color} rounded-3xl flex items-center justify-center text-brand-blue mb-10 group-hover:bg-brand-blue group-hover:text-white transition-all duration-500 shadow-sm`}>
+                  <div className={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center text-brand-blue mb-8 group-hover:bg-brand-blue group-hover:text-white transition-all`}>
                     {service.icon}
                   </div>
-                  <h3 className="text-3xl font-bold mb-6 group-hover:text-brand-blue transition-colors">{service.title}</h3>
-                  <p className="text-gray-500 mb-10 text-lg leading-relaxed">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-brand-blue transition-colors">{service.title}</h3>
+                  <p className="text-gray-600 mb-8 leading-relaxed">
                     {service.desc}
                   </p>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {service.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-3 text-base text-gray-700 font-medium">
-                        <div className="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue" />
-                        </div>
+                      <li key={fIdx} className="flex items-center gap-2 text-sm text-gray-600">
+                        <CheckCircle2 className="h-4 w-4 text-brand-blue shrink-0" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contact" className="inline-flex items-center gap-3 text-brand-blue font-bold text-lg group-hover:gap-5 transition-all">
-                    Get Started <ArrowRight className="h-5 w-5" />
+                  <Link href="/contact" className="inline-flex items-center gap-2 text-brand-blue font-bold hover:gap-3 transition-all">
+                    Get Started <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
-                <div className="md:w-56 shrink-0 flex items-center">
-                  <div className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-xl">
+                <div className="md:w-40 shrink-0 flex items-center">
+                  <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-zoho">
                     <img 
                       alt={service.title} 
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
@@ -150,40 +138,31 @@ export default function Services() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-gray-900 py-32 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-blue/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-1/4 h-full bg-brand-blue/5 blur-[100px] rounded-full pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-24">
-            <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
-              Why Choose Us
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-              We Deliver Results That <br /> <span className="text-brand-blue">Matter</span> for Your Business
-            </h2>
+      <section className="section-padding bg-brand-dark text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4">Why Choose Us</h2>
+            <p className="text-gray-400 text-lg">We deliver results that matter for your business.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-16">
+          <div className="grid md:grid-cols-3 gap-12">
             {[
-              { title: "Expert Team", desc: "Our professionals are experts in their respective fields with years of experience and a passion for innovation.", icon: <Users className="h-10 w-10" /> },
-              { title: "Quality Work", desc: "We maintain high standards of quality in every project we deliver, ensuring robust and scalable solutions.", icon: <ShieldCheck className="h-10 w-10" /> },
-              { title: "Fast Delivery", desc: "We value your time and ensure timely delivery of all projects without compromising on quality or detail.", icon: <Zap className="h-10 w-10" /> }
+              { title: "Expert Team", desc: "Our professionals are experts in their respective fields with years of experience.", icon: <Users className="h-10 w-10" /> },
+              { title: "Quality Work", desc: "We maintain high standards of quality in every project we deliver.", icon: <ShieldCheck className="h-10 w-10" /> },
+              { title: "Fast Delivery", desc: "We value your time and ensure timely delivery of all projects.", icon: <Zap className="h-10 w-10" /> }
             ].map((item, idx) => (
               <motion.div 
                 key={idx} 
-                initial={{ y: 20 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="text-center group"
+                className="text-center"
               >
-                <div className="w-24 h-24 bg-white/5 rounded-3xl flex items-center justify-center mx-auto mb-10 border border-white/10 group-hover:bg-brand-blue group-hover:border-brand-blue transition-all duration-500 shadow-lg">
-                  <div className="text-brand-blue group-hover:text-white transition-colors duration-500">
-                    {item.icon}
-                  </div>
+                <div className="w-20 h-20 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-white/10 text-brand-blue">
+                  {item.icon}
                 </div>
-                <h4 className="text-2xl font-bold text-white mb-6 group-hover:text-brand-blue transition-colors">{item.title}</h4>
-                <p className="text-gray-400 text-lg leading-relaxed">{item.desc}</p>
+                <h4 className="text-xl font-bold mb-4">{item.title}</h4>
+                <p className="text-gray-400 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>

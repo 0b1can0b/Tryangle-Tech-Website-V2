@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, User, ArrowRight, Search, Tag, Clock } from 'lucide-react';
+import { Calendar, User, ArrowRight, Search, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { blogPosts as staticPosts, BlogPost } from '@/src/data/blogs';
 
@@ -13,7 +13,6 @@ export default function BlogList() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        // 1. Try Local API (Dynamic MDX)
         const localResponse = await fetch('/api/local-blogs');
         if (localResponse.ok) {
           const localPosts = await localResponse.json();
@@ -23,8 +22,6 @@ export default function BlogList() {
             return;
           }
         }
-
-        // 2. Fallback to Static Data
         setPosts(staticPosts);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -33,183 +30,126 @@ export default function BlogList() {
         setLoading(false);
       }
     }
-
     fetchPosts();
   }, []);
 
   return (
-    <div className="pb-32">
+    <div className="bg-white min-h-screen">
       {/* Header Section */}
-      <section className="relative py-32 overflow-hidden bg-gray-50/50">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/5 -skew-x-12 translate-x-1/4 pointer-events-none" />
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+      <section className="bg-brand-gray/30 py-24">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-8 uppercase border-b-2 border-brand-blue/20 pb-2">
-              Our Blog
-            </div>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] text-balance">
-              Latest <span className="text-brand-blue">Insights & News</span>
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Our <span className="text-brand-blue">Blog</span>
             </h1>
-            <p className="text-gray-500 max-w-3xl mx-auto text-xl leading-relaxed">
-              Stay updated with the latest trends in technology, digital marketing, and business growth. We share our expertise to help you succeed.
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Explore the latest insights, trends, and news from the world of technology and digital innovation.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1fr_350px] gap-24 items-start">
-          {/* Blog Posts Grid */}
-          <div className="space-y-24">
-            {loading ? (
-              <div className="flex justify-center py-20">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
-              </div>
-            ) : (
-              posts.map((post, idx) => (
-                <motion.article 
-                  key={post.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.8, delay: idx * 0.1 }}
-                  className="group relative bg-white rounded-[3rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700"
-                >
-                  <div className="grid md:grid-cols-[400px_1fr] gap-0">
-                    <Link href={`/blog/${post.id}`} className="block overflow-hidden relative h-[350px] md:h-full">
-                      <div className="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/10 transition-colors duration-700 z-10" />
-                      <img 
-                        src={post.image} 
-                        alt={post.title} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md text-brand-blue text-[10px] font-bold px-6 py-2 rounded-full uppercase tracking-widest shadow-xl z-20">
-                        {post.category}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-12">
+              {loading ? (
+                <div className="flex justify-center py-20">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
+                </div>
+              ) : (
+                posts.map((post, idx) => (
+                  <motion.article 
+                    key={post.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className="zoho-card overflow-hidden group"
+                  >
+                    <div className="grid md:grid-cols-2">
+                      <div className="aspect-video md:aspect-auto overflow-hidden">
+                        <img 
+                          src={post.image} 
+                          alt={post.title} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          referrerPolicy="no-referrer"
+                        />
                       </div>
-                    </Link>
-                    
-                    <div className="p-10 lg:p-14 flex flex-col justify-center">
-                      <div className="flex flex-wrap items-center gap-6 text-[10px] font-bold text-gray-400 mb-6 uppercase tracking-widest">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-3.5 w-3.5 text-brand-blue" />
-                          {post.date}
+                      <div className="p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+                          <span>{post.date}</span>
+                          <span className="w-1 h-1 rounded-full bg-gray-300" />
+                          <span>{post.category}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <User className="h-3.5 w-3.5 text-brand-blue" />
-                          {post.author}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-3.5 w-3.5 text-brand-blue" />
-                          {post.readTime}
-                        </div>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-brand-blue transition-colors leading-tight">
+                          <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                        </h2>
+                        <p className="text-gray-600 mb-6 line-clamp-2 text-sm leading-relaxed">
+                          {post.excerpt}
+                        </p>
+                        <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-brand-blue font-bold hover:gap-3 transition-all">
+                          Read More <ArrowRight className="h-4 w-4" />
+                        </Link>
                       </div>
-
-                      <h2 className="text-3xl lg:text-4xl font-bold mb-6 group-hover:text-brand-blue transition-all duration-300 leading-tight">
-                        <Link href={`/blog/${post.id}`}>{post.title}</Link>
-                      </h2>
-                      <p className="text-gray-500 text-lg leading-relaxed mb-10 line-clamp-2">
-                        {post.excerpt}
-                      </p>
-                      <Link 
-                        href={`/blog/${post.id}`} 
-                        className="inline-flex items-center gap-3 text-brand-blue font-bold text-base group/link"
-                      >
-                        Read Full Article 
-                        <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center group-hover/link:bg-brand-blue group-hover/link:text-white transition-all duration-300">
-                          <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                        </div>
-                      </Link>
                     </div>
-                  </div>
-                </motion.article>
-              ))
-            )}
-          </div>
+                  </motion.article>
+                ))
+              )}
+            </div>
 
-          {/* Sidebar */}
-          <aside className="space-y-16 sticky top-32">
-            {/* Search */}
-            <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-gray-100 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-              <h3 className="font-bold text-2xl mb-8 relative z-10">Search</h3>
-              <div className="relative z-10">
-                <input 
-                  type="text" 
-                  placeholder="Search articles..." 
-                  className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 pr-14 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 focus:border-brand-blue transition-all duration-300 text-lg"
-                />
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-brand-blue text-white rounded-xl flex items-center justify-center shadow-lg shadow-brand-blue/20">
-                  <Search className="h-5 w-5" />
+            {/* Sidebar */}
+            <aside className="space-y-12">
+              {/* Search */}
+              <div className="zoho-card p-8">
+                <h3 className="font-bold text-lg mb-6">Search</h3>
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    placeholder="Search articles..." 
+                    className="w-full bg-gray-50 border border-gray-100 rounded-lg py-3 px-4 focus:outline-none focus:border-brand-blue transition-all"
+                  />
+                  <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 </div>
               </div>
-            </div>
 
-            {/* Categories */}
-            <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-gray-100 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-              <h3 className="font-bold text-2xl mb-8 relative z-10">Categories</h3>
-              <ul className="space-y-4 relative z-10">
-                {['Philosophy', 'Ethics', 'Future', 'Technology', 'AI'].map((cat) => (
-                  <li key={cat}>
-                    <button className="flex items-center justify-between w-full text-gray-500 hover:text-brand-blue transition-all duration-300 group text-lg font-medium">
-                      <span className="group-hover:translate-x-2 transition-transform">{cat}</span>
-                      <span className="bg-gray-50 px-3 py-1 rounded-lg text-xs font-bold border border-gray-100 group-hover:bg-brand-blue group-hover:text-white group-hover:border-brand-blue transition-all">
-                        {cat === 'Philosophy' || cat === 'Ethics' || cat === 'Future' ? '1' : '0'}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Recent Posts */}
-            <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-gray-100 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-              <h3 className="font-bold text-2xl mb-8 relative z-10">Recent Posts</h3>
-              <div className="space-y-8 relative z-10">
-                {posts.slice(0, 3).map((post) => (
-                  <Link key={post.id} href={`/blog/${post.id}`} className="flex gap-6 group items-center">
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-500">
-                      <img 
-                        src={post.image} 
-                        alt="" 
-                        className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-base leading-tight line-clamp-2 group-hover:text-brand-blue transition-colors duration-300">{post.title}</h4>
-                      <p className="text-xs font-bold text-gray-400 mt-2 uppercase tracking-widest">{post.date}</p>
-                    </div>
-                  </Link>
-                ))}
+              {/* Categories */}
+              <div className="zoho-card p-8">
+                <h3 className="font-bold text-lg mb-6">Categories</h3>
+                <ul className="space-y-4">
+                  {['Technology', 'Digital Marketing', 'Business', 'AI', 'Web Design'].map((cat) => (
+                    <li key={cat}>
+                      <button className="flex items-center justify-between w-full text-gray-600 hover:text-brand-blue transition-colors group">
+                        <span className="group-hover:translate-x-1 transition-transform">{cat}</span>
+                        <span className="text-xs font-bold text-gray-400">0</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
 
-            {/* Newsletter */}
-            <div className="p-10 bg-gray-900 rounded-[2.5rem] text-white relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <h4 className="text-2xl font-bold mb-4 relative z-10">Newsletter</h4>
-              <p className="text-gray-400 text-sm mb-8 relative z-10 leading-relaxed">Get the latest tech insights delivered straight to your inbox.</p>
-              <div className="space-y-4 relative z-10">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:border-brand-blue transition-colors"
-                />
-                <button className="w-full bg-brand-blue text-white py-3 rounded-xl font-bold hover:bg-brand-blue/90 transition-all">
-                  Subscribe
-                </button>
+              {/* Newsletter */}
+              <div className="bg-brand-dark p-8 rounded-2xl text-white">
+                <h4 className="text-xl font-bold mb-4">Newsletter</h4>
+                <p className="text-gray-400 text-sm mb-6">Get the latest tech insights delivered straight to your inbox.</p>
+                <div className="space-y-4">
+                  <input 
+                    type="email" 
+                    placeholder="Your email" 
+                    className="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 focus:outline-none focus:border-brand-blue transition-colors"
+                  />
+                  <button className="w-full bg-brand-blue text-white py-3 rounded-lg font-bold hover:bg-brand-blue/90 transition-all">
+                    Subscribe
+                  </button>
+                </div>
               </div>
-            </div>
-          </aside>
+            </aside>
+          </div>
         </div>
       </section>
     </div>

@@ -1,55 +1,24 @@
-import { Mail, Phone, MapPin, ChevronRight, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin, Twitter } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-[#0a0a0a] text-white pt-20 pb-10">
+    <footer id="contact" className="bg-brand-dark text-white pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Contact Info Bar */}
-        <div className="bg-[#1a1a1a] rounded-[2rem] p-10 mb-20 grid md:grid-cols-3 gap-10 items-center border border-white/5 shadow-2xl">
-          <div className="flex items-center gap-6 group">
-            <div className="w-14 h-14 rounded-full bg-brand-blue flex items-center justify-center shadow-lg shadow-brand-blue/20 group-hover:scale-110 transition-transform">
-              <Phone className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Phone Number</p>
-              <p className="font-bold text-lg">+91 90338 78806</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-6 group">
-            <div className="w-14 h-14 rounded-full bg-brand-blue flex items-center justify-center shadow-lg shadow-brand-blue/20 group-hover:scale-110 transition-transform">
-              <Mail className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Email</p>
-              <p className="font-bold text-lg">info.tryangletech@gmail.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-6 group">
-            <div className="w-14 h-14 rounded-full bg-brand-blue flex items-center justify-center shadow-lg shadow-brand-blue/20 group-hover:scale-110 transition-transform">
-              <MapPin className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Address</p>
-              <p className="font-bold text-sm leading-relaxed">1st Floor-29/Vithal Plaza, New Naroda, Ahmedabad</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-4 gap-16 border-b border-white/5 pb-20 mb-10">
-          <div className="space-y-8">
+        <div className="grid lg:grid-cols-4 gap-12 mb-20">
+          <div className="lg:col-span-1">
             <img 
               alt="Footer Logo" 
-              className="h-12 brightness-0 invert" 
+              className="h-10 brightness-0 invert mb-8" 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYgNYxh-aVMj0I0io_KwnJ57kN2kwyoPmaV4ft3HudqBq677Rkqwb9I9w1XrSRzsFoWaeV3MJfMf3AWrMw_ivsOtFUgJ4tewfg4lPe78m2MYloU8fFo2nS23T_3ujRxbzivJHfiNY0LVQgsXVn0_vzAa8abK_FA3XOVFyfZRB2Hi8XdUXflQTLgnRiUpOgIBlQPhXX1I8zQCHNQPbkNxNHWCFyN5MoL_wmVYwgXttQANUIn3eQWtkrEGBxnyawD7C4q38cwhd7bjc"
               referrerPolicy="no-referrer"
             />
-            <p className="text-gray-400 text-base leading-relaxed">
-              At Tryangletech, we are about technology and dedicated to providing IT solutions for businesses of all sizes.
+            <p className="text-gray-400 leading-relaxed mb-8">
+              Empowering businesses with innovative IT solutions. We bridge the gap between technology and your business goals.
             </p>
             <div className="flex gap-4">
-              {[Instagram, Facebook, Linkedin].map((Icon, i) => (
-                <a key={i} className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-brand-blue hover:text-white transition-all duration-300" href="#">
+              {[Instagram, Facebook, Linkedin, Twitter].map((Icon, i) => (
+                <a key={i} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-blue transition-all duration-300" href="#">
                   <Icon className="h-5 w-5" />
                 </a>
               ))}
@@ -57,19 +26,12 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-bold text-xl mb-10 border-l-4 border-brand-blue pl-6">Quick Links</h4>
-            <ul className="space-y-4 text-gray-400 font-medium">
-              {[
-                { name: "Home", path: "/" },
-                { name: "About Us", path: "/about" },
-                { name: "Our Services", path: "/services" },
-                { name: "Projects", path: "/portfolio" },
-                { name: "Blog", path: "/blog" },
-                { name: "Contact", path: "/contact" }
-              ].map((link, idx) => (
-                <li key={idx}>
-                  <Link className="hover:text-brand-blue hover:translate-x-2 transition-all inline-block" href={link.path}>
-                    {link.name}
+            <h4 className="font-bold text-lg mb-8">Company</h4>
+            <ul className="space-y-4 text-gray-400">
+              {["About Us", "Our Team", "Careers", "Contact Us", "Blog"].map((item, i) => (
+                <li key={i}>
+                  <Link href={`/${item.toLowerCase().replace(" ", "-")}`} className="hover:text-brand-blue transition-colors">
+                    {item}
                   </Link>
                 </li>
               ))}
@@ -77,42 +39,45 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-xl mb-10 border-l-4 border-brand-blue pl-6">Our Services</h4>
-            <ul className="space-y-4 text-gray-400 font-medium">
-              {[
-                "Website Development",
-                "Website Design",
-                "Application Development",
-                "Digital Marketing",
-                "Branding & Design"
-              ].map((service, idx) => (
-                <li key={idx} className="flex items-center gap-3 hover:text-brand-blue hover:translate-x-2 transition-all cursor-pointer">
-                  <ChevronRight className="h-4 w-4 text-brand-blue" /> {service}
+            <h4 className="font-bold text-lg mb-8">Services</h4>
+            <ul className="space-y-4 text-gray-400">
+              {["Web Development", "Mobile Apps", "Digital Marketing", "Cloud Solutions", "IT Consulting"].map((item, i) => (
+                <li key={i}>
+                  <Link href="/services" className="hover:text-brand-blue transition-colors">
+                    {item}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-xl mb-10 border-l-4 border-brand-blue pl-6">Latest posts</h4>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuCNYJSWbJxsoXZ-ytckzPisZkx7BNecCjZUe5s-rjeKrotIAVlT7GGUgBz2Qh_F5tSm5KeHMRfYkIfUMLzKN_4OEWehB0yB5DFNJWOsaGxQpZq_vjugfOEF6rXnh97WaG4rWuAxGtyWfYUyBQ-YIi_4coK59lEKaCAS3uy_Vsx0pOut_SW8XtsbsF2qh2Vhh_yta_e-2O5JFjJFmYFS4Hg1jV5lpBT6r8LHou90AJkpR2NV4URZpHG2uip5l6WADEtdbU5DCxhPlSA",
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuAAzlx58DyO-paXE-989Jh3oMlq-K92g8G4GWDKORBqFrnYioD9KABRKe0HQzo2cz3HhnIXApLcpQjBI6h9Ym3CfZt2dD3QIaBXEj73jkpmeIX5z0IgUdoM4eSwgibdHISf-bSBmSFHGCKhBOM8mzViuGp1qa72nb801_wLbarwMNgMV8dHDdFrg3uetAx4s_M29yYz_kS9oi-0zeeZvSV6cZbWdNCVWWlt1HWOIObh8_wmCWzZ8w16SjQAhjCRuL1zLMh65J01a1E",
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuBscTBe3uKKmWubRah_a9RmZyHaw14SDrWNGrfDgr5y2JOmJPEo9m_-eJGqPgb-fbbVoimMrBQWhUM_GRWgoAQHStpcDnujGJtFONrFxIgJXikFrHcT-udeYVHwUwID0kL7gvdXuR4KVBiVHxkzaAM1GN6j4KOblJJLM5CXdRxZvSjhbZm2nI_1plslfCA_ZBa_fggWoR2Uh2pWXCnMrqBBACuEMhWoN9ISYVK9ZAnpGYkKFWMUQ2m01PYQZDuedWvW6yq8cMer5rQ",
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuChKQY9xObovWzXOznANiDEjHVTPWtB8ZeCQEBOee_yRgKoNQB2SZSPtP3ueNQEsUebMfwmfT9q5Mb5EAJeV6PeL2LfKHzNtn_eAkWMzIISTemCDjNWmkTHoX68tauXG_NcsX-kDnlTp6EUi-LNB8E2jkChNOERTd7wWlWM4XRvl3YM5rpTclPdvsSiU8Dt1sKxM0t4Qlxy-V2_HST1pB17PFpU2hj85dxJiNY7v4P0UuROOpmyMbXRmGyVHG-X7Z9c4q2Wh-W3fYo"
-              ].map((img, idx) => (
-                <img key={idx} alt={`Post ${idx + 1}`} className="rounded-xl w-full aspect-square object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" src={img} referrerPolicy="no-referrer" />
-              ))}
-            </div>
+            <h4 className="font-bold text-lg mb-8">Get in Touch</h4>
+            <ul className="space-y-6">
+              <li className="flex gap-4">
+                <MapPin className="h-5 w-5 text-brand-blue shrink-0" />
+                <span className="text-gray-400 text-sm">1st Floor-29/Vithal Plaza, New Naroda, Ahmedabad</span>
+              </li>
+              <li className="flex gap-4">
+                <Phone className="h-5 w-5 text-brand-blue shrink-0" />
+                <span className="text-gray-400 text-sm">+91 90338 78806</span>
+              </li>
+              <li className="flex gap-4">
+                <Mail className="h-5 w-5 text-brand-blue shrink-0" />
+                <span className="text-gray-400 text-sm">info.tryangletech@gmail.com</span>
+              </li>
+            </ul>
           </div>
         </div>
         
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm font-medium">
-          <p>© 2024 Tryangle Tech. All rights reserved.</p>
-          <div className="flex gap-8">
-            <Link href="#" className="hover:text-white transition">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition">Terms of Service</Link>
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-gray-500 text-sm">
+            © 2024 Tryangle Tech. All rights reserved.
+          </p>
+          <div className="flex gap-8 text-sm text-gray-500">
+            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>

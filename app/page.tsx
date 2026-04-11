@@ -19,54 +19,82 @@ import {
   ChevronDown,
   Award,
   Users,
-  MessageSquare
+  MessageSquare,
+  Star
 } from 'lucide-react';
 import Link from 'next/link';
 import { blogPosts as staticPosts } from '@/src/data/blogs';
 
 const Hero = () => {
   return (
-    <section className="relative pt-44 pb-32 overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-block bg-brand-blue/10 text-brand-blue px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8">
-            Best IT Solutions in Ahmedabad
-          </div>
-          <h1 className="text-5xl lg:text-7xl font-bold leading-[1.1] mb-8 text-gray-900">
-            Tryangle Tech: <span className="text-brand-blue">Innovating</span> Your Digital Future
-          </h1>
-          <p className="text-gray-600 text-lg mb-10 max-w-lg leading-relaxed">
-            We lead a new age of digital innovation, breaking limits to set unmatched standards for creativity and technical excellence.
-          </p>
-          <div className="flex flex-wrap gap-6">
-            <Link href="/contact" className="bg-brand-blue text-white px-10 py-4 rounded-full font-bold hover:bg-brand-dark transition-all duration-300 shadow-button">
-              Start Your Project
-            </Link>
-            <Link href="/portfolio" className="group flex items-center gap-3 text-gray-900 font-bold hover:text-brand-blue transition-colors">
-              <span className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-brand-blue transition-colors">
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+      {/* Background Accents */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-gray/30 -skew-x-12 translate-x-1/4 pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-brand-blue/5 rounded-full blur-3xl pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-blue/5 border border-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-wider mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
               </span>
-              View Case Studies
-            </Link>
-          </div>
-        </motion.div>
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="relative"
-        >
-          <img 
-            alt="IT Solutions Illustration" 
-            className="w-full h-auto relative z-10" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvkYhcrKw84fOkbz1aHZER3kgNyq0g8axM-I6O723PVpc97e0NtzG5BsEi_1BLd_sctJ0ClG8xwVPhBe2Jq3Wr00ydLWjcEqonSLJnnIqYzMiuymdO_u7YGGl33mvzBixBZK4sqQzOhCABeQFtBEoTDdL_v9aUP7X53NOPio4Y49Fl1dM0aJMSKPVsMRGH5CbkX7zgk9mLzmhWoG3TGJdu9HyUAWxaTlySWb4NUXVBNLkqpM8wWay86O_vMgQs2XDeRi6voUoPAq4"
-            referrerPolicy="no-referrer"
-          />
-        </motion.div>
+              Trusted by 750+ Businesses
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] text-gray-900 tracking-tight">
+              Your Partner in <br />
+              <span className="text-brand-blue">Digital Evolution</span>
+            </h1>
+            <p className="text-gray-600 text-xl mb-10 leading-relaxed max-w-xl">
+              From custom software to digital marketing, we provide the tools and expertise you need to scale your business in the modern era.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/contact" className="bg-brand-blue text-white px-10 py-4 rounded-lg font-bold hover:bg-brand-blue/90 transition-all shadow-button text-lg">
+                Get Started Free
+              </Link>
+              <Link href="/services" className="bg-white text-gray-700 border border-gray-200 px-10 py-4 rounded-lg font-bold hover:bg-gray-50 transition-all text-lg">
+                Explore Services
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-zoho border border-gray-100 bg-white p-2">
+              <img 
+                alt="Digital Innovation" 
+                className="w-full h-auto rounded-xl" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGfYJlnGKuWELiIXwKRszIsdt9qixan4sgwlP8Q_JiFoFKCriKvMz2dJ_aYr8tjHIjav_2bZzQxU2XlCgOvcS5Jcnx8GrImpRZNjIfBgnUlsodrRiLHI21cIO8v186miQ2hrmvPZxlx26p_a4QTodyyKv91RNOjBFcV2lZ-mdR8TrQJ71M6sP7bhA42rchZFmUPlu5N1Q0GNremRVYdQjP5JOe8UYF9jFuy4-6NQ9ntR1Hj2OqH_pQqTbq3oh5j8k0lz2reYF5jns"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            {/* Floating Elements */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-6 -right-6 bg-white p-6 rounded-2xl shadow-zoho border border-gray-50 z-20 hidden lg:block"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-brand-green/10 rounded-full flex items-center justify-center text-brand-green">
+                  <Check className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-gray-900">Project Delivered</div>
+                  <div className="text-xs text-gray-500">Just now</div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -82,14 +110,15 @@ const Partners = () => {
   ];
 
   return (
-    <section className="py-20 bg-white border-y border-gray-100">
+    <section className="py-16 bg-white border-b border-gray-50">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+        <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-[0.3em] mb-12">Trusted by 500+ Companies Worldwide</p>
+        <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24">
           {partners.map((partner, idx) => (
             <img 
               key={idx} 
               alt={partner.name} 
-              className="h-10 object-contain" 
+              className="h-8 object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer" 
               src={partner.src}
               referrerPolicy="no-referrer"
             />
@@ -103,80 +132,82 @@ const Partners = () => {
 const Services = () => {
   const services = [
     {
-      title: "Web Design & Development",
-      desc: "High-performing, secure, and SEO-friendly websites tailored to your business goals.",
-      icon: <Globe className="h-8 w-8" />,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDGfYJlnGKuWELiIXwKRszIsdt9qixan4sgwlP8Q_JiFoFKCriKvMz2dJ_aYr8tjHIjav_2bZzQxU2XlCgOvcS5Jcnx8GrImpRZNjIfBgnUlsodrRiLHI21cIO8v186miQ2hrmvPZxlx26p_a4QTodyyKv91RNOjBFcV2lZ-mdR8TrQJ71M6sP7bhA42rchZFmUPlu5N1Q0GNremRVYdQjP5JOe8UYF9jFuy4-6NQ9ntR1Hj2OqH_pQqTbq3oh5j8k0lz2reYF5jns"
+      title: "Web Development",
+      desc: "High-performance, secure, and SEO-friendly websites tailored to your goals.",
+      icon: <Globe className="h-8 w-8 text-brand-blue" />,
+      color: "bg-brand-blue/10",
+      link: "/services"
     },
     {
       title: "Digital Marketing",
-      desc: "Complete digital marketing services including email & content marketing to boost visibility.",
-      icon: <Megaphone className="h-8 w-8" />,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDYTDV809-IuxOJAXWV6P0JfSdLb2CpYzAotr-1oyb4WrfWbR0svJdGXJ0PjZAtq7XaMyFwY60J89YYVYX0tnBQwIabxXqr8Egvm4IsaQQE415rB72lJAUjqMaNxqsnRVIbapyKCE-d42bdw0vfAuFx5Y0y3f1v7BdsZkMn-eycupwyOTjuSXPcjJigZVymhRZyXUrLABy8ompxKytX4bkDSIxqba0D3sP22z64G8KbrPRWTyUZtOKDNTt0Ai3wFMncsVp8Y1E6Q0U"
+      desc: "Boost your brand visibility and reach your target audience effectively.",
+      icon: <Megaphone className="h-8 w-8 text-brand-red" />,
+      color: "bg-brand-red/10",
+      link: "/services"
     },
     {
-      title: "Search Engine Optimization",
-      desc: "Strategic SEO to provide companies with the visibility they require to attract customers.",
-      icon: <Search className="h-8 w-8" />,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDfHR9fIBPUg5aXQJ7Gkk_aliSdeexwtAdOtfdLgY2srotRaN8j8Jv-NQUeScpCc7LlIr9YoXSE6nc18OwKqARefEMM0Ba6hQDRybFFcm2CoTZbShbwyuMRVHW8ifY7nNDUwaYGB1yYOjbHIrXgkDz0OLYU14fTgizc4JYr1pBZbRpXRo3yuBtVAhYDi4WrDIRtu-dFimQkUmGeGUsdVUVNn2Uyxd5miGZE9PgC2U8nBE1N_jAx7TlHI786vGa8I8PWo8ET3UVJTmY"
+      title: "SEO Optimization",
+      desc: "Rank higher on search engine result pages and attract more customers.",
+      icon: <Search className="h-8 w-8 text-brand-green" />,
+      color: "bg-brand-green/10",
+      link: "/services"
     },
     {
-      title: "Graphics Designing",
-      desc: "Professional graphic design assembling images, typography, and motion graphics.",
-      icon: <LayoutIcon className="h-8 w-8" />,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpm0-v_mrWKYWIF6B5kqWMl9e19w4oeHT-l9dAXBn4tJQdWd0_5F7kX1qswhKVSMe-1hLQbq6uScRVUoO3GaNoeRaCmsQd_bVefshv0K_x8HZAUFMCOwV3sEIjwFhhOk4CvsZ1U9zv3UcwyjPfdmksahYDhJK4gC-fnWm39CdLNtV2iVIQ56lT2V454bfK5JZb28Vei0bxf_6U3zDMMfVadjLjxsT9hv_AsnApSHZQVJFEP3kyqEfPRYkqh08DUTIsbbCkuwAdZ3s"
+      title: "Mobile Apps",
+      desc: "Intuitive and high-performance apps for iOS and Android platforms.",
+      icon: <Smartphone className="h-8 w-8 text-brand-yellow" />,
+      color: "bg-brand-yellow/10",
+      link: "/services"
     },
     {
-      title: "Mobile App Development",
-      desc: "Intuitive and high-performance mobile apps for iOS and Android platforms.",
-      icon: <Smartphone className="h-8 w-8" />,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQnFZ4Gs0Y0vqO2XjJfeMJPzZAe0bpyZkMDEYdw3yU5A-bEIHWpcJ0Vxq9e_g_TcXD83K3KOmzb6h9mxhiONGflSNyE1EIf31i5FmJcVvtFhVIUtERFH9JXoOvLlhVRxY9apUTEPJZ3smiTYW571N7sgkk4D5wmkoja6y_tG2DOwewxT2xIBKmtTdIaCMAzHLwj9RGVb3TCAIKbTmJ8x-bPM-t-GgviKMlG7rt6YchHYcaUKOA_sZJ15yi6N_-vSTwcNP2Idcm3nw"
+      title: "Custom Software",
+      desc: "Bespoke software solutions to solve your unique business challenges.",
+      icon: <Code className="h-8 w-8 text-brand-blue" />,
+      color: "bg-brand-blue/10",
+      link: "/services"
     },
     {
-      title: "Custom Development",
-      desc: "Bespoke software solutions integrated and upgraded to fit your unique ideas.",
-      icon: <Code className="h-8 w-8" />,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCgN8s5KBEzYkrfqlm3VJYjoxC8Znq23eAXUaai3txr9DdnABp7JyrgUFSJuPB-1KXNATjPiib4Uv0pmBp_s6d7zoEqQCnHjq4ZzFaRNpoM1Ps5mp-sSHi-qMeLMd5zmu2SjxqWa2oVsvxf4Bd3QaTc-0VKxicKNtOKoFDm5unndN26NYzJWHAtyUDCHuVR6jViIDAiiV2p7siskpI6Ow51hcddiNFkwJvtB1xlXcuY4cQJDYaT8NQ9OPq4PZgFDj7Zrg_8rR9RmVg"
-    },
+      title: "Graphic Design",
+      desc: "Creative visual designs that communicate your brand's unique story.",
+      icon: <LayoutIcon className="h-8 w-8 text-brand-red" />,
+      color: "bg-brand-red/10",
+      link: "/services"
+    }
   ];
 
   return (
-    <section id="services" className="py-32 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
-          Our Popular Services
+    <section id="services" className="section-padding bg-brand-gray/30">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+            Solutions for Every <span className="text-brand-blue">Business Need</span>
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            We offer a comprehensive suite of IT services designed to help your business thrive in the digital age.
+          </p>
         </div>
-        <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight text-gray-900">
-          Premier Services for Limitless Growth
-        </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto mb-20 text-lg">
-          Unlock your business's potential with Tryangle Tech's top-tier web development services. Our innovative solutions for limitless growth and success.
-        </p>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.6 }}
-              className="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-left group"
+              transition={{ delay: idx * 0.1 }}
+              className="zoho-card p-10 group"
             >
-              <div className="w-16 h-16 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-8 group-hover:bg-brand-blue transition-colors duration-300">
-                <img 
-                  alt={service.title} 
-                  className="group-hover:invert group-hover:brightness-0 h-10 w-10 object-contain transition-all duration-300" 
-                  src={service.img}
-                  referrerPolicy="no-referrer"
-                />
+              <div className={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                {service.icon}
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.title}</h3>
-              <p className="text-gray-500 text-base leading-relaxed mb-8">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-brand-blue transition-colors">
+                {service.title}
+              </h3>
+              <p className="text-gray-600 mb-8 leading-relaxed">
                 {service.desc}
               </p>
-              <Link className="inline-flex items-center gap-2 text-brand-blue font-bold hover:gap-3 transition-all" href="/services">
-                Read More <ArrowRight className="h-4 w-4" />
+              <Link href={service.link} className="inline-flex items-center gap-2 text-brand-blue font-semibold hover:gap-3 transition-all">
+                Learn More <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
           ))}
@@ -188,7 +219,7 @@ const Services = () => {
 
 const About = () => {
   return (
-    <section id="about" className="py-32 overflow-hidden bg-white">
+    <section id="about" className="section-padding bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
@@ -197,36 +228,50 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
             <img 
-              alt="Developer Illustration" 
-              className="w-full" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMCLryjUyh4rBIPD-Jgbo3XADNEfOUQOkLkeNheY5v_GlIcrJIkIvlo7aEh1fmsIfPSZBBht6-H7PpOXSDUZSS4zixfL8UGT8d7GtIpjH2uXDUsX2vztu4tyTsXUcPKjowAjrOLZyGlKq2brOmxcqLsagSVkOKumaSGuCBGkhPByO5DKgDxHF1-yr52n2-AfLLGE1lPCJSN5uBRJKCBo2mqXqBuAGQb51zNcEVNIFP2-kTjefeVoDz0ScDxJSaQwmF9M5W3GfsW6Y"
+              alt="Our Team" 
+              className="w-full h-auto" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvkYhcrKw84fOkbz1aHZER3kgNyq0g8axM-I6O723PVpc97e0NtzG5BsEi_1BLd_sctJ0ClG8xwVPhBe2Jq3Wr00ydLWjcEqonSLJnnIqYzMiuymdO_u7YGGl33mvzBixBZK4sqQzOhCABeQFtBEoTDdL_v9aUP7X53NOPio4Y49Fl1dM0aJMSKPVsMRGH5CbkX7zgk9mLzmhWoG3TGJdu9HyUAWxaTlySWb4NUXVBNLkqpM8wWay86O_vMgQs2XDeRi6voUoPAq4"
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="absolute -bottom-10 -right-10 bg-brand-blue p-8 rounded-2xl shadow-2xl z-20 hidden md:block text-white">
+          <div className="absolute -bottom-8 -right-8 bg-brand-blue p-8 rounded-2xl shadow-2xl z-20 hidden md:block text-white">
             <div className="text-4xl font-bold mb-1">7+</div>
-            <div className="text-xs font-bold uppercase tracking-widest opacity-80">Years Experience</div>
+            <div className="text-xs font-bold uppercase tracking-widest opacity-80">Years of Excellence</div>
           </div>
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
-            About TryangleTech
-          </div>
           <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight text-gray-900">
-            Discover the Story and Vision of Trynagletech
+            Empowering Businesses Through <span className="text-brand-blue">Innovation</span>
           </h2>
-          <div className="space-y-6 text-gray-600 text-lg leading-relaxed mb-10">
-            <p>Welcome to Trynagletech, your one-stop solution for IT services. From attractive website design and development to powerful marketing strategies, flawless app and software development, to profitable digital marketing and SEO solutions, we help businesses succeed in the digital world.</p>
-            <p className="italic text-gray-500 border-l-4 border-brand-blue/30 pl-6">TryangleTech, recognized as the best IT company in Ahmedabad. We specialize in delivering cutting-edge IT solutions that elevate businesses, setting new benchmarks in innovation and reliability.</p>
+          <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+            Tryangle Tech is a leading IT solutions provider dedicated to helping businesses navigate the complexities of the digital world. Our mission is to provide innovative and high-quality solutions that empower our clients to achieve their full potential.
+          </p>
+          <div className="space-y-6 mb-10">
+            {[
+              { title: "Expert Team", desc: "Our professionals are experts in their respective fields with years of experience." },
+              { title: "Quality Work", desc: "We maintain high standards of quality in every project we deliver." },
+              { title: "Fast Delivery", desc: "We value your time and ensure timely delivery of all projects." }
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+                <div className="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center shrink-0 mt-1">
+                  <Check className="h-3.5 w-3.5 text-brand-blue" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-900 mb-1">{item.title}</h4>
+                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <Link href="/about" className="inline-flex items-center gap-3 bg-brand-blue text-white px-8 py-4 rounded-full font-bold hover:bg-brand-dark transition-all duration-300 shadow-button">
+          <Link href="/about" className="inline-flex items-center gap-2 text-brand-blue font-bold hover:gap-3 transition-all">
             Learn More About Us <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
@@ -240,94 +285,60 @@ const FAQ = () => {
 
   const faqs = [
     {
-      q: "What industries does your IT company specialize in serving?",
+      q: "What industries do you specialize in?",
       a: "Tryangle Tech serves a diverse range of industries, including e-commerce, healthcare, finance, education, and manufacturing, providing tailored IT solutions for each sector."
     },
     {
-      q: "Does your company offer ongoing support and maintenance?",
+      q: "Do you offer ongoing support?",
       a: "Yes, we provide comprehensive post-launch support and maintenance services to ensure your digital solutions remain secure, updated, and perform at their best."
     },
     {
-      q: "How does your IT consulting process work?",
+      q: "How does your consulting process work?",
       a: "Our consulting process begins with a deep dive into your business goals, followed by a strategic roadmap, technology selection, and a clear execution plan."
     },
     {
-      q: "What is the typical timeline for a software project?",
+      q: "What is the typical project timeline?",
       a: "Project timelines vary based on complexity. A standard website might take 4-6 weeks, while complex custom software can range from 3 to 6 months."
-    },
-    {
-      q: "What technologies does your development team specialize in?",
-      a: "We specialize in modern stacks including React, Node.js, Python, Flutter, and cloud platforms like AWS and Azure to build robust and scalable applications."
-    },
-    {
-      q: "Do you provide free Domain & Hosting with development?",
-      a: "We offer various packages that include complimentary domain registration and high-speed hosting for the first year to help you get started quickly."
     }
   ];
 
   return (
-    <section className="py-32 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
-            Common Questions
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight text-gray-900">
-            Tryangle Tech's Informative FAQ Section
-          </h2>
-          <p className="text-gray-500 mb-12 text-lg leading-relaxed">
-            Explore answers to common queries about Tryangle Tech's innovative services, guiding you toward informed decisions for your business's technological advancements.
-          </p>
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div 
-                key={idx} 
-                className={`rounded-2xl overflow-hidden transition-all duration-300 ${openIdx === idx ? 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20' : 'bg-gray-50 text-gray-900 hover:bg-gray-100'}`}
+    <section className="section-padding bg-brand-gray/30">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+          <p className="text-gray-600">Everything you need to know about our services and processes.</p>
+        </div>
+        
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="zoho-card overflow-hidden">
+              <button 
+                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
+                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
               >
-                <button 
-                  onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                  className="w-full px-8 py-6 text-left flex justify-between items-center font-bold text-lg"
-                >
-                  <span>{faq.q}</span>
-                  <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${openIdx === idx ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {openIdx === idx && (
-                    <motion.div 
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="px-8 pb-8 text-base leading-relaxed opacity-90">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="relative"
-        >
-          <img 
-            alt="Support Illustration" 
-            className="w-full relative z-10" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEYEzEdEZJiK6GWDgCMmb5ZxFDXjNg5ls-0pZFJs9x_W-KXNIXhvV9vAQlcgGb6Q9aWuF9uMoA8eYp6kZCOjszt5bAyJ-ssLWQ9mijuxswy2HZIBD6NQazv7G3w4PbP6gppZvhxoDtPpSjQcbhS8UAgptIJOyl5zF2JYs4qvkYcfwTue4mtwUd21G1daUYVeD0lF3Gbrpln8pmr6gFNu6vt4jZxniyzEW6FERfhkg7B6_ua_fbYkxkOc8ZXsJdKC5reXcmYuDLePU"
-            referrerPolicy="no-referrer"
-          />
-        </motion.div>
+                <span className="font-bold text-gray-900 text-lg">{faq.q}</span>
+                <div className={`w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center transition-transform duration-300 ${openIdx === idx ? 'rotate-180 bg-brand-blue border-brand-blue text-white' : 'text-gray-400'}`}>
+                  <ChevronDown className="h-5 w-5" />
+                </div>
+              </button>
+              <AnimatePresence>
+                {openIdx === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="px-8 pb-8 text-gray-600 leading-relaxed border-t border-gray-50 pt-4">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -335,54 +346,52 @@ const FAQ = () => {
 
 const Portfolio = () => {
   const projects = [
-    { title: "VH ACCOUNTING", category: "Web Development", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDnJ3V0siux16JVj0qksUJXzwdSbx9vtKsXPbO2PjhiuL7QENbx0Du6HYGF0doG4OxmJyoenvuih-gNHzYKf-QFJnrafemdDAtDgTaewB2lTbIv7QDu0QxvRPxTI6wyu7ikbJpc2Khxv14HdcbSjr9INjXGCadVe-OW4OlWNnpjknu80YmpZu-uNOM3SELhiiy_aq3JK82gvf25giMyfhjC_tA2BJQoS7xsXjEMUcUyvusLIKWjmHe-duq7dE6_t5rHtCaS3UtU9B8" },
-    { title: "VARNET ENTERPRISE", category: "Web Development", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuChzD5NduZGGY6EUK001xaTDwuui_mdS-m0qgIwXKlsA6-bJAWBdrOj0gWWFOYMAcHxhcXFnhNnsHjjqHb7zEGJztDISNZIS9a3DFIQDUGdFrZLtIYdy7_9pJCyyQWsC-v9ZBwbBd2oMdbZQEB4mpTfbf3wc8KJ6xfkritRGKkJca35ZiaIQ4BnpB6KLHrgS4qLb-mCrr4OCOEl3qLrU_uR8fLuPY-R2ccK9RLx-mrBbomL3HEUyzQccouSM8DB-etdnriXUUFIDbo" },
-    { title: "SECURE EDGE", category: "Web Development", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQTMYBCLnpTzHZlagqeO-khy77hcqc81nPutnmFIJLxSobAKEZyxFn919v6JMTrqcDwBEjaj4APwXdU0dxnx-tAakdIanxoH40FbctbiHOZAimToNA2QOA3a4ydUU1aHnZ7T1JpQMo2idwc04bTcVNyYlfv8F7YnY2fvsOxP9tEj-TxYUWeKys2gY1r19Y-6l4GC5PAe3wkLmtKSR8Vt4rUd8B1Qs5vtvg3DEyGSJf9EoaodMHt2AAxsRjaGaf2PnkI9ZGuyc8fjI" }
+    { title: "VH Accounting", category: "Web Development", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDnJ3V0siux16JVj0qksUJXzwdSbx9vtKsXPbO2PjhiuL7QENbx0Du6HYGF0doG4OxmJyoenvuih-gNHzYKf-QFJnrafemdDAtDgTaewB2lTbIv7QDu0QxvRPxTI6wyu7ikbJpc2Khxv14HdcbSjr9INjXGCadVe-OW4OlWNnpjknu80YmpZu-uNOM3SELhiiy_aq3JK82gvf25giMyfhjC_tA2BJQoS7xsXjEMUcUyvusLIKWjmHe-duq7dE6_t5rHtCaS3UtU9B8" },
+    { title: "Varnet Enterprise", category: "Web Development", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuChzD5NduZGGY6EUK001xaTDwuui_mdS-m0qgIwXKlsA6-bJAWBdrOj0gWWFOYMAcHxhcXFnhNnsHjjqHb7zEGJztDISNZIS9a3DFIQDUGdFrZLtIYdy7_9pJCyyQWsC-v9ZBwbBd2oMdbZQEB4mpTfbf3wc8KJ6xfkritRGKkJca35ZiaIQ4BnpB6KLHrgS4qLb-mCrr4OCOEl3qLrU_uR8fLuPY-R2ccK9RLx-mrBbomL3HEUyzQccouSM8DB-etdnriXUUFIDbo" },
+    { title: "Secure Edge", category: "Web Development", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQTMYBCLnpTzHZlagqeO-khy77hcqc81nPutnmFIJLxSobAKEZyxFn919v6JMTrqcDwBEjaj4APwXdU0dxnx-tAakdIanxoH40FbctbiHOZAimToNA2QOA3a4ydUU1aHnZ7T1JpQMo2idwc04bTcVNyYlfv8F7YnY2fvsOxP9tEj-TxYUWeKys2gY1r19Y-6l4GC5PAe3wkLmtKSR8Vt4rUd8B1Qs5vtvg3DEyGSJf9EoaodMHt2AAxsRjaGaf2PnkI9ZGuyc8fjI" }
   ];
 
   return (
-    <section id="projects" className="py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
-          Our Case Studies
+    <section id="projects" className="section-padding bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Our Recent <span className="text-brand-blue">Success Stories</span>
+            </h2>
+            <p className="text-gray-600 text-lg">
+              We take pride in delivering exceptional results for our clients. Here are some of our latest projects.
+            </p>
+          </div>
+          <Link href="/portfolio" className="bg-brand-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-brand-blue/90 transition-all shadow-button">
+            View All Projects
+          </Link>
         </div>
-        <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight text-gray-900">
-          Trynagletech's Showcase of Success Stories
-        </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto mb-20 text-lg italic">
-          "Navigating Success: Illuminating Trynagletech's Achievements Through Compelling Case Studies"
-        </p>
-        
-        <div className="grid md:grid-cols-3 gap-10 mb-20">
+
+        <div className="grid md:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.2 }}
-              className="group relative overflow-hidden rounded-2xl shadow-lg"
+              transition={{ delay: idx * 0.1 }}
+              className="group cursor-pointer"
             >
-              <img 
-                alt={project.title} 
-                className="w-full aspect-[4/3] object-cover group-hover:scale-110 transition-transform duration-700" 
-                src={project.img}
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 text-left">
-                <p className="text-xs font-bold text-brand-blue uppercase tracking-widest mb-2">{project.category}</p>
-                <h4 className="text-white font-bold text-xl mb-4">{project.title}</h4>
-                <Link href="/portfolio" className="inline-flex items-center gap-2 text-white font-bold text-sm hover:gap-3 transition-all">
-                  View Project <ArrowRight className="h-4 w-4" />
-                </Link>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-zoho group-hover:shadow-zoho-hover transition-all duration-500">
+                <img 
+                  src={project.img} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/10 transition-colors duration-500" />
               </div>
+              <div className="text-xs font-bold text-brand-blue uppercase tracking-wider mb-2">{project.category}</div>
+              <h3 className="text-xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors">{project.title}</h3>
             </motion.div>
           ))}
         </div>
-        
-        <Link href="/portfolio" className="inline-flex items-center gap-3 bg-brand-blue text-white px-10 py-4 rounded-full font-bold hover:bg-brand-dark transition-all duration-300 shadow-button">
-          View All Case Studies <ArrowRight className="h-4 w-4" />
-        </Link>
       </div>
     </section>
   );
@@ -416,18 +425,23 @@ const Blog = () => {
   }, []);
 
   return (
-    <section id="blog" className="py-32 bg-white">
+    <section id="blog" className="section-padding bg-brand-gray/30">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
-            Our Insights
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Latest from <span className="text-brand-blue">Our Blog</span>
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Stay updated with the latest trends and insights in the digital world.
+            </p>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
-            Latest Blog & <span className="text-brand-blue">Updates</span>
-          </h2>
+          <Link href="/blog" className="bg-white text-brand-blue border border-brand-blue px-8 py-3 rounded-lg font-bold hover:bg-brand-blue hover:text-white transition-all">
+            Read All Posts
+          </Link>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-3 gap-8">
           {loading ? (
             <div className="col-span-full flex justify-center py-10">
               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-brand-blue"></div>
@@ -436,46 +450,39 @@ const Blog = () => {
             posts.slice(0, 3).map((post, idx) => (
               <motion.div
                 key={post.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500"
+                className="zoho-card overflow-hidden group"
               >
-                <Link href={`/blog/${post.id}`} className="block">
-                  <div className="relative overflow-hidden aspect-video">
-                    <img 
-                      alt={post.title} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                      src={post.image}
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute top-6 left-6 bg-brand-blue text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                      {post.category}
-                    </div>
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="flex items-center gap-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+                    <span>{post.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <span>{post.category}</span>
                   </div>
-                  <div className="p-8">
-                    <div className="flex items-center gap-3 text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-4">
-                      <Calendar className="h-3.5 w-3.5 text-brand-blue" />
-                      {post.date}
-                    </div>
-                    <h3 className="font-bold text-xl mb-6 line-clamp-2 group-hover:text-brand-blue transition-colors leading-tight text-gray-900">
-                      {post.title}
-                    </h3>
-                    <div className="inline-flex items-center gap-2 text-brand-blue font-bold text-sm group-hover:gap-3 transition-all">
-                      Read More <ArrowRight className="h-4 w-4" />
-                    </div>
-                  </div>
-                </Link>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-brand-blue transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-brand-blue font-bold hover:gap-3 transition-all">
+                    Read More <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </motion.div>
             ))
           )}
-        </div>
-        
-        <div className="text-center mt-16">
-          <Link href="/blog" className="inline-flex items-center gap-3 bg-gray-900 text-white px-10 py-4 rounded-full font-bold hover:bg-brand-blue transition-all duration-300 shadow-lg">
-            View All Posts <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
       </div>
     </section>
@@ -491,7 +498,7 @@ const Stats = () => {
   ];
 
   return (
-    <section className="py-24 bg-brand-blue relative overflow-hidden">
+    <section className="py-20 bg-brand-blue relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0">
           {stats.map((stat, idx) => (
@@ -501,12 +508,11 @@ const Stats = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="flex flex-col items-center"
               >
-                <div className="text-5xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
+                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">
                   {stat.value}
                 </div>
-                <div className="text-white/80 font-bold uppercase tracking-[0.2em] text-[11px]">
+                <div className="text-white/70 font-medium text-sm">
                   {stat.label}
                 </div>
               </motion.div>
@@ -541,44 +547,41 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-32 bg-gray-50/50 relative overflow-hidden">
+    <section className="section-padding bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <div className="inline-block text-brand-blue font-bold text-xs tracking-[0.3em] mb-6 uppercase border-b-2 border-brand-blue/20 pb-2">
-            Client Testimonials
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
-            What Our <span className="text-brand-blue">Clients Say</span> About Us
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Trusted by <span className="text-brand-blue">Industry Leaders</span>
           </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what our clients have to say about working with us.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((t, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white p-10 rounded-[3rem] shadow-xl border border-gray-100 relative group hover:-translate-y-2 transition-all duration-500"
+              className="zoho-card p-10 flex flex-col"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
-                  <Plus key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                  <Star key={i} className="h-4 w-4 fill-brand-yellow text-brand-yellow" />
                 ))}
               </div>
-              <p className="text-gray-600 text-lg leading-relaxed mb-10 italic">
+              <p className="text-gray-600 mb-8 leading-relaxed italic flex-grow">
                 "{t.content}"
               </p>
               <div className="flex items-center gap-4">
-                <img src={t.image} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-brand-blue/20" />
+                <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full object-cover border border-gray-100" />
                 <div>
-                  <h4 className="font-bold text-gray-900">{t.name}</h4>
-                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">{t.role}</p>
+                  <div className="font-bold text-gray-900">{t.name}</div>
+                  <div className="text-xs text-gray-500">{t.role}</div>
                 </div>
-              </div>
-              <div className="absolute top-10 right-10 opacity-5 group-hover:opacity-10 transition-opacity">
-                <MessageSquare className="h-16 w-16 text-brand-blue" />
               </div>
             </motion.div>
           ))}
