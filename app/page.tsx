@@ -27,10 +27,10 @@ const Hero = () => {
               Ahmedabad's premier technology partner. We build robust, scalable, and aesthetically superior digital infrastructures for the modern enterprise.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
-              <Link href="/contact" className="bg-primary text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-primary-dim shadow-lg active:scale-95 transition-all text-center">
+              <Link href="/contact" className="bg-primary text-white px-10 py-4 rounded-none font-bold text-sm uppercase tracking-widest hover:bg-primary-dim shadow-lg active:scale-95 transition-all text-center">
                 Start Consultation
               </Link>
-              <Link href="/portfolio" className="bg-white text-on-surface border border-outline-variant px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-surface-container-low transition-all text-center">
+              <Link href="/portfolio" className="bg-white text-on-surface border border-outline-variant px-10 py-4 rounded-none font-bold text-sm uppercase tracking-widest hover:bg-surface-container-low transition-all text-center">
                 View Portfolio
               </Link>
             </div>
@@ -71,9 +71,9 @@ const Hero = () => {
               <div className="absolute -top-10 -left-10 w-40 h-40 border border-primary/20 -z-10 rounded-sm"></div>
               
               {/* Floating Badge */}
-              <div className="absolute -right-6 top-1/4 z-20 glass-effect p-6 rounded-xl border border-white/20 shadow-xl hidden xl:block">
+              <div className="absolute -right-6 top-1/4 z-20 glass-effect p-6 rounded-none border border-white/20 shadow-xl hidden xl:block">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white">
+                  <div className="w-12 h-12 bg-primary rounded-none flex items-center justify-center text-white">
                     <span className="material-symbols-outlined">verified</span>
                   </div>
                   <div>
@@ -219,7 +219,7 @@ const PortfolioPreview = () => {
         </div>
         
         <div className="mt-24 text-center">
-          <Link href="/portfolio" className="inline-flex items-center gap-4 bg-on-surface text-white px-12 py-5 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-primary transition-all shadow-xl">
+          <Link href="/portfolio" className="inline-flex items-center gap-4 bg-on-surface text-white px-12 py-5 rounded-none font-bold text-sm uppercase tracking-widest hover:bg-primary transition-all shadow-xl">
             View All Projects <span className="material-symbols-outlined">grid_view</span>
           </Link>
         </div>
@@ -246,10 +246,10 @@ const CTA = () => {
             Ready to architect your digital future? Connect with our senior partners for a strategic consultation.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-8">
-            <Link href="/contact" className="bg-primary text-white px-16 py-6 rounded-xl font-bold text-lg uppercase tracking-widest hover:bg-primary-dim shadow-2xl active:scale-95 transition-all">
+            <Link href="/contact" className="bg-primary text-white px-16 py-6 rounded-none font-bold text-lg uppercase tracking-widest hover:bg-primary-dim shadow-2xl active:scale-95 transition-all">
               Request Consultation
             </Link>
-            <Link href="/about" className="bg-transparent border border-outline-variant text-white px-16 py-6 rounded-xl font-bold text-lg uppercase tracking-widest hover:bg-white/10 transition-all">
+            <Link href="/about" className="bg-transparent border border-outline-variant text-white px-16 py-6 rounded-none font-bold text-lg uppercase tracking-widest hover:bg-white/10 transition-all">
               Our Philosophy
             </Link>
           </div>

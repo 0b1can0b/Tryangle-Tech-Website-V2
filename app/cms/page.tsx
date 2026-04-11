@@ -2,23 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Briefcase, 
-  MessageSquare, 
-  Plus, 
-  Save, 
-  Trash2, 
-  Edit3,
-  Image as ImageIcon,
-  User,
-  Calendar,
-  Clock,
-  Tag,
-  ArrowLeft,
-  Search
-} from 'lucide-react';
 import Link from 'next/link';
 
 type ContentType = 'blogs' | 'projects' | 'testimonials';
@@ -105,74 +88,74 @@ export default function CMSPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
-      <aside className="w-80 bg-white border-r border-gray-100 flex flex-col sticky top-0 h-screen">
-        <div className="p-8 border-b border-gray-50">
+      <aside className="w-80 bg-white border-r border-outline-variant flex flex-col sticky top-0 h-screen">
+        <div className="p-8 border-b border-outline-variant">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-blue/20 group-hover:scale-110 transition-transform">
-              <LayoutDashboard className="h-5 w-5" />
+            <div className="w-10 h-10 bg-on-surface flex items-center justify-center text-white group-hover:bg-primary transition-colors">
+              <div className="w-5 h-5 border-2 border-white rotate-45"></div>
             </div>
-            <span className="font-bold text-xl tracking-tight">Tryangle<span className="text-brand-blue">CMS</span></span>
+            <span className="font-headline font-bold text-xl tracking-tighter uppercase">Tryangle<span className="text-primary">CMS</span></span>
           </Link>
         </div>
 
         <nav className="p-6 space-y-2 flex-1">
           {[
-            { id: 'blogs', label: 'Blog Posts', icon: FileText },
-            { id: 'projects', label: 'Projects', icon: Briefcase },
-            { id: 'testimonials', label: 'Testimonials', icon: MessageSquare },
+            { id: 'blogs', label: 'Journal Entries', icon: 'description' },
+            { id: 'projects', label: 'Case Studies', icon: 'architecture' },
+            { id: 'testimonials', label: 'Verifications', icon: 'verified' },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as ContentType)}
-              className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl font-bold transition-all ${
+              className={`w-full flex items-center gap-4 px-6 py-4 font-label font-bold uppercase text-[11px] tracking-[0.2em] transition-all ${
                 activeTab === tab.id 
-                  ? 'bg-brand-blue text-white shadow-xl shadow-brand-blue/20' 
-                  : 'text-gray-400 hover:bg-gray-50 hover:text-gray-900'
+                  ? 'bg-on-surface text-white' 
+                  : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
               }`}
             >
-              <tab.icon className="h-5 w-5" />
+              <span className="material-symbols-outlined text-xl">{tab.icon}</span>
               {tab.label}
             </button>
           ))}
         </nav>
 
-        <div className="p-8 border-t border-gray-50">
-          <Link href="/" className="flex items-center gap-2 text-gray-400 font-bold hover:text-brand-blue transition-colors text-sm">
-            <ArrowLeft className="h-4 w-4" /> Back to Website
+        <div className="p-8 border-t border-outline-variant">
+          <Link href="/" className="flex items-center gap-3 text-on-surface-variant font-label font-bold uppercase text-[10px] tracking-widest hover:text-primary transition-colors">
+            <span className="material-symbols-outlined text-sm">arrow_back</span> Return to Site
           </Link>
         </div>
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 p-12 overflow-y-auto">
-        <header className="flex justify-between items-end mb-12">
+        <header className="flex justify-between items-end mb-16">
           <div>
-            <h1 className="text-4xl font-bold mb-2">Manage {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h1>
-            <p className="text-gray-500">Create, edit and organize your website content.</p>
+            <h1 className="text-4xl font-headline font-bold mb-3 tracking-tight">Manage {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h1>
+            <p className="text-on-surface-variant font-sans">Digital asset management and content architecture.</p>
           </div>
           <button 
             onClick={handleAddNew}
-            className="bg-brand-blue text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-3 hover:bg-brand-blue/90 shadow-xl shadow-brand-blue/20 transition-all hover:-translate-y-1"
+            className="bg-primary text-white px-10 py-4 font-label font-bold uppercase text-xs tracking-[0.2em] flex items-center gap-3 hover:bg-primary-dim transition-all"
           >
-            <Plus className="h-5 w-5" /> Add New
+            <span className="material-symbols-outlined text-xl">add</span> Initialize New
           </button>
         </header>
 
         {loading ? (
           <div className="flex justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-blue"></div>
+            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : (
           <div className="grid gap-6">
             {items.length === 0 ? (
-              <div className="bg-white rounded-[2.5rem] p-20 text-center border border-dashed border-gray-200">
-                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
-                  <Search className="h-10 w-10" />
+              <div className="bg-white p-20 text-center border border-outline-variant">
+                <div className="w-20 h-20 border border-outline-variant rounded-full flex items-center justify-center mx-auto mb-8 text-outline-variant">
+                  <span className="material-symbols-outlined text-4xl">search_off</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">No items found</h3>
-                <p className="text-gray-500">Start by adding your first {activeTab.slice(0, -1)}.</p>
+                <h3 className="text-xl font-headline font-bold text-on-surface mb-3">No Nodes Found</h3>
+                <p className="text-on-surface-variant font-sans">Initiate your first {activeTab.slice(0, -1)} to populate the ecosystem.</p>
               </div>
             ) : (
               items.map((item) => (
@@ -180,32 +163,32 @@ export default function CMSPage() {
                   key={item.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all flex items-center gap-8 group"
+                  className="bg-white p-6 border border-outline-variant hover:border-primary transition-all flex items-center gap-8 group"
                 >
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden shrink-0">
-                    <img src={item.image} alt="" className="w-full h-full object-cover" />
+                  <div className="w-24 h-24 border border-outline-variant overflow-hidden shrink-0">
+                    <img src={item.image} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[10px] font-bold bg-brand-blue/10 text-brand-blue px-3 py-1 rounded-full uppercase tracking-widest">
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="text-[9px] font-label font-bold text-primary uppercase tracking-widest">
                         {item.category}
                       </span>
-                      <span className="text-xs text-gray-400 font-medium">{item.date}</span>
+                      <span className="text-[10px] text-on-surface-variant font-label uppercase tracking-widest">{item.date}</span>
                     </div>
-                    <h3 className="text-xl font-bold group-hover:text-brand-blue transition-colors">{item.title}</h3>
+                    <h3 className="text-xl font-headline font-bold group-hover:text-primary transition-colors tracking-tight">{item.title}</h3>
                   </div>
                   <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button 
                       onClick={() => handleEdit(item)}
-                      className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-brand-blue hover:text-white transition-all"
+                      className="w-12 h-12 border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all"
                     >
-                      <Edit3 className="h-5 w-5" />
+                      <span className="material-symbols-outlined text-xl">edit</span>
                     </button>
                     <button 
                       onClick={() => handleDelete(item.id)}
-                      className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-red-500 hover:text-white transition-all"
+                      className="w-12 h-12 border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-red-500 hover:text-red-500 transition-all"
                     >
-                      <Trash2 className="h-5 w-5" />
+                      <span className="material-symbols-outlined text-xl">delete</span>
                     </button>
                   </div>
                 </motion.div>
@@ -216,87 +199,89 @@ export default function CMSPage() {
 
         {/* Edit Modal */}
         {editingItem && (
-          <div className="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-6">
+          <div className="fixed inset-0 bg-on-surface/60 backdrop-blur-sm z-50 flex items-center justify-center p-6">
             <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-white w-full max-w-4xl rounded-[3rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+              className="bg-white w-full max-w-4xl border border-outline-variant shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
             >
-              <div className="p-10 border-b border-gray-50 flex justify-between items-center">
-                <h2 className="text-3xl font-bold">{isNew ? 'Create New' : 'Edit'} {activeTab.slice(0, -1)}</h2>
-                <button onClick={() => setEditingItem(null)} className="text-gray-400 hover:text-gray-900 font-bold">Close</button>
+              <div className="p-10 border-b border-outline-variant flex justify-between items-center">
+                <h2 className="text-3xl font-headline font-bold tracking-tight">{isNew ? 'Initialize' : 'Modify'} {activeTab.slice(0, -1)}</h2>
+                <button onClick={() => setEditingItem(null)} className="text-on-surface-variant hover:text-on-surface transition-colors">
+                  <span className="material-symbols-outlined">close</span>
+                </button>
               </div>
               
-              <div className="p-10 overflow-y-auto flex-1 space-y-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Title</label>
+              <div className="p-10 overflow-y-auto flex-1 space-y-10">
+                <div className="grid md:grid-cols-2 gap-10">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-[0.3em]">Label / Title</label>
                     <input 
                       type="text" 
                       value={editingItem.title}
                       onChange={(e) => setEditingItem({...editingItem, title: e.target.value})}
-                      className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 focus:border-brand-blue transition-all"
+                      className="w-full bg-white border border-outline-variant py-4 px-6 focus:outline-none focus:border-primary transition-all font-headline font-bold text-lg"
                     />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Category</label>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-[0.3em]">Classification</label>
                     <input 
                       type="text" 
                       value={editingItem.category}
                       onChange={(e) => setEditingItem({...editingItem, category: e.target.value})}
-                      className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 focus:border-brand-blue transition-all"
+                      className="w-full bg-white border border-outline-variant py-4 px-6 focus:outline-none focus:border-primary transition-all font-headline font-bold text-lg"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Image URL</label>
-                  <div className="flex gap-4">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-[0.3em]">Asset Source (URL)</label>
+                  <div className="flex gap-6">
                     <input 
                       type="text" 
                       value={editingItem.image}
                       onChange={(e) => setEditingItem({...editingItem, image: e.target.value})}
-                      className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 focus:border-brand-blue transition-all"
+                      className="flex-1 bg-white border border-outline-variant py-4 px-6 focus:outline-none focus:border-primary transition-all font-sans"
                     />
-                    <div className="w-14 h-14 bg-gray-50 rounded-2xl overflow-hidden shrink-0 border border-gray-100">
-                      <img src={editingItem.image} alt="" className="w-full h-full object-cover" />
+                    <div className="w-16 h-16 border border-outline-variant overflow-hidden shrink-0">
+                      <img src={editingItem.image} alt="" className="w-full h-full object-cover grayscale" />
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Excerpt</label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-[0.3em]">Abstract / Excerpt</label>
                   <textarea 
                     rows={3}
                     value={editingItem.excerpt}
                     onChange={(e) => setEditingItem({...editingItem, excerpt: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 focus:border-brand-blue transition-all resize-none"
+                    className="w-full bg-white border border-outline-variant py-4 px-6 focus:outline-none focus:border-primary transition-all resize-none font-sans"
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Content (Markdown)</label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-[0.3em]">Technical Content (Markdown)</label>
                   <textarea 
                     rows={10}
                     value={editingItem.content}
                     onChange={(e) => setEditingItem({...editingItem, content: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 focus:outline-none focus:ring-4 focus:ring-brand-blue/10 focus:border-brand-blue transition-all font-mono text-sm"
+                    className="w-full bg-white border border-outline-variant py-4 px-6 focus:outline-none focus:border-primary transition-all font-mono text-sm"
                   />
                 </div>
               </div>
 
-              <div className="p-10 border-t border-gray-50 flex justify-end gap-4">
+              <div className="p-10 border-t border-outline-variant flex justify-end gap-6">
                 <button 
                   onClick={() => setEditingItem(null)}
-                  className="px-8 py-4 rounded-2xl font-bold text-gray-400 hover:text-gray-900 transition-colors"
+                  className="px-8 py-4 font-label font-bold uppercase text-[10px] tracking-widest text-on-surface-variant hover:text-on-surface transition-colors"
                 >
-                  Cancel
+                  Discard
                 </button>
                 <button 
                   onClick={handleSave}
-                  className="bg-brand-blue text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-3 hover:bg-brand-blue/90 shadow-xl shadow-brand-blue/20 transition-all"
+                  className="bg-on-surface text-white px-10 py-4 font-label font-bold uppercase text-xs tracking-[0.2em] flex items-center gap-3 hover:bg-primary transition-all"
                 >
-                  <Save className="h-5 w-5" /> Save Changes
+                  <span className="material-symbols-outlined text-xl">save</span> Commit Changes
                 </button>
               </div>
             </motion.div>

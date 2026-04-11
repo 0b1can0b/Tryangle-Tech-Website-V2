@@ -18,10 +18,10 @@
   --color-surface-container-high: #E5E7EB;
   --color-surface-container-lowest: #FFFFFF;
   
-  --shadow-zoho-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-zoho-md: 0 4px 20px rgba(0, 0, 0, 0.06);
-  --shadow-zoho-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
-  --shadow-zoho-xl: 0 24px 60px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.12);
   --shadow-button: 0 4px 14px 0 rgba(124, 58, 237, 0.3);
   --shadow-architectural: 0px 24px 48px -12px rgba(44, 47, 49, 0.08);
 }
@@ -103,7 +103,7 @@
   padding-right: 2.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-radius: 0.75rem;
+  border-radius: 0px;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.875rem;
@@ -134,7 +134,7 @@
   padding-right: 2.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-radius: 0.75rem;
+  border-radius: 0px;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.875rem;
@@ -161,7 +161,7 @@
   padding-right: 2.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-radius: 0.75rem;
+  border-radius: 0px;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.875rem;
@@ -200,12 +200,12 @@
 }
 
 @utility bento-item {
-  @apply bg-white border border-outline-variant rounded-2xl p-10 flex flex-col justify-between transition-all duration-500;
-  box-shadow: var(--shadow-zoho-md);
+  @apply bg-white border border-outline-variant rounded-none p-10 flex flex-col justify-between transition-all duration-500;
+  box-shadow: var(--shadow-md);
 
   &:hover {
     @apply border-primary/30 -translate-y-2;
-    box-shadow: var(--shadow-zoho-xl);
+    box-shadow: var(--shadow-xl);
   }
 }
 
