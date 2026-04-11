@@ -22,8 +22,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { blogPosts as staticPosts } from '@/src/data/blogs';
-import { client } from '@/src/sanity/lib/client';
-import { postsQuery } from '@/src/sanity/lib/queries';
 
 const Hero = () => {
   return (
@@ -460,26 +458,7 @@ const Blog = () => {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        // 1. Try Sanity
-        const sanityPosts = await client.fetch(postsQuery);
-        if (sanityPosts && sanityPosts.length > 0) {
-          const mappedPosts = sanityPosts.map((post: any) => ({
-            id: post.slug,
-            title: post.title,
-            category: post.category,
-            image: post.image,
-            date: new Date(post.publishedAt).toLocaleDateString('en-US', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric'
-            })
-          }));
-          setPosts(mappedPosts);
-          setLoading(false);
-          return;
-        }
-
-        // 2. Try Local API (Dynamic MDX)
+        // 1. Try Local API (Dynamic MDX)
         const localResponse = await fetch('/api/local-blogs');
         if (localResponse.ok) {
           const localPosts = await localResponse.json();
@@ -490,7 +469,7 @@ const Blog = () => {
           }
         }
 
-        // 3. Fallback to Static Data
+        // 2. Fallback to Static Data
         setPosts(staticPosts);
       } catch (error) {
         console.error('Error fetching posts:', error);

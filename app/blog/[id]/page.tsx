@@ -5,12 +5,8 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
-import { PortableText } from '@portabletext/react';
 import { Calendar, User, Clock, ArrowLeft, Share2, Bookmark, Globe, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { blogPosts as staticPosts, BlogPost as BlogPostType } from '@/src/data/blogs';
-import { client } from '@/src/sanity/lib/client';
-import { postQuery, postsQuery } from '@/src/sanity/lib/queries';
-import { urlForImage } from '@/src/sanity/lib/image';
 
 export default function BlogPost() {
   const params = useParams();
@@ -22,18 +18,7 @@ export default function BlogPost() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        // 1. Try Sanity
-        const sanityPost = await client.fetch(postQuery, { slug: id });
-        
-        if (sanityPost) {
-          setPost(sanityPost);
-          const allPosts = await client.fetch(postsQuery);
-          setRelatedPosts(allPosts.filter((p: any) => p.slug !== id).slice(0, 3));
-          setLoading(false);
-          return;
-        }
-
-        // 2. Try Local API (Dynamic MDX)
+        // 1. Try Local API (Dynamic MDX)
         const localResponse = await fetch('/api/local-blogs');
         if (localResponse.ok) {
           const localPosts = await localResponse.json();
@@ -49,7 +34,7 @@ export default function BlogPost() {
           }
         }
 
-        // 3. Fallback to Static Data
+        // 2. Fallback to Static Data
         const staticPost = staticPosts.find((p) => p.id === id);
         if (staticPost) {
           setPost({
@@ -98,26 +83,7 @@ export default function BlogPost() {
     );
   }
 
-  const components = {
-    types: {
-      image: ({ value }: any) => (
-        <img
-          src={urlForImage(value).url()}
-          alt={value.alt || ' '}
-          loading="lazy"
-          className="rounded-[2.5rem] shadow-2xl my-12"
-        />
-      ),
-    },
-  };
-
-  const displayDate = post.isStatic 
-    ? post.date 
-    : new Date(post.publishedAt).toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric'
-      });
+  const displayDate = post.date;
 
   return (
     <div className="pb-32">
@@ -179,11 +145,7 @@ export default function BlogPost() {
             >
               <div className="prose prose-xl max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600 prose-strong:text-gray-900 prose-img:rounded-[2.5rem] prose-img:shadow-2xl prose-blockquote:border-brand-blue prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-8 prose-blockquote:rounded-2xl prose-blockquote:italic">
                 <div className="markdown-body">
-                  {post.isStatic ? (
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
-                  ) : (
-                    <PortableText value={post.body} components={components} />
-                  )}
+                  <ReactMarkdown>{post.content}</ReactMarkdown>
                 </div>
               </div>
               
