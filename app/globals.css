@@ -2,13 +2,13 @@
 
 @theme {
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --color-brand-blue: #6b77e0;
-  --color-brand-dark: #4a54c5;
-  --color-brand-light: #f0f2ff;
+  --color-brand-blue: #007bff;
+  --color-brand-dark: #0056b3;
+  --color-brand-light: #f8f9fa;
   
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
-  --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
-  --shadow-button: 0 4px 14px 0 rgba(107, 119, 224, 0.39);
+  --shadow-card: 0 0 20px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 10px 40px rgba(0, 0, 0, 0.12);
+  --shadow-button: 0 4px 14px 0 rgba(0, 123, 255, 0.39);
 }
 
 @layer base {

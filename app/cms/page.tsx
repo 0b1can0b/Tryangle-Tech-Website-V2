@@ -43,9 +43,17 @@ export default function CMSPage() {
           const data = await res.json();
           setItems(data);
         }
-      } else {
-        // Mock data for other tabs for now
-        setItems([]);
+      } else if (activeTab === 'projects') {
+        setItems([
+          { id: '1', title: "VH ACCOUNTING", category: "Web Development", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDnJ3V0siux16JVj0qksUJXzwdSbx9vtKsXPbO2PjhiuL7QENbx0Du6HYGF0doG4OxmJyoenvuih-gNHzYKf-QFJnrafemdDAtDgTaewB2lTbIv7QDu0QxvRPxTI6wyu7ikbJpc2Khxv14HdcbSjr9INjXGCadVe-OW4OlWNnpjknu80YmpZu-uNOM3SELhiiy_aq3JK82gvf25giMyfhjC_tA2BJQoS7xsXjEMUcUyvusLIKWjmHe-duq7dE6_t5rHtCaS3UtU9B8", date: "May 2024" },
+          { id: '2', title: "VARNET ENTERPRISE", category: "Web Development", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuChzD5NduZGGY6EUK001xaTDwuui_mdS-m0qgIwXKlsA6-bJAWBdrOj0gWWFOYMAcHxhcXFnhNnsHjjqHb7zEGJztDISNZIS9a3DFIQDUGdFrZLtIYdy7_9pJCyyQWsC-v9ZBwbBd2oMdbZQEB4mpTfbf3wc8KJ6xfkritRGKkJca35ZiaIQ4BnpB6KLHrgS4qLb-mCrr4OCOEl3qLrU_uR8fLuPY-R2ccK9RLx-mrBbomL3HEUyzQccouSM8DB-etdnriXUUFIDbo", date: "April 2024" },
+          { id: '3', title: "SECURE EDGE", category: "Web Development", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQTMYBCLnpTzHZlagqeO-khy77hcqc81nPutnmFIJLxSobAKEZyxFn919v6JMTrqcDwBEjaj4APwXdU0dxnx-tAakdIanxoH40FbctbiHOZAimToNA2QOA3a4ydUU1aHnZ7T1JpQMo2idwc04bTcVNyYlfv8F7YnY2fvsOxP9tEj-TxYUWeKys2gY1r19Y-6l4GC5PAe3wkLmtKSR8Vt4rUd8B1Qs5vtvg3DEyGSJf9EoaodMHt2AAxsRjaGaf2PnkI9ZGuyc8fjI", date: "March 2024" }
+        ]);
+      } else if (activeTab === 'testimonials') {
+        setItems([
+          { id: '1', title: "John Doe", category: "CEO, TechCorp", image: "https://i.pravatar.cc/150?u=john", date: "Today", content: "Tryangle Tech transformed our digital presence." },
+          { id: '2', title: "Sarah Smith", category: "Marketing Director", image: "https://i.pravatar.cc/150?u=sarah", date: "Yesterday", content: "The team at Tryangle Tech is professional and creative." }
+        ]);
       }
     } catch (error) {
       console.error('Error fetching items:', error);
@@ -61,7 +69,7 @@ export default function CMSPage() {
 
   const handleAddNew = () => {
     const newItem = activeTab === 'blogs' ? {
-      id: '',
+      id: Math.random().toString(36).substr(2, 9),
       title: '',
       excerpt: '',
       content: '',
@@ -70,16 +78,30 @@ export default function CMSPage() {
       category: 'Technology',
       image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200',
       readTime: '5 min read'
-    } : {};
+    } : {
+      id: Math.random().toString(36).substr(2, 9),
+      title: '',
+      category: '',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
+      date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+    };
     setEditingItem(newItem);
     setIsNew(true);
   };
 
   const handleSave = async () => {
-    // In a real app, this would call a POST/PUT API
-    // Since we are in a local environment, we'll just simulate it
-    alert('In a production environment, this would save to your MDX files or Database. For this demo, changes are local-only.');
+    if (isNew) {
+      setItems([editingItem, ...items]);
+    } else {
+      setItems(items.map(i => i.id === editingItem.id ? editingItem : i));
+    }
     setEditingItem(null);
+  };
+
+  const handleDelete = (id: string) => {
+    if (confirm('Are you sure you want to delete this item?')) {
+      setItems(items.filter(i => i.id !== id));
+    }
   };
 
   return (
@@ -179,7 +201,10 @@ export default function CMSPage() {
                     >
                       <Edit3 className="h-5 w-5" />
                     </button>
-                    <button className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-red-500 hover:text-white transition-all">
+                    <button 
+                      onClick={() => handleDelete(item.id)}
+                      className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-red-500 hover:text-white transition-all"
+                    >
                       <Trash2 className="h-5 w-5" />
                     </button>
                   </div>
