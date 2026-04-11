@@ -91,7 +91,7 @@ export default function BlogPost() {
           src={post.image} 
           alt={post.title}
           fill
-          className="object-cover grayscale"
+          className="object-cover"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-on-surface via-on-surface/60 to-transparent" />
@@ -237,7 +237,7 @@ export default function BlogPost() {
                     src={relatedPost.image} 
                     alt={relatedPost.title}
                     fill
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+                    className="object-cover transition-all duration-1000 group-hover:scale-110"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute top-6 left-6 bg-white text-primary text-[9px] font-label font-bold px-4 py-1.5 uppercase tracking-widest">

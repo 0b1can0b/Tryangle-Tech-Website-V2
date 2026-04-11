@@ -63,7 +63,7 @@ const Hero = () => {
                   src="https://picsum.photos/seed/architecture/800/1000" 
                   alt="Architectural Tech" 
                   fill 
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                  className="object-cover transition-all duration-1000"
                   referrerPolicy="no-referrer"
                 />
               </div>
@@ -180,7 +180,7 @@ const PortfolioPreview = () => {
                 src="https://picsum.photos/seed/tech1/1200/800" 
                 alt="Project 1" 
                 fill 
-                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                className="object-cover group-hover:scale-105 transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-on-surface/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -203,7 +203,7 @@ const PortfolioPreview = () => {
                 src="https://picsum.photos/seed/tech2/1200/800" 
                 alt="Project 2" 
                 fill 
-                className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                className="object-cover group-hover:scale-105 transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-on-surface/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>

@@ -166,7 +166,7 @@ export default function CMSPage() {
                   className="bg-white p-6 border border-outline-variant hover:border-primary transition-all flex items-center gap-8 group"
                 >
                   <div className="w-24 h-24 border border-outline-variant overflow-hidden shrink-0">
-                    <img src={item.image} alt="" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                    <img src={item.image} alt="" className="w-full h-full object-cover transition-all duration-700" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-4 mb-2">
@@ -244,7 +244,7 @@ export default function CMSPage() {
                       className="flex-1 bg-white border border-outline-variant py-4 px-6 focus:outline-none focus:border-primary transition-all font-sans"
                     />
                     <div className="w-16 h-16 border border-outline-variant overflow-hidden shrink-0">
-                      <img src={editingItem.image} alt="" className="w-full h-full object-cover grayscale" />
+                      <img src={editingItem.image} alt="" className="w-full h-full object-cover" />
                     </div>
                   </div>
                 </div>

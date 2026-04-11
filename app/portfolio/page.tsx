@@ -119,7 +119,7 @@ export default function Portfolio() {
                       src={project.img} 
                       alt={project.title} 
                       fill
-                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+                      className="object-cover transition-all duration-1000 group-hover:scale-110"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-on-surface/0 group-hover:bg-on-surface/10 transition-colors duration-500" />

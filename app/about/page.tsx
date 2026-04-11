@@ -95,7 +95,7 @@ export default function About() {
                 <Image 
                   alt="The Studio" 
                   fill
-                  className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
+                  className="object-cover transition-all duration-1000" 
                   src="https://picsum.photos/seed/studio/800/1000"
                   referrerPolicy="no-referrer"
                 />

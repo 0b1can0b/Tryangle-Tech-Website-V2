@@ -85,7 +85,7 @@ export default function BlogList() {
                           alt={post.title} 
                           width={800}
                           height={500}
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
                           referrerPolicy="no-referrer"
                         />
                       </div>

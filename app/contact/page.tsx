@@ -196,7 +196,7 @@ export default function Contact() {
               allowFullScreen 
               loading="lazy"
               title="Office Location"
-              className="grayscale group-hover:grayscale-0 transition-all duration-1000"
+              className="group-hover:grayscale-0 transition-all duration-1000"
             ></iframe>
           </motion.div>
         </div>

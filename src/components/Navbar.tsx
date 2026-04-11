@@ -32,7 +32,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-xl border-b border-outline-variant py-4 shadow-sm' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-md border-b border-outline-variant py-4 shadow-sm' : 'bg-transparent py-8'}`}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
