@@ -2,25 +2,28 @@
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --color-brand-blue: #2C82C9;
-  --color-brand-red: #E84C3D;
-  --color-brand-green: #2ECC71;
-  --color-brand-yellow: #F1C40F;
-  --color-brand-dark: #1A1A1A;
-  --color-brand-gray: #F4F7F9;
+  --color-zoho-blue: #0067FF;
+  --color-zoho-dark: #001A33;
+  --color-zoho-text: #1A1A1A;
+  --color-zoho-muted: #4D4D4D;
+  --color-zoho-bg-light: #F5F9FF;
+  --color-zoho-green: #00B359;
+  --color-zoho-red: #FF4D4D;
+  --color-zoho-yellow: #FFB800;
   
-  --shadow-zoho: 0 4px 20px rgba(0, 0, 0, 0.05);
-  --shadow-zoho-hover: 0 10px 40px rgba(0, 0, 0, 0.08);
-  --shadow-button: 0 4px 14px 0 rgba(44, 130, 201, 0.3);
+  --shadow-zoho-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-zoho-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-zoho-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 4px 14px 0 rgba(0, 103, 255, 0.3);
 }
 
 @layer base {
   body {
-    @apply font-sans text-[#1A1A1A] bg-white antialiased selection:bg-brand-blue/20 selection:text-brand-blue;
+    @apply font-sans text-zoho-text bg-white antialiased selection:bg-zoho-blue/20 selection:text-zoho-blue;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-semibold;
+    @apply tracking-tight font-bold text-zoho-dark;
   }
 
   /* Custom Scrollbar */
@@ -38,16 +41,25 @@
 @layer utilities {
   .zoho-card {
     @apply bg-white border border-gray-100 rounded-xl transition-all duration-300;
-    box-shadow: var(--shadow-zoho);
+    box-shadow: var(--shadow-zoho-md);
   }
   .zoho-card:hover {
-    @apply border-brand-blue/20;
-    box-shadow: var(--shadow-zoho-hover);
-  }
-  .text-balance {
-    text-wrap: balance;
+    @apply border-zoho-blue/20;
+    box-shadow: var(--shadow-zoho-lg);
   }
   .section-padding {
     @apply py-24 lg:py-32;
+  }
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6;
+  }
+  .btn-primary {
+    @apply bg-zoho-blue text-white px-8 py-3.5 rounded-lg font-bold hover:bg-zoho-blue/90 transition-all shadow-button inline-flex items-center justify-center;
+  }
+  .btn-secondary {
+    @apply bg-white text-zoho-dark border border-gray-200 px-8 py-3.5 rounded-lg font-bold hover:bg-gray-50 transition-all inline-flex items-center justify-center;
+  }
+  .btn-dark {
+    @apply bg-zoho-dark text-white px-8 py-3.5 rounded-lg font-bold hover:bg-zoho-dark/90 transition-all inline-flex items-center justify-center;
   }
 }

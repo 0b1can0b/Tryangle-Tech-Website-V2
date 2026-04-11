@@ -1,83 +1,118 @@
-import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin, Twitter } from 'lucide-react';
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
+import { Facebook, Twitter, Linkedin, Youtube, Instagram, Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
+  const footerSections = [
+    {
+      title: 'SOLUTIONS',
+      links: [
+        { name: 'Core financials', href: '/services' },
+        { name: 'Supply Chain Management', href: '/services' },
+        { name: 'Billing management', href: '/services' },
+        { name: 'People and payroll operations', href: '/services' },
+        { name: 'Spend management', href: '/services' },
+        { name: 'Omnichannel commerce', href: '/services' },
+      ],
+    },
+    {
+      title: 'VERTICALS',
+      links: [
+        { name: 'Manufacturing', href: '/portfolio' },
+        { name: 'Distribution', href: '/portfolio' },
+        { name: 'Retail', href: '/portfolio' },
+        { name: 'Non-profits', href: '/portfolio' },
+      ],
+    },
+    {
+      title: 'QUICK LINKS',
+      links: [
+        { name: 'Pricing', href: '/pricing' },
+        { name: 'AI in ERP', href: '/about' },
+        { name: 'All features', href: '/services' },
+        { name: 'Taxes and filing', href: '/services' },
+      ],
+    },
+    {
+      title: 'RESOURCES',
+      links: [
+        { name: 'Help document', href: '/blog' },
+        { name: 'Quick access guides', href: '/blog' },
+      ],
+    },
+  ];
+
   return (
-    <footer id="contact" className="bg-brand-dark text-white pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-4 gap-12 mb-20">
-          <div className="lg:col-span-1">
-            <img 
-              alt="Footer Logo" 
-              className="h-10 brightness-0 invert mb-8" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYgNYxh-aVMj0I0io_KwnJ57kN2kwyoPmaV4ft3HudqBq677Rkqwb9I9w1XrSRzsFoWaeV3MJfMf3AWrMw_ivsOtFUgJ4tewfg4lPe78m2MYloU8fFo2nS23T_3ujRxbzivJHfiNY0LVQgsXVn0_vzAa8abK_FA3XOVFyfZRB2Hi8XdUXflQTLgnRiUpOgIBlQPhXX1I8zQCHNQPbkNxNHWCFyN5MoL_wmVYwgXttQANUIn3eQWtkrEGBxnyawD7C4q38cwhd7bjc"
-              referrerPolicy="no-referrer"
-            />
-            <p className="text-gray-400 leading-relaxed mb-8">
-              Empowering businesses with innovative IT solutions. We bridge the gap between technology and your business goals.
-            </p>
-            <div className="flex gap-4">
-              {[Instagram, Facebook, Linkedin, Twitter].map((Icon, i) => (
-                <a key={i} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-blue transition-all duration-300" href="#">
+    <footer className="bg-white border-t border-gray-100 pt-20 pb-10">
+      <div className="container-custom">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 mb-20">
+          {footerSections.map((section) => (
+            <div key={section.title} className="col-span-1">
+              <h4 className="text-xs font-black text-zoho-muted tracking-widest mb-6">{section.title}</h4>
+              <ul className="space-y-4">
+                {section.links.map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-[14px] text-zoho-dark hover:text-zoho-blue transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <div className="col-span-2">
+            <h4 className="text-xs font-black text-zoho-muted tracking-widest mb-6">CONTACT US ON</h4>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center text-zoho-muted">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-zoho-muted mb-1">Mon-Fri (9:00AM to 7:00PM)</div>
+                  <div className="text-sm font-bold text-zoho-dark">Toll Free: 18005692979</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center text-zoho-muted">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-zoho-muted mb-1">Email us</div>
+                  <div className="text-sm font-bold text-zoho-dark">info.tryangletech@gmail.com</div>
+                </div>
+              </div>
+            </div>
+
+            <h4 className="text-xs font-black text-zoho-muted tracking-widest mt-10 mb-6">FOLLOW US ON</h4>
+            <div className="flex items-center gap-4">
+              {[Twitter, Linkedin, Instagram, Youtube].map((Icon, i) => (
+                <Link key={i} href="#" className="w-10 h-10 rounded-lg border border-gray-100 flex items-center justify-center text-zoho-muted hover:text-zoho-blue hover:border-zoho-blue transition-all">
                   <Icon className="h-5 w-5" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
-          
-          <div>
-            <h4 className="font-bold text-lg mb-8">Company</h4>
-            <ul className="space-y-4 text-gray-400">
-              {["About Us", "Our Team", "Careers", "Contact Us", "Blog"].map((item, i) => (
-                <li key={i}>
-                  <Link href={`/${item.toLowerCase().replace(" ", "-")}`} className="hover:text-brand-blue transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-lg mb-8">Services</h4>
-            <ul className="space-y-4 text-gray-400">
-              {["Web Development", "Mobile Apps", "Digital Marketing", "Cloud Solutions", "IT Consulting"].map((item, i) => (
-                <li key={i}>
-                  <Link href="/services" className="hover:text-brand-blue transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-lg mb-8">Get in Touch</h4>
-            <ul className="space-y-6">
-              <li className="flex gap-4">
-                <MapPin className="h-5 w-5 text-brand-blue shrink-0" />
-                <span className="text-gray-400 text-sm">1st Floor-29/Vithal Plaza, New Naroda, Ahmedabad</span>
-              </li>
-              <li className="flex gap-4">
-                <Phone className="h-5 w-5 text-brand-blue shrink-0" />
-                <span className="text-gray-400 text-sm">+91 90338 78806</span>
-              </li>
-              <li className="flex gap-4">
-                <Mail className="h-5 w-5 text-brand-blue shrink-0" />
-                <span className="text-gray-400 text-sm">info.tryangletech@gmail.com</span>
-              </li>
-            </ul>
-          </div>
         </div>
-        
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-500 text-sm">
-            © 2024 Tryangle Tech. All rights reserved.
-          </p>
-          <div className="flex gap-8 text-sm text-gray-500">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
+
+        <div className="pt-10 border-t border-gray-100 flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="flex flex-wrap justify-center gap-6 text-[12px] text-zoho-muted">
+            <Link href="#" className="hover:text-zoho-blue">Contact</Link>
+            <Link href="#" className="hover:text-zoho-blue">Security</Link>
+            <Link href="#" className="hover:text-zoho-blue">Compliance</Link>
+            <Link href="#" className="hover:text-zoho-blue">IPR Complaints</Link>
+            <Link href="#" className="hover:text-zoho-blue">Anti-spam Policy</Link>
+            <Link href="#" className="hover:text-zoho-blue">Terms of Service</Link>
+            <Link href="#" className="hover:text-zoho-blue">Privacy Policy</Link>
+            <Link href="#" className="hover:text-zoho-blue">Trademark Policy</Link>
+            <Link href="#" className="hover:text-zoho-blue">Cookie Policy</Link>
+            <Link href="#" className="hover:text-zoho-blue">GDPR Compliance</Link>
+            <Link href="#" className="hover:text-zoho-blue">Abuse Policy</Link>
+          </div>
+          <div className="text-[12px] text-zoho-muted">
+            © 2026, Tryangle Tech Pvt. Ltd. All Rights Reserved.
           </div>
         </div>
       </div>

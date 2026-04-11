@@ -1,18 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Mail, Phone, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ChevronDown, Search } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
-  
+
   useEffect(() => {
-    console.log('Navbar mounted');
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -25,91 +25,114 @@ const Navbar = () => {
   }, [pathname]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Our Services', path: '/services' },
-    { name: 'Projects', path: '/portfolio' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact us', path: '/contact' },
+    { name: 'Solutions', href: '/services', dropdown: true },
+    { name: 'Verticals', href: '/portfolio', dropdown: true },
+    { name: 'Infrastructure', href: '/about', dropdown: true },
+    { name: 'Resources', href: '/blog', dropdown: true },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'Contact us', href: '/contact' },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white shadow-sm py-3' : 'bg-white/90 backdrop-blur-md py-5'
-    }`}>
-      <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 group">
-          <img 
-            alt="Tryangle Tech Logo" 
-            className="h-10 transition-transform group-hover:scale-105" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZ8OWsUlvXeLUPvTyL8gGLff0liDy3qc046YpubkrEIo9bUeeGQQqu5JYOECY-UuMrZbJRn3fA6Le5luyXN9VLzZWq0oQIvovCvvQ9cN8FS-5_KkzLjzVXvNAx2BavQeS5-PcgSAygat3Prsg9-yidxqyvAaYormu2J1yPEtnzJVxC0K0-pwPXJHiddgXi2ghAovQsBybA1lDrWT7AjjYpKwGLCWJQTh12H8Ipl3ABGQJO-AB9FB0drGDM07DWpPV_cA-Llx_6rg"
-            referrerPolicy="no-referrer"
-          />
-        </Link>
-
-        {/* Desktop Nav */}
-        <ul className="hidden lg:flex items-center space-x-8 text-[14px] font-medium text-gray-700">
-          {navLinks.map((link) => (
-            <li key={link.path}>
-              <Link 
-                href={link.path} 
-                className={`transition-colors hover:text-brand-blue ${
-                  pathname === link.path ? 'text-brand-blue font-semibold' : ''
-                }`}
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-6">
-          <Link href="/contact" className="hidden sm:flex bg-brand-blue text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-brand-blue/90 transition-all shadow-button">
-            Get Started
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-zoho-sm py-3' : 'bg-zoho-bg-light py-5'}`}>
+      <div className="container-custom flex items-center justify-between">
+        <div className="flex items-center gap-12">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-zoho-blue rounded-lg flex items-center justify-center text-white font-black text-xl italic">
+              T
+            </div>
+            <span className="text-2xl font-black tracking-tighter text-zoho-dark">
+              Tryangle <span className="text-zoho-blue">Tech</span>
+            </span>
           </Link>
 
-          {/* Mobile Toggle */}
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-gray-800 hover:text-brand-blue transition-colors"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <div 
+                key={link.name} 
+                className="relative group"
+                onMouseEnter={() => link.dropdown && setActiveDropdown(link.name)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link 
+                  href={link.href}
+                  className={`flex items-center gap-1 text-[15px] font-medium transition-colors ${pathname === link.href ? 'text-zoho-blue' : 'text-zoho-dark hover:text-zoho-blue'}`}
+                >
+                  {link.name}
+                  {link.dropdown && <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
+                </Link>
+                
+                {link.dropdown && activeDropdown === link.name && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute top-full left-0 mt-2 w-64 bg-white shadow-zoho-lg rounded-xl border border-gray-100 p-4"
+                  >
+                    <div className="space-y-3">
+                      {[1, 2, 3].map((i) => (
+                        <Link key={i} href={link.href} className="block p-2 hover:bg-zoho-bg-light rounded-lg transition-colors">
+                          <div className="font-bold text-sm">Feature Option {i}</div>
+                          <div className="text-xs text-zoho-muted">Brief description of this feature.</div>
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
-      </nav>
 
-      {/* Mobile Nav */}
+        {/* Right Actions */}
+        <div className="hidden lg:flex items-center gap-6">
+          <button className="text-zoho-dark hover:text-zoho-blue transition-colors">
+            <Search className="h-5 w-5" />
+          </button>
+          <Link href="/login" className="text-[15px] font-bold text-zoho-dark hover:text-zoho-blue transition-colors">
+            Sign in
+          </Link>
+          <Link href="/contact" className="bg-zoho-blue text-white px-6 py-2.5 rounded-md font-bold hover:bg-zoho-blue/90 transition-all shadow-button">
+            Sign up now
+          </Link>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button className="lg:hidden text-zoho-dark" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl overflow-hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
           >
-            <ul className="px-6 py-8 space-y-4">
+            <div className="container-custom py-8 space-y-6">
               {navLinks.map((link) => (
-                <li key={link.path}>
-                  <Link 
-                    href={link.path} 
-                    className={`block text-lg font-medium transition-colors ${
-                      pathname === link.path ? 'text-brand-blue' : 'text-gray-800 hover:text-brand-blue'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <li className="pt-4">
-                <Link href="/contact" className="w-full bg-brand-blue text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2">
-                  Get Started
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="block text-lg font-bold text-zoho-dark"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
                 </Link>
-              </li>
-            </ul>
+              ))}
+              <div className="pt-6 border-t border-gray-100 flex flex-col gap-4">
+                <Link href="/login" className="text-center font-bold text-zoho-dark">Sign in</Link>
+                <Link href="/contact" className="btn-primary w-full">Sign up now</Link>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </nav>
   );
 };
 
