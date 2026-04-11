@@ -1,12 +1,7 @@
-'use client';
-
+import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/src/components/Navbar";
-import Footer from "@/src/components/Footer";
-import WhatsAppButton from "@/src/components/WhatsAppButton";
-import { usePathname } from 'next/navigation';
-import MetadataLayout from "./metadata-layout";
+import ClientLayout from "@/src/components/ClientLayout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,28 +23,25 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+export const metadata: Metadata = {
+  title: "Tryangle Tech | Innovative IT Solutions in Ahmedabad",
+  description: "Ahmedabad's premier technology partner, architecting the future of digital excellence through engineered precision and creative soul.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const isCMS = pathname?.startsWith('/cms');
-
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
       </head>
       <body className="min-h-screen flex flex-col antialiased overflow-x-hidden">
-        <MetadataLayout>
-          {!isCMS && <Navbar />}
-          <main className="flex-grow">
-            {children}
-          </main>
-          {!isCMS && <Footer />}
-          {!isCMS && <WhatsAppButton />}
-        </MetadataLayout>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   );

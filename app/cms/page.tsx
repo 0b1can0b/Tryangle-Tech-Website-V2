@@ -145,13 +145,13 @@ export default function CMSPage() {
 
         {loading ? (
           <div className="flex justify-center py-20">
-            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-12 h-12 border-4 border-primary border-t-transparent animate-spin"></div>
           </div>
         ) : (
           <div className="grid gap-6">
             {items.length === 0 ? (
               <div className="bg-white p-20 text-center border border-outline-variant">
-                <div className="w-20 h-20 border border-outline-variant rounded-full flex items-center justify-center mx-auto mb-8 text-outline-variant">
+                <div className="w-20 h-20 border border-outline-variant flex items-center justify-center mx-auto mb-8 text-outline-variant">
                   <span className="material-symbols-outlined text-4xl">search_off</span>
                 </div>
                 <h3 className="text-xl font-headline font-bold text-on-surface mb-3">No Nodes Found</h3>

@@ -58,7 +58,7 @@ const Hero = () => {
             className="relative"
           >
             <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
-              <div className="absolute inset-0 border-[20px] border-white shadow-2xl z-10 overflow-hidden rounded-sm">
+              <div className="absolute inset-0 border-[20px] border-white shadow-2xl z-10 overflow-hidden rounded-none">
                 <Image 
                   src="https://picsum.photos/seed/architecture/800/1000" 
                   alt="Architectural Tech" 
@@ -67,8 +67,8 @@ const Hero = () => {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-primary/10 -z-10 rounded-sm"></div>
-              <div className="absolute -top-10 -left-10 w-40 h-40 border border-primary/20 -z-10 rounded-sm"></div>
+              <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-primary/10 -z-10 rounded-none"></div>
+              <div className="absolute -top-10 -left-10 w-40 h-40 border border-primary/20 -z-10 rounded-none"></div>
               
               {/* Floating Badge */}
               <div className="absolute -right-6 top-1/4 z-20 glass-effect p-6 rounded-none border border-white/20 shadow-xl hidden xl:block">

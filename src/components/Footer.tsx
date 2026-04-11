@@ -63,8 +63,8 @@ const Footer = () => {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest">© 2026 Tryangle Tech. Architectural Integrity Guaranteed.</p>
         <div className="flex gap-10">
-          <Link href="#" className="text-[9px] font-label uppercase text-on-surface-variant hover:text-primary tracking-widest">Privacy Protocol</Link>
-          <Link href="#" className="text-[9px] font-label uppercase text-on-surface-variant hover:text-primary tracking-widest">Legal Framework</Link>
+          <Link href="/privacy" className="text-[9px] font-label uppercase text-on-surface-variant hover:text-primary tracking-widest">Privacy Protocol</Link>
+          <Link href="/terms" className="text-[9px] font-label uppercase text-on-surface-variant hover:text-primary tracking-widest">Legal Framework</Link>
         </div>
       </div>
     </footer>

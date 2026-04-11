@@ -129,7 +129,7 @@ export default function Services() {
                 transition={{ delay: idx * 0.1 }}
                 className="text-center group"
               >
-                <div className="w-24 h-24 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-700">
+                <div className="w-24 h-24 border border-white/10 flex items-center justify-center mx-auto mb-10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-700">
                   <span className="material-symbols-outlined text-4xl">{item.icon}</span>
                 </div>
                 <h4 className="text-3xl font-headline font-bold mb-6 tracking-tight">{item.title}</h4>

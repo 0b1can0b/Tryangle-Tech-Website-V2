@@ -62,7 +62,7 @@ export default function Contact() {
                       { label: "Physical Node", value: "1st Floor-29/Vithal Plaza, New Naroda, Ahmedabad, Gujarat 382330", icon: "location_on" }
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-8 group">
-                        <div className="w-16 h-16 border border-outline-variant rounded-full flex items-center justify-center text-on-surface shrink-0 group-hover:border-primary group-hover:text-primary transition-all duration-500">
+                        <div className="w-16 h-16 border border-outline-variant flex items-center justify-center text-on-surface shrink-0 group-hover:border-primary group-hover:text-primary transition-all duration-500">
                           <span className="material-symbols-outlined text-2xl">{item.icon}</span>
                         </div>
                         <div>
@@ -105,7 +105,7 @@ export default function Contact() {
                     <motion.div 
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="w-24 h-24 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-8"
+                      className="w-24 h-24 bg-primary/10 text-primary flex items-center justify-center mx-auto mb-8"
                     >
                       <span className="material-symbols-outlined text-5xl">check_circle</span>
                     </motion.div>

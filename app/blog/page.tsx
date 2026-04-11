@@ -66,7 +66,7 @@ export default function BlogList() {
             <div className="lg:col-span-8 space-y-16">
               {loading ? (
                 <div className="flex justify-center py-20">
-                  <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-12 h-12 border-4 border-primary border-t-transparent animate-spin"></div>
                 </div>
               ) : (
                 posts.map((post, idx) => (
@@ -92,7 +92,7 @@ export default function BlogList() {
                       <div className="md:col-span-7">
                         <div className="flex items-center gap-4 text-[10px] font-label font-bold text-primary uppercase tracking-widest mb-4">
                           <span>{post.date}</span>
-                          <span className="w-1 h-1 rounded-full bg-outline-variant" />
+                          <span className="w-1 h-1 bg-outline-variant" />
                           <span>{post.category}</span>
                         </div>
                         <h2 className="text-3xl font-headline font-bold text-on-surface mb-4 group-hover:text-primary transition-colors leading-tight tracking-tight">

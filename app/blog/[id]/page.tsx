@@ -66,7 +66,7 @@ export default function BlogPost() {
   if (loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent animate-spin"></div>
       </div>
     );
   }
@@ -176,7 +176,7 @@ export default function BlogPost() {
             <aside className="lg:col-span-4 space-y-12 sticky top-32">
               <div className="p-10 border border-outline-variant text-center relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-primary" />
-                <div className="w-20 h-20 border border-outline-variant rounded-full flex items-center justify-center text-primary mb-8 mx-auto">
+                <div className="w-20 h-20 border border-outline-variant flex items-center justify-center text-primary mb-8 mx-auto">
                   <span className="material-symbols-outlined text-4xl">person</span>
                 </div>
                 <h4 className="font-headline font-bold text-2xl mb-4 tracking-tight">{post.author}</h4>
