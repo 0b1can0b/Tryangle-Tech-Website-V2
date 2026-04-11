@@ -75,55 +75,59 @@ export default function BlogList() {
               posts.map((post, idx) => (
                 <motion.article 
                   key={post.id}
-                  initial={{ y: 50 }}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, delay: idx * 0.1 }}
-                  className="group relative"
+                  className="group relative bg-white rounded-[3rem] overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700"
                 >
-                  <Link href={`/blog/${post.id}`} className="block overflow-hidden rounded-[3rem] mb-10 shadow-2xl relative">
-                    <div className="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/10 transition-colors duration-700 z-10" />
-                    <img 
-                      src={post.image} 
-                      alt={post.title} 
-                      className="w-full h-[500px] object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md text-brand-blue text-xs font-bold px-6 py-2 rounded-full uppercase tracking-widest shadow-xl z-20">
-                      {post.category}
-                    </div>
-                  </Link>
-                  
-                  <div className="flex flex-wrap items-center gap-8 text-sm font-bold text-gray-400 mb-6 uppercase tracking-widest">
-                    <div className="flex items-center gap-2 group/meta">
-                      <Calendar className="h-4 w-4 text-brand-blue group-hover/meta:scale-110 transition-transform" />
-                      {post.date}
-                    </div>
-                    <div className="flex items-center gap-2 group/meta">
-                      <User className="h-4 w-4 text-brand-blue group-hover/meta:scale-110 transition-transform" />
-                      {post.author}
-                    </div>
-                    <div className="flex items-center gap-2 group/meta">
-                      <Clock className="h-4 w-4 text-brand-blue group-hover/meta:scale-110 transition-transform" />
-                      {post.readTime}
+                  <div className="grid md:grid-cols-[400px_1fr] gap-0">
+                    <Link href={`/blog/${post.id}`} className="block overflow-hidden relative h-[350px] md:h-full">
+                      <div className="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/10 transition-colors duration-700 z-10" />
+                      <img 
+                        src={post.image} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md text-brand-blue text-[10px] font-bold px-6 py-2 rounded-full uppercase tracking-widest shadow-xl z-20">
+                        {post.category}
+                      </div>
+                    </Link>
+                    
+                    <div className="p-10 lg:p-14 flex flex-col justify-center">
+                      <div className="flex flex-wrap items-center gap-6 text-[10px] font-bold text-gray-400 mb-6 uppercase tracking-widest">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-3.5 w-3.5 text-brand-blue" />
+                          {post.date}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <User className="h-3.5 w-3.5 text-brand-blue" />
+                          {post.author}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-3.5 w-3.5 text-brand-blue" />
+                          {post.readTime}
+                        </div>
+                      </div>
+
+                      <h2 className="text-3xl lg:text-4xl font-bold mb-6 group-hover:text-brand-blue transition-all duration-300 leading-tight">
+                        <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                      </h2>
+                      <p className="text-gray-500 text-lg leading-relaxed mb-10 line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <Link 
+                        href={`/blog/${post.id}`} 
+                        className="inline-flex items-center gap-3 text-brand-blue font-bold text-base group/link"
+                      >
+                        Read Full Article 
+                        <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center group-hover/link:bg-brand-blue group-hover/link:text-white transition-all duration-300">
+                          <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                        </div>
+                      </Link>
                     </div>
                   </div>
-
-                  <h2 className="text-4xl lg:text-5xl font-bold mb-6 group-hover:text-brand-blue transition-all duration-300 leading-tight">
-                    <Link href={`/blog/${post.id}`}>{post.title}</Link>
-                  </h2>
-                  <p className="text-gray-500 text-lg leading-relaxed mb-10 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <Link 
-                    href={`/blog/${post.id}`} 
-                    className="inline-flex items-center gap-3 text-brand-blue font-bold text-lg group/link"
-                  >
-                    Read Full Article 
-                    <div className="w-12 h-12 rounded-full bg-brand-blue/10 flex items-center justify-center group-hover/link:bg-brand-blue group-hover/link:text-white transition-all duration-300">
-                      <ArrowRight className="h-5 w-5 group-hover/link:translate-x-1 transition-transform" />
-                    </div>
-                  </Link>
                 </motion.article>
               ))
             )}
